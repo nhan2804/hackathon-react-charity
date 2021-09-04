@@ -9,9 +9,9 @@ import { LazyMotion } from "framer-motion";
 import React from "react";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { ToastContainer } from "react-toastify";
-
+import LayoutHeader from "@components/Layout";
 import axios from "axios";
-
+import "antd/dist/antd.css";
 const loadFeatures = () =>
   import("./config/framer-motion").then((res) => res.default);
 function App() {
@@ -19,12 +19,13 @@ function App() {
   return (
     <LazyMotion features={loadFeatures} strict>
       <div style={{ position: "absolute" }} id="back-to-top-anchor" />
-      <Header />
+      {/* <Header /> */}
+      <LayoutHeader />
       <ToastContainer />
       <GetRoutes />
-      <Footer />
+      {/* <Footer /> */}
       <ScrollToTop />
-      <ReactQueryDevtools initialIsOpen />
+      {/* <ReactQueryDevtools initialIsOpen /> */}
     </LazyMotion>
   );
 }
