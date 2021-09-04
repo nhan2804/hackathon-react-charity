@@ -13,6 +13,7 @@ import {
 import SubMenu from "antd/lib/menu/SubMenu";
 import LeftNav from "@components/LeftNav";
 import ProjectItem from "../components/ProjectItem";
+import { Link } from "react-router-dom";
 
 const { Header, Sider, Content } = Layout;
 
@@ -34,7 +35,11 @@ const Project = () => {
       >
         <div className="grid grid-cols-4 gap-x-3 gap-y-3">
           {[...Array(10)].map((e, i) => {
-            return <ProjectItem key={i} />;
+            return (
+              <Link to={`/project/${i + 1}/tasks`} key={i}>
+                <ProjectItem />
+              </Link>
+            );
           })}
         </div>
       </Content>

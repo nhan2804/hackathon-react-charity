@@ -13,7 +13,9 @@ const ProjectItem = () => {
       cover={
         <img
           alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+          src={`https://picsum.photos/id/${
+            Math.floor(Math.random() * 1000) + 1
+          }/200/150`}
         />
       }
       actions={[
@@ -24,7 +26,11 @@ const ProjectItem = () => {
     >
       <Meta
         avatar={
-          <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+          <Avatar
+            src={`https://picsum.photos/id/${
+              Math.floor(Math.random() * 1000) + 1
+            }/200/300`}
+          />
         }
         title="Card title"
         description="This is the description"
