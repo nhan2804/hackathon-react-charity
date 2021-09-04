@@ -1,3 +1,4 @@
 import authRoute from "@modules/auth/routes";
-const routes = [...authRoute];
+import projectRoutes from "@modules/project/routes";
+const routes = [...authRoute, ...projectRoutes];
 export default routes;

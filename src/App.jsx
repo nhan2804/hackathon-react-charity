@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import LayoutHeader from "@components/Layout";
 import axios from "axios";
 import "antd/dist/antd.css";
+import HeaderNav from "@components/Header";
 const loadFeatures = () =>
   import("./config/framer-motion").then((res) => res.default);
 function App() {
@@ -19,8 +20,8 @@ function App() {
   return (
     <LazyMotion features={loadFeatures} strict>
       <div style={{ position: "absolute" }} id="back-to-top-anchor" />
-      {/* <Header /> */}
-      <LayoutHeader />
+      <HeaderNav />
+      {/* <LayoutHeader /> */}
       <ToastContainer />
       <GetRoutes />
       {/* <Footer /> */}
