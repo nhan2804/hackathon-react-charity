@@ -1,4 +1,4 @@
-import { Breadcrumb, Layout, Menu } from "antd";
+import { Breadcrumb, Button, Layout, Menu } from "antd";
 import React, { useState } from "react";
 import {
   MenuUnfoldOutlined,
@@ -21,21 +21,23 @@ const HeaderNav = () => {
     setCollapse(!collapse);
   };
   return (
-    <Header>
+    <Header className="flex justify-between">
       <div className="logo"></div>
 
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
-        {new Array(6).fill(null).map((_, index) => {
-          const key = index + 1;
-          return <Menu.Item key={key}>{`Menu ${key}`}</Menu.Item>;
-        })}
         <Menu.Item>
           <Link to="/project">Dự án của tôi</Link>
         </Menu.Item>
-        <Menu.Item>
+        {/* <Menu.Item>
           <Link to="/login">Đăng nhập</Link>
-        </Menu.Item>
+        </Menu.Item> */}
       </Menu>
+      <div className="space-x-2">
+        <Button type="primary">
+          <Link to="/project">Đăng nhập</Link>
+        </Button>
+        <Button>Đăng ký</Button>
+      </div>
     </Header>
   );
 };
