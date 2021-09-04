@@ -28,15 +28,14 @@ const HeaderNav = () => {
         <Menu.Item>
           <Link to="/project">Dự án của tôi</Link>
         </Menu.Item>
-        {/* <Menu.Item>
-          <Link to="/login">Đăng nhập</Link>
-        </Menu.Item> */}
       </Menu>
       <div className="space-x-2">
         <Button type="primary">
-          <Link to="/project">Đăng nhập</Link>
+          <Link to="/login">Đăng nhập</Link>
         </Button>
-        <Button>Đăng ký</Button>
+        <Button type="link">
+          <Link to="/register">Đăng ký</Link>
+        </Button>
       </div>
     </Header>
   );
