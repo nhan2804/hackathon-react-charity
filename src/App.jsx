@@ -4,7 +4,7 @@ import Footer from "@components/Footer";
 import Header from "@components/Header";
 
 import { ScrollToTop } from "@components/ScrollToTop";
-import GetRoutes from "./config/Route/GetRoutes";
+import GetRoutes from "@routes/GetRoutes";
 import { LazyMotion } from "framer-motion";
 import React from "react";
 import { ReactQueryDevtools } from "react-query/devtools";

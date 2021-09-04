@@ -11,7 +11,8 @@
       "@components/*": ["./src/common/components/*"],
       "@action/*": ["./src/redux/action/*"],
       "@config/*": ["./src/config/*"],
-      "@helper/*": ["./src/helper/*"]
+      "@helper/*": ["./src/helper/*"],
+      "@modules/*": ["./src/modules/*"]
     }
   },
   "exclude": ["node_modules"]

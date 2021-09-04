@@ -3,7 +3,7 @@ import React, { memo, Suspense } from "react";
 
 import { Switch } from "react-router-dom";
 
-import Routes from "./RouteConfig";
+import Routes from "./index";
 
 function GetRoutes() {
   return (

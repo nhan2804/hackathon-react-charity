@@ -19,6 +19,9 @@ export default defineConfig({
   resolve: {
     alias: {
       "@pages": resolve(__dirname, "./src/pages"),
+      "@modules": resolve(__dirname, "./src/modules"),
+      "@routes": resolve(__dirname, "./src/routes"),
+
       "@hooks": resolve(__dirname, "./src/common/hooks"),
       "@components": resolve(__dirname, "./src/common/components"),
       "@action": resolve(__dirname, "./src/redux/action"),
