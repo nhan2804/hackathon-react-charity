@@ -2,19 +2,17 @@ import { Breadcrumb, Layout, Menu } from "antd";
 import React, { useState } from "react";
 // import "./index.css";
 
-import SubMenu from "antd/lib/menu/SubMenu";
 import LeftNav from "@components/LeftNav";
 import ProjectItem from "../../components/ProjectItem";
 import { Link } from "react-router-dom";
 import CreateProjectSection from "./components/CreateProjectSection";
+import useGetProject from "@modules/project/hooks/useGetProJect";
 
 const { Content } = Layout;
 
 const Project = () => {
-  const [collapse, setCollapse] = useState(false);
-  const toggle = () => {
-    setCollapse(!collapse);
-  };
+  const { data: projects, isLoading } = useGetProject();
+  console.log(projects);
   return (
     <Layout className="h-full">
       <LeftNav />
@@ -28,10 +26,10 @@ const Project = () => {
       >
         <div className="grid grid-cols-4 gap-x-3 gap-y-3">
           <CreateProjectSection />
-          {[...Array(10)].map((e, i) => {
+          {projects?.map((e, i) => {
             return (
-              <Link to={`/project/${i + 1}/tasks`} key={i}>
-                <ProjectItem />
+              <Link to={`/project/${e?.id_project}/tasks`} key={i}>
+                <ProjectItem item={e} />
               </Link>
             );
           })}

@@ -7,15 +7,14 @@ import {
 } from "@ant-design/icons";
 
 const { Meta } = Card;
-const ProjectItem = () => {
+const ProjectItem = ({ item }) => {
   return (
     <Card
       cover={
         <img
+          style={{ maxHeight: 200 }}
           alt="example"
-          src={`https://picsum.photos/id/${
-            Math.floor(Math.random() * 1000) + 1
-          }/200/150`}
+          src={item?.thumb_project}
         />
       }
       actions={[
@@ -25,15 +24,9 @@ const ProjectItem = () => {
       ]}
     >
       <Meta
-        avatar={
-          <Avatar
-            src={`https://picsum.photos/id/${
-              Math.floor(Math.random() * 1000) + 1
-            }/200/300`}
-          />
-        }
-        title="Card title"
-        description="This is the description"
+        avatar={<Avatar src={item?.thumb_project} />}
+        title={item?.name_project}
+        description={item?.desc_project?.substring(0, 50) + "..."}
       />
     </Card>
   );

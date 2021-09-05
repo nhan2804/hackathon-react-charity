@@ -1,4 +1,4 @@
-import { Breadcrumb, Layout, Menu } from "antd";
+import { Breadcrumb, Button, Layout, Menu } from "antd";
 import React, { useState } from "react";
 // import "./index.css";
 import SubMenu from "antd/lib/menu/SubMenu";
@@ -6,6 +6,7 @@ import TaskMenu from "../components/TaskMenu";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import CreateTaskSection from "../components/CreateTaskForm";
 const { Header, Sider, Content } = Layout;
 const localizer = momentLocalizer(moment);
 const Task = () => {
@@ -37,13 +38,11 @@ const Task = () => {
         }}
       >
         <div>
-          <Calendar
-            localizer={localizer}
-            events={events}
-            startAccessor="start"
-            endAccessor="end"
-            style={{ height: 500 }}
-          />
+          <div className="grid grid-cols-6 space-x-2">
+            <CreateTaskSection></CreateTaskSection>
+            <Button type="primary">Thêm nguời dùng</Button>
+            <Button type="primary">Thêm FeedBack</Button>
+          </div>
         </div>
       </Content>
     </Layout>

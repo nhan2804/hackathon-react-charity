@@ -1,26 +1,22 @@
 import React from "react";
-import { Form, Input, Button, Upload } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
-import useCreateProject from "@modules/project/hooks/useCreateProject";
-const CreateProjectForm = () => {
-  const { mutate: create, isLoading } = useCreateProject();
+import { Form, Input, Button, DatePicker } from "antd";
+import useCreateTask from "@modules/task/hooks/useCreateTask";
+import { useParams } from "react-router";
+const { RangePicker } = DatePicker;
+const CreateTaskForm = () => {
+  let { id } = useParams();
+  const { mutate: create, isLoading } = useCreateTask();
   const onFinish = (values) => {
-    console.log("Success:", values);
-    const thumb_project =
-      values?.thumbnail_project?.[0]?.response?.data?.thumb?.url;
-    create({ ...values, thumb_project });
+    const time_start = values?.time?.[0].format("YYYY-MM-DD");
+    const time_end = values?.time?.[1].format("YYYY-MM-DD");
+
+    create({ ...values, time_start, time_end, project_id: id });
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-  const normFile = (e) => {
-    console.log("Upload event:", e);
-    if (Array.isArray(e)) {
-      return e;
-    }
-    return e && e.fileList;
-  };
+
   return (
     <Form
       name="basic"
@@ -34,23 +30,8 @@ const CreateProjectForm = () => {
       autoComplete="off"
     >
       <Form.Item
-        name="thumbnail_project"
-        label="Ảnh bìa"
-        valuePropName="fileList"
-        getValueFromEvent={normFile}
-      >
-        <Upload
-          name="image"
-          action="https://api.imgbb.com/1/upload?key=d896df32002ac664b0d89df95bcb46f4"
-          maxCount={1}
-          listType="picture"
-        >
-          <Button icon={<UploadOutlined />}>Click to upload</Button>
-        </Upload>
-      </Form.Item>
-      <Form.Item
-        label="Tên dự án"
-        name="name_project"
+        label="Tên công viêc"
+        name="name_task"
         rules={[
           {
             required: true,
@@ -71,11 +52,11 @@ const CreateProjectForm = () => {
 
       <Form.Item
         label="Miêu tả"
-        name="desc_project"
+        name="desc_task"
         rules={[
           {
             required: true,
-            message: "Bạn cần nhập miêu tả dự án",
+            message: "Bạn cần nhập miêu tả công viêc",
           },
         ]}
       >
@@ -89,6 +70,18 @@ const CreateProjectForm = () => {
           //   }
         />
       </Form.Item>
+      <Form.Item
+        label="Ngày bắt đầu & Kết túc"
+        name="time"
+        rules={[
+          {
+            required: true,
+            message: "Bạn cần nhập miêu tả công viêc",
+          },
+        ]}
+      >
+        <RangePicker />
+      </Form.Item>
 
       <Form.Item>
         <div className="flex justify-end">
@@ -98,7 +91,7 @@ const CreateProjectForm = () => {
             className="!font-semibold"
             loading={isLoading}
           >
-            Tạo dự án
+            Tạo công viêc
           </Button>
         </div>
       </Form.Item>
@@ -106,4 +99,4 @@ const CreateProjectForm = () => {
   );
 };
 
-export default CreateProjectForm;
+export default CreateTaskForm;

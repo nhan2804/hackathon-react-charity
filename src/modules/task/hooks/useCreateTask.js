@@ -1,19 +1,19 @@
 import { useMutation, useQueryClient } from "react-query";
-import { createProject } from "../services";
+import { createTask } from "../services";
 
-const useCreateProject = () => {
+const useCreateTask = () => {
   const qc = useQueryClient();
   return useMutation(
     async (requestData) => {
-      const { data } = await createProject(requestData);
+      const { data } = await createTask(requestData);
       return data;
     },
     {
       onSuccess: () => {
-        qc.invalidateQueries(["project"]);
+        qc.invalidateQueries(["task"]);
       },
     }
   );
 };
 
-export default useCreateProject;
+export default useCreateTask;

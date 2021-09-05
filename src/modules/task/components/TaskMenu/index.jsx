@@ -1,21 +1,37 @@
-import { Breadcrumb, Layout, Menu } from "antd";
+import { Table, Layout, Menu } from "antd";
 import React, { useState } from "react";
 // import "./index.css";
-import {
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-} from "@ant-design/icons";
-import SubMenu from "antd/lib/menu/SubMenu";
 import { Link } from "react-router-dom";
+import useGetTask from "@modules/task/hooks/useGetTask";
+import { useParams } from "react-router";
 
 const { Header, Sider, Content } = Layout;
 
 const TaskMenu = () => {
-  const [collapse, setCollapse] = useState(false);
-  const toggle = () => {
-    setCollapse(!collapse);
-  };
+  const columns = [
+    {
+      title: "name_task",
+      dataIndex: "name_task",
+      key: "name_task",
+    },
+    {
+      title: "desc_task",
+      dataIndex: "desc_task",
+      key: "desc_task",
+    },
+    {
+      title: "time_start",
+      dataIndex: "time_start",
+      key: "time_start",
+    },
+    {
+      title: "time_end",
+      dataIndex: "time_end",
+      key: "time_end",
+    },
+  ];
+  let { id } = useParams();
+  const { data } = useGetTask(id);
   return (
     <Sider width={300} className="site-layout-background">
       <Menu
@@ -24,13 +40,10 @@ const TaskMenu = () => {
         defaultOpenKeys={["sub1"]}
         style={{ height: "100%", borderRight: 0 }}
       >
-        {[...Array(15)].map((e, i) => {
+        {data?.map((e, i) => {
           return (
             <Menu.Item key={i}>
-              <Link to={`tasks/${i + 1}`}>
-                {`Công việc ${i + 1}`} | {`Ngọc Nhẫn ${i + 1}`} |
-                {`Time end ${i + 1}`}
-              </Link>
+              <Link to={`tasks/${i + 1}`}>{e?.name_task}</Link>
             </Menu.Item>
           );
         })}
