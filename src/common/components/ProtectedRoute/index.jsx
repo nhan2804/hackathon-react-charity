@@ -1,10 +1,18 @@
+import { useAppSelector } from "@hooks/reduxHook";
 import React, { memo } from "react";
 import { shallowEqual, useSelector } from "react-redux";
 import { Redirect, Route } from "react-router";
 
-const ProtectedRoute = ({ path, component: Component, exact, isPrivate, accessRole, ...rest }) => {
-  const auth = useSelector((state) => state.userStatus.auth, shallowEqual);
-  const role = useSelector((state) => state.userStatus?.userInfo?.user?.role, shallowEqual);
+const ProtectedRoute = ({
+  path,
+  component: Component,
+  exact,
+  isPrivate,
+  accessRole,
+  ...rest
+}) => {
+  const auth = useAppSelector((state) => state.auth.isAuth, shallowEqual);
+  const role = useAppSelector((state) => state.auth.user?.role, shallowEqual);
   return (
     <Route
       render={(props) => {

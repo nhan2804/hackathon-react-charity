@@ -1,21 +1,14 @@
-import { useCallback } from "react";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { useCallback, useState } from "react";
 
-const useModal = (name) => {
-  const isOpen = useSelector(
-    (state) => state.modal?.[name.toLowerCase()],
-    shallowEqual
-  );
-  const dispatch = useDispatch();
-
-  const open = useCallback(() => {
-    dispatch({ type: `OPEN_${name.toUpperCase()}_MODAL` });
-  }, [dispatch, name]);
-
+const useModal = (props) => {
+  const { initialOpen } = props || {};
+  const [isOpen, setisOpen] = useState(initialOpen);
   const close = useCallback(() => {
-    dispatch({ type: `CLOSE_${name.toUpperCase()}_MODAL` });
-  }, [dispatch, name]);
-
+    setisOpen(false);
+  }, []);
+  const open = useCallback(() => {
+    setisOpen(true);
+  }, []);
   return { close, open, isOpen };
 };
 

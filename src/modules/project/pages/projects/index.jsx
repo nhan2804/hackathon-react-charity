@@ -1,21 +1,14 @@
 import { Breadcrumb, Layout, Menu } from "antd";
 import React, { useState } from "react";
 // import "./index.css";
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-} from "@ant-design/icons";
+
 import SubMenu from "antd/lib/menu/SubMenu";
 import LeftNav from "@components/LeftNav";
-import ProjectItem from "../components/ProjectItem";
+import ProjectItem from "../../components/ProjectItem";
 import { Link } from "react-router-dom";
+import CreateProjectSection from "./components/CreateProjectSection";
 
-const { Header, Sider, Content } = Layout;
+const { Content } = Layout;
 
 const Project = () => {
   const [collapse, setCollapse] = useState(false);
@@ -34,6 +27,7 @@ const Project = () => {
         }}
       >
         <div className="grid grid-cols-4 gap-x-3 gap-y-3">
+          <CreateProjectSection />
           {[...Array(10)].map((e, i) => {
             return (
               <Link to={`/project/${i + 1}/tasks`} key={i}>

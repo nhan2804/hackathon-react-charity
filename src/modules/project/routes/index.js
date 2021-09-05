@@ -1,4 +1,4 @@
-import Project from "../pages";
+import Project from "../pages/projects";
 
 const projectRoutes = [
   {

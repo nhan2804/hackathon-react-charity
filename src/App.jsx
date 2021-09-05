@@ -13,6 +13,7 @@ import LayoutHeader from "@components/Layout";
 import axios from "axios";
 import "antd/dist/antd.css";
 import HeaderNav from "@components/Header";
+import { Layout } from "antd";
 const loadFeatures = () =>
   import("./config/framer-motion").then((res) => res.default);
 function App() {
@@ -20,10 +21,14 @@ function App() {
   return (
     <LazyMotion features={loadFeatures} strict>
       <div style={{ position: "absolute" }} id="back-to-top-anchor" />
-      <HeaderNav />
+      <Layout className="h-full">
+        <HeaderNav />
+        <GetRoutes />
+      </Layout>
+
       {/* <LayoutHeader /> */}
       <ToastContainer />
-      <GetRoutes />
+
       {/* <Footer /> */}
       <ScrollToTop />
       {/* <ReactQueryDevtools initialIsOpen /> */}

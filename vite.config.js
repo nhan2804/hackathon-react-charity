@@ -21,6 +21,7 @@ export default defineConfig({
       "@pages": resolve(__dirname, "./src/pages"),
       "@modules": resolve(__dirname, "./src/modules"),
       "@routes": resolve(__dirname, "./src/routes"),
+      "@app": resolve(__dirname, "./src/app"),
 
       "@hooks": resolve(__dirname, "./src/common/hooks"),
       "@components": resolve(__dirname, "./src/common/components"),
