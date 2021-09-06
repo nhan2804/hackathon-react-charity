@@ -14,6 +14,7 @@ import axios from "axios";
 import "antd/dist/antd.css";
 import HeaderNav from "@components/Header";
 import { Layout } from "antd";
+
 const loadFeatures = () =>
   import("./config/framer-motion").then((res) => res.default);
 function App() {
