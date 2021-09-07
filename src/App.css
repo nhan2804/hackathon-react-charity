@@ -55,3 +55,9 @@ button {
 .ant-form-item-required::after {
   display: none;
 }
+.Grid-module_grid__2VUMH{
+  /* display: none !important; */
+}
+.Chart-module_chart__1T9rB .Chart-module_area__3FglT > div{
+  background-image: url('../src/assets/images/bg.png') !important;
+}

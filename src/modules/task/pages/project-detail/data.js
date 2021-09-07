@@ -60,7 +60,7 @@ const tasks = [
   //     text: "API reference",
   //     progress: 0,
   //   },
-  ...[...Array(500)].map((_, i) => ({
+  ...[...Array(18)].map((_, i) => ({
     id: i + 7,
     start_date: Date.now() + i * 60 * 60 * 24 * 1000,
     duration: 8,
