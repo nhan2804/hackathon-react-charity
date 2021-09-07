@@ -1,15 +1,16 @@
-import Task from "../pages";
-import ShowTask from "../pages/show";
+import { lazy } from "react";
+const ProjectDetail = lazy(() => import("../pages/project-detail"));
+const TaskDetail = lazy(() => import("../pages/task-detail"));
 
 const tasktRoutes = [
   {
-    component: Task,
+    component: ProjectDetail,
     path: "/project/:id/tasks",
     exact: true,
   },
   {
-    component: ShowTask,
-    path: "/project/:id/tasks/:id",
+    component: TaskDetail,
+    path: "/project/:projectId/tasks/:taskId",
     exact: true,
   },
 ];

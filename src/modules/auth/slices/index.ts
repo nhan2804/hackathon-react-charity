@@ -9,7 +9,7 @@ export interface authState {
 const initialState: authState = {
   isAuth: false,
   token: "",
-  user: {},
+  user: null,
 };
 
 export const authSlice = createSlice({
@@ -28,7 +28,7 @@ export const authSlice = createSlice({
     logout: (state) => {
       state.isAuth = false;
       state.token = "";
-      state.user = {};
+      state.user = null;
     },
   },
 });

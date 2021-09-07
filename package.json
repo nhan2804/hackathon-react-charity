@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@dhtmlx/trial-react-gantt": "^1.1.4",
+    "@headlessui/react": "^1.4.1",
     "@hookform/error-message": "^2.0.0",
     "@reduxjs/toolkit": "^1.6.1",
     "@syncfusion/ej2-react-gantt": "^19.2.59",
@@ -25,6 +26,7 @@
     "react": "^17.0.0",
     "react-big-calendar": "^0.35.0",
     "react-dom": "^17.0.0",
+    "react-google-charts": "^3.0.15",
     "react-hook-form": "^7.2.1",
     "react-query": "^3.13.10",
     "react-redux": "^7.2.3",
