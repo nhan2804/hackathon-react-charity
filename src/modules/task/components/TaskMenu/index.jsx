@@ -1,4 +1,4 @@
-import { Layout, Menu } from "antd";
+import { Affix, Layout, Menu } from "antd";
 import React from "react";
 // import "./index.css";
 import { Link } from "react-router-dom";
@@ -8,23 +8,32 @@ import Sider from "antd/lib/layout/Sider";
 const TaskMenu = ({ projectId, taskId }) => {
   const { data: tasks } = useGetTask(projectId);
   return (
-    <Layout.Sider width={300} className="site-layout-background">
+    <Layout.Sider
+      width={300}
+      className="h-full min-h-full overflow-auto max-h-0 site-layout-background"
+    >
       <Menu
         mode="inline"
         selectedKeys={[taskId]}
-        style={{ height: "100%", borderRight: 0,lineHeight:2.4,marginTop:"84px" }}
+        // style={{ height: "100%", borderRight: 0,lineHeight:2.4,marginTop:"84px" }}
       >
         {tasks?.map((task, i) => {
           return (
-            // <Menu.Item key={task?.id_task}>
-            
-              <Link  key={task?.id_task} style={{display:'block',padding:'0 20px',margin:0,borderTop:"1px solid #ccc",height:38}} to={`/project/${projectId}/tasks/${task?.id_task}`}>
+            <Menu.Item key={task?.id_task}>
+              <Link
+                key={task?.id_task}
+                // style={{
+                //   display: "block",
+                //   padding: "0 20px",
+                //   margin: 0,
+                //   borderTop: "1px solid #ccc",
+                //   height: 38,
+                // }}
+                to={`/project/${projectId}/tasks/${task?.id_task}`}
+              >
                 {task?.name_task}
               </Link>
-              
-            
-             
-            // </Menu.Item>
+            </Menu.Item>
           );
         })}
       </Menu>

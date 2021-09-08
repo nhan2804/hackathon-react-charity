@@ -24,7 +24,7 @@ const Project = () => {
           minHeight: 280,
         }}
       >
-        <div className="grid grid-cols-4 gap-x-3 gap-y-3">
+        <div className="grid grid-cols-5 gap-x-3 gap-y-3">
           <CreateProjectSection />
           {projects?.map((e, i) => {
             return (

@@ -18,7 +18,7 @@ const CreateTaskSection = () => {
         onCancel={close}
         footer={[]}
       >
-        <CreateTaskForm />
+        <CreateTaskForm close={close} />
       </Modal>
     </>
   );

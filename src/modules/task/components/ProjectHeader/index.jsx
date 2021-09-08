@@ -3,7 +3,7 @@ import React from "react";
 import { useHistory } from "react-router";
 import CreateTaskSection from "../CreateTaskForm";
 
-const ProjectHeader = () => {
+const ProjectHeader = ({ projectId }) => {
   const history = useHistory();
   return (
     <PageHeader
@@ -12,9 +12,14 @@ const ProjectHeader = () => {
       onBack={() => history.goBack()}
       ghost={false}
       extra={[
-        <CreateTaskSection />,
+        <CreateTaskSection projectId={projectId} />,
         <Button type="primary">Thêm nguời dùng</Button>,
-        <Button type="primary">Thêm FeedBack</Button>,
+        <Button
+          type="primary"
+          onClick={() => history.push(`/project/${projectId}/feedback`)}
+        >
+          Thêm FeedBack
+        </Button>,
       ]}
     />
   );

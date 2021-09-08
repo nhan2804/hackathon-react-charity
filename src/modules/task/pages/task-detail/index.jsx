@@ -22,7 +22,7 @@ const TaskDetail = () => {
 
   return (
     <Layout className="h-full">
-      <ProjectHeader />
+      <ProjectHeader projectId={projectId} />
       <Layout>
         <TaskMenu projectId={projectId} taskId={taskId} />
         <Layout.Content className="bg-white">
@@ -34,8 +34,8 @@ const TaskDetail = () => {
           />
           <div className="px-6">
             <div className="grid grid-cols-2 gap-4">
-              <TodoSection />
-              <CommentSection />
+              <TodoSection taskId={taskId} />
+              <CommentSection id={taskId} />
             </div>
           </div>
         </Layout.Content>

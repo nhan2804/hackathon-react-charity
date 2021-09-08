@@ -3,14 +3,17 @@ import { Form, Input, Button, DatePicker } from "antd";
 import useCreateTask from "@modules/task/hooks/useCreateTask";
 import { useParams } from "react-router";
 const { RangePicker } = DatePicker;
-const CreateTaskForm = () => {
-  let { id } = useParams();
+const CreateTaskForm = ({ close }) => {
+  let { projectId } = useParams();
   const { mutate: create, isLoading } = useCreateTask();
   const onFinish = (values) => {
     const time_start = values?.time?.[0].format("YYYY-MM-DD");
     const time_end = values?.time?.[1].format("YYYY-MM-DD");
 
-    create({ ...values, time_start, time_end, project_id: id });
+    create(
+      { ...values, time_start, time_end, project_id: projectId },
+      { onSuccess: close }
+    );
   };
 
   const onFinishFailed = (errorInfo) => {

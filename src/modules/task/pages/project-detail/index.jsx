@@ -12,40 +12,35 @@ import ProjectHeader from "@modules/task/components/ProjectHeader";
 const { Content } = Layout;
 // Body-module_row__2eOgf
 
-
-
 const ProjectDetail = () => {
-  const handleUserKeyPress = useCallback(event => {
-   alert("ok")
+  const handleUserKeyPress = useCallback((event) => {
+    alert("ok");
   }, []);
   useEffect(() => {
-    const el=document?.querySelectorAll('.Body-module_row__2eOgf');
-    if(el && el.length!==0){
+    const el = document?.querySelectorAll(".Body-module_row__2eOgf");
+    if (el && el.length !== 0) {
       for (let i = 0; i < el.length; i++) {
-        el[i].addEventListener("click",handleUserKeyPress);
-    }
+        el[i].addEventListener("click", handleUserKeyPress);
+      }
       // el.addEventListener("click",handleUserKeyPress);
-      
     }
     return () => {
-      
-      if(el && el.length!==0){
+      if (el && el.length !== 0) {
         for (let i = 0; i < el.length; i++) {
-          el[i].removeEventListener("click",handleUserKeyPress);
-      }
+          el[i].removeEventListener("click", handleUserKeyPress);
+        }
       }
     };
   });
-  
-  let { id } = useParams();
+
+  let { projectId } = useParams();
   return (
     <Layout className="h-full">
-      <Content className="h-full bg-white">
-        <ProjectHeader />
-       
+      <Content className="flex flex-col h-full bg-white">
+        <ProjectHeader projectId={projectId} />
 
-        <Layout className="">
-          <TaskMenu projectId={id} />
+        <Layout className="flex-grow">
+          <TaskMenu projectId={projectId} />
           <Content className="p-6">
             <DefaultTheme>
               <Gantt
@@ -53,7 +48,6 @@ const ProjectDetail = () => {
                 columns={columns}
                 tasks={tasks}
                 links={links}
-                
               />
             </DefaultTheme>
           </Content>

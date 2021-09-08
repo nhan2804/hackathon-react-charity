@@ -9,7 +9,6 @@ import { LazyMotion } from "framer-motion";
 import React from "react";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { ToastContainer } from "react-toastify";
-import axios from "axios";
 import "antd/dist/antd.css";
 import HeaderNav from "@components/Header";
 import { Layout } from "antd";
@@ -17,7 +16,6 @@ import { Layout } from "antd";
 const loadFeatures = () =>
   import("./config/framer-motion").then((res) => res.default);
 function App() {
-  axios.get("");
   return (
     <LazyMotion features={loadFeatures} strict>
       <div style={{ position: "absolute" }} id="back-to-top-anchor" />

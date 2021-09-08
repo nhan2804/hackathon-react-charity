@@ -3,12 +3,12 @@ import React from "react";
 import CreateTodoForm from "./CreateTodoForm";
 import ListTodo from "./ListTodo";
 
-const TodoSection = () => {
+const TodoSection = ({ taskId }) => {
   return (
     <div>
       <Divider orientation="left">Danh sách công việc</Divider>
-      <ListTodo />
-      <CreateTodoForm />
+      <ListTodo taskId={taskId} />
+      <CreateTodoForm taskId={taskId} />
     </div>
   );
 };

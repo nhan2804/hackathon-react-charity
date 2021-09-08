@@ -1,23 +1,23 @@
+import useGetTodo from "@modules/task/hooks/useGetTodo";
 import { List } from "antd";
 
 import React from "react";
 import TodoItem from "./TodoItem";
 
-const ListTodo = () => {
-  const data = [
-    "Racing car sprays burning fuel into crowd.",
-    "Japanese princess to wed commoner.",
-    "Australian walks 100km after outback crash.",
-    "Man charged over missing wedding girl.",
-    "Los Angeles battles huge wildfires.",
-  ];
+const ListTodo = ({ taskId }) => {
+  const { data } = useGetTodo(taskId);
   return (
     <List
       dataSource={data}
       itemLayout="horizontal"
       renderItem={(item) => (
         <List.Item>
-          <TodoItem item={item} />
+          <TodoItem
+            item={item?.name_todo}
+            checked={item?.status_to === "CHECKED"}
+            desc={item?.desc_todo}
+            {...item}
+          />
         </List.Item>
       )}
     />

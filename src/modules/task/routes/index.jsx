@@ -5,7 +5,7 @@ const TaskDetail = lazy(() => import("../pages/task-detail"));
 const tasktRoutes = [
   {
     component: ProjectDetail,
-    path: "/project/:id/tasks",
+    path: "/project/:projectId/tasks",
     exact: true,
   },
   {
