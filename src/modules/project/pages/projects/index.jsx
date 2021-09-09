@@ -15,7 +15,9 @@ const Project = () => {
   console.log(projects);
   return (
     <Layout className="h-full">
+    
       <LeftNav />
+     
       <Content
         className="site-layout-background"
         style={{
