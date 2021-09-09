@@ -4,13 +4,15 @@ import React from "react";
 
 const CreateTodoForm = ({ taskId }) => {
   const { mutate: create, isLoading } = useCreateTodo(taskId);
+  const [form] = Form.useForm();
   const onFinish = (values) => {
     console.log(values);
     create(values);
+    form.resetFields();
   };
   return (
     <div className="flex">
-      <Form className="flex-grow" onFinish={onFinish}>
+      <Form form={form} className="flex-grow" onFinish={onFinish}>
         <Form.Item
           name="name_todo"
           rules={[{ required: true, message: "Bạn cần nhập tên todo" }]}

@@ -8,7 +8,7 @@ const ListComment = ({ taskId }) => {
     <List
       dataSource={data}
       itemLayout="horizontal"
-      renderItem={(item) => <CommentItem desc={item?.desc_comment} />}
+      renderItem={(item) => <CommentItem item={item} />}
     />
   );
 };

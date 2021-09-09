@@ -1,4 +1,4 @@
-import { Divider, Layout, PageHeader, Tag } from "antd";
+import { Divider, Layout, PageHeader, Progress, Tag } from "antd";
 import React from "react";
 // import "./index.css";
 import { useParams } from "react-router";
@@ -9,6 +9,7 @@ import CommentSection from "@modules/task/components/CommentSection";
 
 // const localizer = momentLocalizer(moment);
 const TaskDetail = () => {
+  
   const { projectId, taskId } = useParams();
 
   return (
@@ -23,8 +24,11 @@ const TaskDetail = () => {
             // subTitle="This is a subtitle"
             tags={[<Tag color="blue">Đang tiến hành</Tag>]}
           />
+          
           <div className="px-6">
+          
             <div className="grid grid-cols-2 gap-4">
+            
               <TodoSection taskId={taskId} />
               <CommentSection id={taskId} />
             </div>

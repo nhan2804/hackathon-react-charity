@@ -2,11 +2,11 @@ import { Avatar, Button, Input, Form } from "antd";
 
 import React from "react";
 import { UserOutlined } from "@ant-design/icons";
-import useCreateComment from "@modules/task/hooks/useCreateComment";
 import { useAppSelector } from "@hooks/reduxHook";
-const CreateCommentForm = ({ taskId }) => {
+import useCreateCommentFeedBack from "@modules/feedback/hooks/useCreateCommentFeedBack";
+const CreateCommentFeedBackForm = ({feedbackID}) => {
   const [form] = Form.useForm();
-  const { mutate: create, isLoading } = useCreateComment(taskId);
+  const { mutate: create, isLoading } = useCreateCommentFeedBack(feedbackID)
   const onSubmit = (data) => {
     create(data);
     form.resetFields();
@@ -35,4 +35,4 @@ const CreateCommentForm = ({ taskId }) => {
   );
 };
 
-export default CreateCommentForm;
+export default CreateCommentFeedBackForm;

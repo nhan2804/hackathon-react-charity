@@ -3,21 +3,22 @@ import { Comment, Tooltip, Avatar } from "antd";
 import moment from "moment";
 import { Link } from "react-router-dom";
 
-const CommentItem = ({ desc }) => {
+const CommentItem = ({item}) => {
+ console.log(item);
   return (
     <Comment
       //   actions={actions}
-      author={<Link to="/">Han Solo</Link>}
+      author={<Link to="/">{item?.user?.username}</Link>}
       avatar={
         <Avatar
-          src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-          alt="Han Solo"
+          src={item?.user?.avatar}
+          alt={item?.user?.username}
         />
       }
-      content={<p>{desc}</p>}
+      content={<p>{item?.desc_comment}</p>}
       datetime={
-        <Tooltip title={moment().format("YYYY-MM-DD HH:mm:ss")}>
-          <span>{moment().fromNow()}</span>
+        <Tooltip title={moment(item?.created_at).format("YYYY-MM-DD HH:mm:ss")}>
+          <span>{moment(item?.created_at).fromNow()}</span>
         </Tooltip>
       }
     />
