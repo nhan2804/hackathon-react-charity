@@ -3,6 +3,10 @@ import axios from "axios";
 export const createTask = (requestData) => {
   return axios.post("/task", requestData);
 };
+export const showTask = (id) => {
+  return axios.get(`/task/${id}`);
+};
+
 export const fetchTask = (id) => {
   return axios.get(`/project/${id}/tasks`);
 };

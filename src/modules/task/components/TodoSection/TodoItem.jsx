@@ -4,7 +4,6 @@ import EditOutlined from "@ant-design/icons/EditOutlined";
 import { Popover } from "@headlessui/react";
 import useUpdateTodo from "@modules/task/hooks/useUpdateTodo";
 const TodoItem = ({ item, checked, desc, id_todo, task_id }) => {
-  console.log(task_id);
   const [isEdit, setIsEdit] = useState(false);
   const { mutate: update } = useUpdateTodo(id_todo, task_id);
   const onEdit = (data, close) => {
@@ -16,7 +15,7 @@ const TodoItem = ({ item, checked, desc, id_todo, task_id }) => {
   };
   return (
     <Popover className="relative flex w-full space-x-2">
-      <Checkbox defaultChecked={checked}></Checkbox>
+      <Checkbox checked={checked} defaultChecked={checked}></Checkbox>
       <div className="flex-grow">
         <div className="font-medium">{item}</div>
         <div>{desc}</div>

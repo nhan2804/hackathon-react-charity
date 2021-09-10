@@ -17,6 +17,7 @@ const loadFeatures = () =>
   import("./config/framer-motion").then((res) => res.default);
 function App() {
   return (
+    <React.StrictMode>
     <LazyMotion features={loadFeatures} strict>
       <div style={{ position: "absolute" }} id="back-to-top-anchor" />
       <Layout className="h-full">
@@ -28,6 +29,7 @@ function App() {
       <ScrollToTop />
       <ReactQueryDevtools initialIsOpen />
     </LazyMotion>
+    </React.StrictMode>
   );
 }
 

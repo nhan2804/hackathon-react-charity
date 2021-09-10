@@ -6,10 +6,12 @@ import {
   UserOutlined,
   LockOutlined,
 } from "@ant-design/icons";
+import useRegister from "@modules/auth/hooks/useRegister";
 const Register = () => {
+  const {mutate:register,isLoading}=useRegister();
   const onFinish = (values) => {
     console.log("Success:", values);
-    alert(values);
+    register(values);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -29,7 +31,7 @@ const Register = () => {
         autoComplete="off"
       >
         <div className="text-2xl font-bold text-center">Đăng ký</div>
-        <Form.Item label="Họ và tên" name="name">
+        <Form.Item label="Họ và tên" name="fullname">
           <Input
             placeholder="Họ và tên"
             prefix={<UserOutlined className="site-form-item-icon" />}
@@ -117,7 +119,7 @@ const Register = () => {
 
         <Form.Item>
           <div className="flex justify-center">
-            <Button type="primary" htmlType="submit" className="!font-semibold">
+            <Button loading={isLoading} type="primary" htmlType="submit" className="!font-semibold">
               Submit
             </Button>
           </div>

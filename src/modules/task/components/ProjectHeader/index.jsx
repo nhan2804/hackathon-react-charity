@@ -1,3 +1,4 @@
+import AssignStaffSection from "@modules/project/components/AssignStaffSection";
 import { Button, PageHeader } from "antd";
 import React from "react";
 import { useHistory } from "react-router";
@@ -13,7 +14,7 @@ const ProjectHeader = ({ projectId }) => {
       ghost={false}
       extra={[
         <CreateTaskSection projectId={projectId} />,
-        <Button type="primary">Thêm nguời dùng</Button>,
+        <AssignStaffSection/>,
         <Button
           type="primary"
           onClick={() => history.push(`/project/${projectId}/feedback`)}
