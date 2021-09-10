@@ -10,6 +10,7 @@ import { Gantt, DefaultTheme } from "@dhtmlx/trial-react-gantt";
 import ProjectHeader from "@modules/task/components/ProjectHeader";
 import useGetTask from "@modules/task/hooks/useGetTask";
 import { task_repo } from "@modules/task/repositories/task_repo";
+import SectionSkeleton from "@components/Skeleton";
 const { Content } = Layout;
 
 const ProjectDetail = () => {
@@ -22,7 +23,7 @@ const ProjectDetail = () => {
   const history = useHistory();
   let { projectId } = useParams();
 
-  const { data: taskss } = useGetTask(projectId);
+  const { data: taskss,isLoading } = useGetTask(projectId);
 
 
   
@@ -41,6 +42,7 @@ const ProjectDetail = () => {
         <Layout className="flex-grow">
           {/* <TaskMenu projectId={projectId} /> */}
           <Content className="p-1">
+            <SectionSkeleton isLoading={isLoading} rows={20}/>
              {taskss ? (
             <DefaultTheme>
              

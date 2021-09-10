@@ -4,7 +4,7 @@ import React, { useMemo } from "react";
 import CreateTodoForm from "./CreateTodoForm";
 import ListTodo from "./ListTodo";
 const { Option } = Select;
-const TodoSection = ({ taskId, task, todo, projectId }) => {
+const TodoSection = ({ taskId, task, todo, projectId,isLoading }) => {
   const percentChecked = useMemo(
     (e) => {
       return todo?.filter((t) => {
@@ -45,7 +45,7 @@ const TodoSection = ({ taskId, task, todo, projectId }) => {
       )}
 
       <Divider orientation="left">Danh sách công việc</Divider>
-      <ListTodo data={todo} taskId={taskId} projectId={projectId} />
+      <ListTodo isLoading={isLoading} data={todo} taskId={taskId} projectId={projectId} />
       <CreateTodoForm taskId={taskId} />
     </div>
   );

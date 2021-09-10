@@ -13,7 +13,7 @@ import useGetTodo from "@modules/task/hooks/useGetTodo";
 const TaskDetail = () => {
   const { projectId, taskId } = useParams();
   const { data: task } = useShowTask(taskId);
-  const { data: todo } = useGetTodo(taskId);
+  const { data: todo ,isLoading} = useGetTodo(taskId);
   const percentChecked = useMemo(
     (e) => {
       return todo?.filter((t) => {
@@ -50,7 +50,7 @@ const TaskDetail = () => {
 
           <div className="px-6">
             <div className="grid grid-cols-2 gap-4">
-              <TodoSection {...{ taskId, task, todo, projectId }} />
+              <TodoSection isLoading={isLoading} {...{ taskId, task, todo, projectId }} />
               <CommentSection id={taskId} />
             </div>
           </div>

@@ -1,15 +1,21 @@
 import CommentItem from "@components/Comment";
 import useGetTaskComment from "@modules/task/hooks/useGetTaskComment";
 import React from "react";
-import { List } from "antd";
+import { List, Skeleton } from "antd";
 const ListComment = ({ taskId }) => {
-  const { data } = useGetTaskComment(taskId);
+  const { data, isLoading } = useGetTaskComment(taskId);
   return (
-    <List
-      dataSource={data}
-      itemLayout="horizontal"
-      renderItem={(item) => <CommentItem item={item} />}
-    />
+    <>
+      {isLoading ? (
+        <Skeleton active />
+      ) : (
+        <List
+          dataSource={data}
+          itemLayout="horizontal"
+          renderItem={(item) => <CommentItem item={item} />}
+        />
+      )}
+    </>
   );
 };
 

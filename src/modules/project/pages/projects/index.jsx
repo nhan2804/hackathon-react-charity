@@ -1,4 +1,4 @@
-import { Breadcrumb, Layout, Menu, PageHeader } from "antd";
+import { Breadcrumb, Layout, Menu, PageHeader, Skeleton } from "antd";
 import React, { useState } from "react";
 // import "./index.css";
 
@@ -15,9 +15,8 @@ const Project = () => {
   console.log(projects);
   return (
     <Layout className="h-full">
-    
       <LeftNav />
-     
+
       <Content
         className="site-layout-background"
         style={{
@@ -28,13 +27,21 @@ const Project = () => {
       >
         <div className="grid grid-cols-5 gap-x-3 gap-y-3">
           <CreateProjectSection />
-          {projects?.map((e, i) => {
-            return (
-              <Link to={`/project/${e?.id_project}/tasks`} key={i}>
-                <ProjectItem item={e} />
-              </Link>
-            );
-          })}
+          {isLoading ? (
+            [...Array(10)].map((e)=>{
+              return <Skeleton active paragraph={{ rows: 10 }} />
+            })
+          ) : (
+            <>
+              {projects?.map((e, i) => {
+                return (
+                  <Link to={`/project/${e?.id_project}/tasks`} key={i}>
+                    <ProjectItem item={e} />
+                  </Link>
+                );
+              })}
+            </>
+          )}
         </div>
       </Content>
     </Layout>

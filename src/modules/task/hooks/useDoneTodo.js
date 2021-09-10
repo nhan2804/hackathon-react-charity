@@ -28,7 +28,7 @@ const useDoneTodo = (projectId, taskId) => {
         qc.setQueryData(["taskTodo", taskId], context?.oldData);
       },
       onSettled: () => {
-        qc.invalidateQueries(["taskTodo", taskId?.toString()]);
+        // qc.invalidateQueries(["taskTodo", taskId?.toString()]);
       },
     }
   );
