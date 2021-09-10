@@ -8,7 +8,7 @@ const CreateTaskSection = () => {
   const { close, isOpen, open } = useModal();
   return (
     <>
-      <Button onClick={open} type="default">
+      <Button onClick={open} type="primary">
         <div>Tạo công viêc</div>
       </Button>
       <Modal

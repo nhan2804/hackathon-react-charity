@@ -10,15 +10,19 @@ const CreateCommentForm = ({ taskId }) => {
   const onSubmit = (data) => {
     create(data);
     form.resetFields();
-
   };
- 
-  const user = useAppSelector((state)=>state?.auth?.user);
+
+  const user = useAppSelector((state) => state?.auth?.user);
   return (
     <Form form={form} className="flex space-x-2" onFinish={onSubmit}>
-      <Avatar src={user?.avatar} icon={<UserOutlined />} className="flex-shrink-0" />
+      <Avatar
+        src={user?.avatar}
+        icon={<UserOutlined />}
+        className="flex-shrink-0"
+      />
       <Form.Item
         name="desc_comment"
+        className="flex-grow"
         rules={[
           { required: true, message: "Bạn phải nhập nội dung bình luận" },
         ]}

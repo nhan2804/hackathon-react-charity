@@ -1,14 +1,13 @@
-import React from "react";
-import { AppstoreAddOutlined } from "@ant-design/icons";
 import useModal from "@hooks/useModal";
 import { Button, Modal } from "antd";
-import AssignStaffSectionForm from "./AssignStaffSectionForm";
+import React from "react";
+import AddClientForm from "./AddClientForm";
 
-const AssignStaffSection = () => {
+const AddClientSection = () => {
   const { close, isOpen, open } = useModal();
   return (
     <>
-      <Button onClick={open}>Thêm nhân viên</Button>
+      <Button onClick={open}>Thêm khách hàng</Button>
       <React.StrictMode>
         <Modal
           title="Thêm nhân viên"
@@ -17,11 +16,11 @@ const AssignStaffSection = () => {
           onCancel={close}
           footer={[]}
         >
-          <AssignStaffSectionForm />
+          <AddClientForm close={close} />
         </Modal>
       </React.StrictMode>
     </>
   );
 };
 
-export default AssignStaffSection;
+export default AddClientSection;

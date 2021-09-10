@@ -2,6 +2,7 @@ import AssignStaffSection from "@modules/project/components/AssignStaffSection";
 import { Button, PageHeader } from "antd";
 import React from "react";
 import { useHistory } from "react-router";
+import AddClientSection from "../AddClientSection";
 import CreateTaskSection from "../CreateTaskForm";
 
 const ProjectHeader = ({ projectId }) => {
@@ -14,13 +15,14 @@ const ProjectHeader = ({ projectId }) => {
       ghost={false}
       extra={[
         <CreateTaskSection projectId={projectId} />,
-        <AssignStaffSection/>,
+        <AssignStaffSection />,
         <Button
-          type="primary"
+          // type="primary"
           onClick={() => history.push(`/project/${projectId}/feedback`)}
         >
           Thêm FeedBack
         </Button>,
+        <AddClientSection />,
       ]}
     />
   );

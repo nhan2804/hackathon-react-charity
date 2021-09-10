@@ -1,5 +1,5 @@
 import { Badge, Divider, Layout, PageHeader, Progress, Tag } from "antd";
-import React from "react";
+import React, { useMemo } from "react";
 // import "./index.css";
 import { useParams } from "react-router";
 import ProjectHeader from "@modules/task/components/ProjectHeader";
@@ -11,11 +11,21 @@ import useGetTodo from "@modules/task/hooks/useGetTodo";
 
 // const localizer = momentLocalizer(moment);
 const TaskDetail = () => {
-  
   const { projectId, taskId } = useParams();
   const { data: task } = useShowTask(taskId);
-  const { data:todos } = useGetTodo(taskId);
-  
+  const { data: todo } = useGetTodo(taskId);
+  const percentChecked = useMemo(
+    (e) => {
+      return todo?.filter((t) => {
+        return t?.status_todo === "CHECKED";
+      }).length;
+    },
+    [todo]
+  );
+  const percent = useMemo(() => {
+    return Math.round((percentChecked / todo?.length) * 100);
+  }, [percentChecked, todo]);
+  const isDone = percent === 100;
   return (
     <Layout className="h-full">
       <ProjectHeader projectId={projectId} />
@@ -26,14 +36,21 @@ const TaskDetail = () => {
             className="site-page-header"
             title={task?.name_task}
             // subTitle="This is a subtitle"
-            tags={[<Tag color="blue">Đang tiến hành</Tag>,<Tag color="green" >{Number(todos?.length || 0)}</Tag>]}
+            tags={[
+              isDone ? (
+                <Tag color="green">Hoàn thành</Tag>
+              ) : (
+                <Tag color="blue">Đang tiến hành</Tag>
+              ),
+              <Tag color="green">
+                {percentChecked}/{Number(todo?.length || 0)}
+              </Tag>,
+            ]}
           />
-          
+
           <div className="px-6">
-          
             <div className="grid grid-cols-2 gap-4">
-            
-              <TodoSection todo={todos} task={task} taskId={taskId} />
+              <TodoSection {...{ taskId, task, todo, projectId }} />
               <CommentSection id={taskId} />
             </div>
           </div>

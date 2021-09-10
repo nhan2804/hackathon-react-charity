@@ -1,11 +1,14 @@
 import { Button, Checkbox, Input, Form } from "antd";
 import React, { useState } from "react";
 import EditOutlined from "@ant-design/icons/EditOutlined";
+import DeleteOutlined from "@ant-design/icons/DeleteOutlined";
+
 import { Popover } from "@headlessui/react";
 import useUpdateTodo from "@modules/task/hooks/useUpdateTodo";
-const TodoItem = ({ item, checked, desc, id_todo, task_id }) => {
-  const [isEdit, setIsEdit] = useState(false);
+import useDoneTodo from "@modules/task/hooks/useDoneTodo";
+const TodoItem = ({ item, checked, desc, id_todo, task_id, projectId }) => {
   const { mutate: update } = useUpdateTodo(id_todo, task_id);
+  const { mutate: doneTodo } = useDoneTodo(projectId, task_id?.toString());
   const onEdit = (data, close) => {
     update(data, {
       onSuccess: () => {
@@ -15,19 +18,20 @@ const TodoItem = ({ item, checked, desc, id_todo, task_id }) => {
   };
   return (
     <Popover className="relative flex w-full space-x-2">
-      <Checkbox checked={checked} defaultChecked={checked}></Checkbox>
+      <Checkbox
+        checked={checked}
+        defaultChecked={checked}
+        onClick={() => !checked && doneTodo({ id_todo })}
+      ></Checkbox>
       <div className="flex-grow">
         <div className="font-medium">{item}</div>
         <div>{desc}</div>
       </div>
-      <div className="">
+      <div className="space-x-2">
         <Popover.Button>
-          <Button
-            icon={<EditOutlined />}
-            shape="circle"
-            onClick={() => setIsEdit(true)}
-          />
+          <Button icon={<EditOutlined />} shape="circle" />
         </Popover.Button>
+        <Button icon={<DeleteOutlined />} shape="circle" danger />
       </div>
       <Popover.Panel>
         {({ close }) => (

@@ -4,7 +4,7 @@ import { List } from "antd";
 import React from "react";
 import TodoItem from "./TodoItem";
 
-const ListTodo = ({ taskId,data }) => {
+const ListTodo = ({ taskId, data, projectId }) => {
   return (
     <List
       dataSource={data}
@@ -15,6 +15,7 @@ const ListTodo = ({ taskId,data }) => {
             item={item?.name_todo}
             checked={item?.status_todo === "CHECKED"}
             desc={item?.desc_todo}
+            projectId={projectId}
             {...item}
           />
         </List.Item>

@@ -29,6 +29,9 @@ export const fetchComment = (id) => {
 export const updateTodo = (id, data) => {
   return axios.put(`/todo/${id}`, data);
 };
+export const doneTodo = ({ idProject, idTask, data }) => {
+  return axios.put(`/project/${idProject}/task/${idTask}/todo`, data);
+};
 export const updateComment = (id, data) => {
   return axios.put(`/comment/${id}`, data);
 };

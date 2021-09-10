@@ -6,6 +6,12 @@ export const createProject = (requestData) => {
 export const fetchProject = () => {
   return axios.get("/project");
 };
-export const assignProject = (id,requestData) => {
-  return axios.post(`project/${id}/task/assign`,requestData);
+export const assignProject = (id, requestData) => {
+  return axios.post(`project/${id}/task/assign`, requestData);
+};
+export const addClient = (id, requestData) => {
+  return axios.post(`project/${id}/join/client`, {
+    ...requestData,
+    type_user: "CLIENT",
+  });
 };
