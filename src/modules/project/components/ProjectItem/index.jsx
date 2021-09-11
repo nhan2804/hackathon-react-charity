@@ -7,7 +7,7 @@ import {
 } from "@ant-design/icons";
 
 const { Meta } = Card;
-const ProjectItem = ({ item }) => {
+const ProjectItem = ({ item,avatar }) => {
   return (
     <Card
       cover={
@@ -24,7 +24,7 @@ const ProjectItem = ({ item }) => {
       ]}
     >
       <Meta
-        avatar={<Avatar src={item?.thumb_project} />}
+        avatar={<Avatar src={avatar} />}
         title={item?.name_project}
         description={item?.desc_project?.substring(0, 50) + "..."}
       />

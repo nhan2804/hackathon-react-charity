@@ -1,4 +1,4 @@
-import { Button, Layout, Menu } from "antd";
+import { Avatar, Badge, Button, Layout, Menu } from "antd";
 import React, { useState } from "react";
 import "./index.css";
 import { Link } from "react-router-dom";
@@ -13,9 +13,16 @@ const HeaderNav = () => {
     <Header className="flex justify-between">
       <div className="logo"></div>
 
-      <Menu theme="dark" mode="horizontal" className="justify-center flex-grow">
+      <Menu theme="dark" mode="horizontal" className="justify-center flex-grow text-white">
         <Menu.Item>
           <Link to="/project">Dự án của tôi</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to="/upgrade">
+          <Badge count={5}>
+            <span className="text-white">Upgrade</span>
+          </Badge>
+          </Link>
         </Menu.Item>
       </Menu>
       {!user ? (

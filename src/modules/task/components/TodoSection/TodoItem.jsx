@@ -24,8 +24,8 @@ const TodoItem = ({ item, checked, desc, id_todo, task_id, projectId }) => {
         onClick={() => !checked && doneTodo({ id_todo })}
       ></Checkbox>
       <div className="flex-grow">
-        <div className="font-medium">{item}</div>
-        <div>{desc}</div>
+        <div className="font-semibold">{item}</div>
+        <div className="text-gray-500">{desc}</div>
       </div>
       <div className="space-x-2">
         <Popover.Button>

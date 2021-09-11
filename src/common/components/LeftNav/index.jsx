@@ -12,6 +12,7 @@ import {
 } from "@ant-design/icons";
 import SubMenu from "antd/lib/menu/SubMenu";
 import { left_nav } from "@config/menu/left_nav";
+import { Link } from "react-router-dom";
 
 const { Header, Sider, Content } = Layout;
 
@@ -30,9 +31,9 @@ const LeftNav = (props) => {
       >
         {left_nav.map((e,i)=>{
           return (
-            <SubMenu key={i} icon={e.icon} title={e.title}>
+            <SubMenu key={i+1} icon={e.icon} title={e.title}>
               {e?.child?.map((e1,i1)=>{
-                return (<Menu.Item key={i1}>{e1.title}</Menu.Item>)
+                return (<Menu.Item key={i1}><Link to={e1?.to}>{e1.title}</Link></Menu.Item>)
               })}
           
         </SubMenu>

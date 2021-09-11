@@ -1,19 +1,22 @@
 import ProtectedRoute from "@components/ProtectedRoute";
-import { Layout } from "antd";
-import React, { memo, Suspense } from "react";
+import React, { memo, Suspense,lazy } from "react";
+
+import { Route } from "react-router";
 
 import { Switch } from "react-router-dom";
+import { PacmanLoader } from "react-spinners";
 
 import Routes from "./index";
-
+const NotFound = lazy(()=> import("@components/NotFound"))
 function GetRoutes() {
   return (
     <div className="h-full">
       <Suspense
         fallback={
-          <div id="loader-wrapper">
-            <div id="loader"></div>
+          <div className="max-w-lg mx-auto min-h-full flex justify-center items-center">
+              <PacmanLoader loading={true} size={60} />
           </div>
+          
         }
       >
         <Switch>
@@ -37,6 +40,8 @@ function GetRoutes() {
               />
             );
           })}
+          <Route component={NotFound}></Route>
+          
         </Switch>
       </Suspense>
     </div>
