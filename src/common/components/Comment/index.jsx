@@ -8,7 +8,6 @@ import { LinkPreview } from "@dhaiwat10/react-link-preview";
 import getLink from "@helper/getLinkFromText";
 import validateYouTubeUrl from "@helper/getLinkYoutube";
 const CommentItem = ({ item }) => {
-  console.log(item);
 
   return (
     <Comment

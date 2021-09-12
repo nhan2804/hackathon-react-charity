@@ -3,7 +3,7 @@ import React from "react";
 import CreateCommentForm from "./CreateCommentForm";
 import ListComment from "./ListComment";
 
-const CommentSection = ({ id }) => {
+const CommentSection = React.memo(({ id }) => {
   return (
     <div>
       <Divider orientation="left">Bình luận</Divider>
@@ -11,6 +11,6 @@ const CommentSection = ({ id }) => {
       <CreateCommentForm taskId={id} />
     </div>
   );
-};
+});
 
 export default CommentSection;
