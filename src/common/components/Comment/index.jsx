@@ -2,7 +2,7 @@ import React, { createElement, useState } from "react";
 import { Comment, Tooltip, Avatar } from "antd";
 import moment from "moment";
 import { Link } from "react-router-dom";
-
+import "./style.css"
 const CommentItem = ({item}) => {
  console.log(item);
   return (
@@ -15,7 +15,7 @@ const CommentItem = ({item}) => {
           alt={item?.user?.username}
         />
       }
-      content={<p>{item?.desc_comment}</p>}
+      content={<div dangerouslySetInnerHTML={{__html:item?.desc_comment}}></div>}
       datetime={
         <Tooltip title={moment(item?.created_at).format("YYYY-MM-DD HH:mm:ss")}>
           <span>{moment(item?.created_at).fromNow()}</span>

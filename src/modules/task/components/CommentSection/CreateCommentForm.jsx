@@ -4,10 +4,14 @@ import React from "react";
 import { UserOutlined } from "@ant-design/icons";
 import useCreateComment from "@modules/task/hooks/useCreateComment";
 import { useAppSelector } from "@hooks/reduxHook";
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import RichText from "@components/RichText";
 const CreateCommentForm = ({ taskId }) => {
   const [form] = Form.useForm();
   const { mutate: create, isLoading } = useCreateComment(taskId);
   const onSubmit = (data) => {
+    console.log(data);
+    // return;
     create(data);
     form.resetFields();
   };
@@ -27,9 +31,13 @@ const CreateCommentForm = ({ taskId }) => {
           { required: true, message: "Bạn phải nhập nội dung bình luận" },
         ]}
       >
-        <Input placeholder="Bình luận ..." />
+         <RichText onChangeValue={(data)=>form.setFieldsValue({desc_comment:data})} />
+        {/* <Input placeholder="Bình luận ..." /> */}
       </Form.Item>
-
+      <div>
+   
+   
+  </div>
       <Form.Item>
         <Button type="primary" htmlType="submit" loading={isLoading}>
           Bình luận
