@@ -1,14 +1,16 @@
 import CommentItem from "@components/Comment";
 import useGetAllFeedbackComment from "@modules/feedback/hooks/useGetAllFeedbackComment";
-import { Progress, Tag, List } from "antd";
+import { Progress, Tag, List, Form, Input, Button, Slider } from "antd";
 import React from "react";
 import CreateCommentFeedBackForm from "../CreateCommentFeedBackForm";
+import EditOutlined from "@ant-design/icons/EditOutlined";
+import { Popover } from "@headlessui/react";
 
 const FeedbackItem = ({ fb }) => {
   console.log(fb?.comments);
   const { data } = useGetAllFeedbackComment(fb?.project_id, fb?.id_feedback);
   return (
-    <div className="p-2 space-y-2 bg-gray-100 rounded shadow">
+    <Popover className="relative p-2 space-y-2 bg-gray-100 rounded shadow">
       <div>
         <div className="flex justify-between">
           <div className="space-x-1">
@@ -16,6 +18,11 @@ const FeedbackItem = ({ fb }) => {
               {fb?.name_feedback}
             </div>
             <Tag color="blue">Mở</Tag>
+            <Popover.Button>
+              <button>
+                <EditOutlined />
+              </button>
+            </Popover.Button>
           </div>
 
           <Progress
@@ -35,7 +42,71 @@ const FeedbackItem = ({ fb }) => {
           renderItem={(item) => <CommentItem item={item} />}
         />
       </div>
-    </div>
+      <Popover.Panel>
+        {({ close }) => (
+          <>
+            <Popover.Overlay className="fixed top-0 left-0 z-50 w-screen h-screen bg-black/50"></Popover.Overlay>
+            <div className="absolute top-0 left-0 right-0 z-50">
+              <Form
+                className="space-y-2 !p-3 bg-gray-50 rounded"
+                // onFinish={(data) => onEdit(data, close)}
+                initialValues={{
+                  name_feedback: fb?.name_feedback,
+                  desc_feedback: fb?.desc_feedback,
+                  percent_feedback: Number(fb?.percent_feedback || 0),
+                }}
+              >
+                <Form.Item
+                  name="name_feedback"
+                  rules={[
+                    { required: true, message: "Bạn cần nhập tên feedback" },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  name="desc_feedback"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Bạn cần nhập miêu tả feedback",
+                    },
+                  ]}
+                >
+                  <Input.TextArea />
+                </Form.Item>
+                <Form.Item name="percent_feedback">
+                  <Slider
+                    min={0}
+                    max={100}
+                    tipFormatter={(value) => `${value}%`}
+                    marks={{
+                      0: "0%",
+                      25: "25%",
+                      50: "50%",
+                      75: "75%",
+                      100: {
+                        style: { textAlign: "right" },
+                        label: <span>100%</span>,
+                      },
+                    }}
+                  />
+                </Form.Item>
+                <div className="flex justify-end space-x-2">
+                  <Button onClick={close} htmlType="button">
+                    Huỷ
+                  </Button>
+
+                  <Button type="primary" htmlType="submit">
+                    Sửa
+                  </Button>
+                </div>
+              </Form>
+            </div>
+          </>
+        )}
+      </Popover.Panel>
+    </Popover>
   );
 };
 

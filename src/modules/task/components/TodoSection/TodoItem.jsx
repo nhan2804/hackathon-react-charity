@@ -6,9 +6,12 @@ import DeleteOutlined from "@ant-design/icons/DeleteOutlined";
 import { Popover } from "@headlessui/react";
 import useUpdateTodo from "@modules/task/hooks/useUpdateTodo";
 import useDoneTodo from "@modules/task/hooks/useDoneTodo";
+import useDeleteTodo from "@modules/task/hooks/useDeleteTodo";
 const TodoItem = ({ item, checked, desc, id_todo, task_id, projectId }) => {
   const { mutate: update } = useUpdateTodo(id_todo, task_id);
   const { mutate: doneTodo } = useDoneTodo(projectId, task_id?.toString());
+  const { mutate: deleteTodo } = useDeleteTodo(task_id?.toString());
+
   const onEdit = (data, close) => {
     update(data, {
       onSuccess: () => {
@@ -31,7 +34,12 @@ const TodoItem = ({ item, checked, desc, id_todo, task_id, projectId }) => {
         <Popover.Button>
           <Button icon={<EditOutlined />} shape="circle" />
         </Popover.Button>
-        <Button icon={<DeleteOutlined />} shape="circle" danger />
+        <Button
+          icon={<DeleteOutlined />}
+          shape="circle"
+          danger
+          onClick={() => deleteTodo({ id_todo })}
+        />
       </div>
       <Popover.Panel>
         {({ close }) => (

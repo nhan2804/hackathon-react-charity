@@ -10,7 +10,7 @@ const CreateProjectSection = () => {
     <>
       <button
         onClick={open}
-        className="flex items-center justify-center bg-gray-100 border-2 border-gray-500 border-dashed rounded-md"
+        className="flex items-center justify-center bg-gray-100 border-2 border-gray-500 border-dashed rounded-md min-h-[340px]"
       >
         <div className="space-y-3 text-center">
           <AppstoreAddOutlined className="text-3xl" />

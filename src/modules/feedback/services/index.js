@@ -17,4 +17,10 @@ export const createFeedBackComment = (fbId, requestData) => {
 export const getAllFeedbackComment = (idProject, idFeedback) => {
   return axios.get(`project/${idProject}/feedbacks/${idFeedback}/comments`);
 };
+export const addClient = (id, requestData) => {
+  return axios.post(`project/${id}/join/client`, {
+    ...requestData,
+    type_user: "CLIENT",
+  });
+};
 export { fetchFeedback, createFeedback };

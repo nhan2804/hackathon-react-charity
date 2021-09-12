@@ -22,7 +22,7 @@ const ProjectHeader = ({ projectId }) => {
         >
           Thêm FeedBack
         </Button>,
-        <AddClientSection />,
+        // <AddClientSection />,
       ]}
     />
   );
