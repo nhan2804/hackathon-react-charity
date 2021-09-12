@@ -1,4 +1,12 @@
-import { Badge, Divider, Layout, PageHeader, Progress, Tag } from "antd";
+import {
+  Badge,
+  Button,
+  Divider,
+  Layout,
+  PageHeader,
+  Progress,
+  Tag,
+} from "antd";
 import React, { useMemo } from "react";
 // import "./index.css";
 import { useParams } from "react-router";
@@ -7,13 +15,14 @@ import TodoSection from "@modules/task/components/TodoSection";
 import CommentSection from "@modules/task/components/CommentSection";
 import useShowTask from "@modules/task/hooks/useShowTask";
 import useGetTodo from "@modules/task/hooks/useGetTodo";
+import UpdateTaskNameSection from "@modules/task/components/UpdateTaskNameSection";
 // import "react-big-calendar/lib/css/react-big-calendar.css";
 
 // const localizer = momentLocalizer(moment);
 const TaskDetail = () => {
   const { projectId, taskId } = useParams();
   const { data: task } = useShowTask(taskId);
-  const { data: todo ,isLoading} = useGetTodo(taskId);
+  const { data: todo, isLoading } = useGetTodo(taskId);
   const percentChecked = useMemo(
     (e) => {
       return todo?.filter((t) => {
@@ -34,7 +43,7 @@ const TaskDetail = () => {
         <Layout.Content className="bg-white">
           <PageHeader
             className="site-page-header"
-            title={task?.name_task}
+            title={<UpdateTaskNameSection {...task} />}
             // subTitle="This is a subtitle"
             tags={[
               isDone ? (
@@ -46,11 +55,19 @@ const TaskDetail = () => {
                 {percentChecked}/{Number(todo?.length || 0)}
               </Tag>,
             ]}
+            extra={[
+              <Button danger type="primary">
+                Xoá
+              </Button>,
+            ]}
           />
 
           <div className="px-6">
             <div className="grid grid-cols-2 gap-4">
-              <TodoSection isLoading={isLoading} {...{ taskId, task, todo, projectId }} />
+              <TodoSection
+                isLoading={isLoading}
+                {...{ taskId, task, todo, projectId }}
+              />
               <CommentSection id={taskId} />
             </div>
           </div>
