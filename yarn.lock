@@ -337,6 +337,13 @@
   resolved "https://registry.yarnpkg.com/@ctrl/tinycolor/-/tinycolor-3.4.0.tgz#c3c5ae543c897caa9c2a68630bed355be5f9990f"
   integrity sha512-JZButFdZ1+/xAfpguQHoabIXkcqRRKpMrWKBkpEZZyxfY9C1DpADFB8PEqGSTeFr135SaTRfKqGKx5xSCLI7ZQ==
 
+"@dhaiwat10/react-link-preview@^1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@dhaiwat10/react-link-preview/-/react-link-preview-1.9.0.tgz#d2c8a55edb12f7e4fd0e527780a70b0dae8ae9f1"
+  integrity sha512-wI6fLdD3mG4Z8mE/4bZpJfBybc5bPItfXNqWiLUVg5xj85jgbGMV5QmlMdqUFgYrJUGL7hNMiluGEx+kmuBNkA==
+  dependencies:
+    react-loading-skeleton "^2.2.0"
+
 "@dhtmlx/trial-react-gantt@^1.1.4":
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/@dhtmlx/trial-react-gantt/-/trial-react-gantt-1.1.4.tgz#c237632337ad55345bad4dc0b6e34d5f150c3d8d"
@@ -352,7 +359,7 @@
     "@emotion/utils" "0.11.3"
     "@emotion/weak-memoize" "0.2.5"
 
-"@emotion/core@^10.0.35":
+"@emotion/core@^10.0.22", "@emotion/core@^10.0.35":
   version "10.1.1"
   resolved "https://registry.yarnpkg.com/@emotion/core/-/core-10.1.1.tgz#c956c1365f2f2481960064bcb8c4732e5fb612c3"
   integrity sha512-ZMLG6qpXR8x031NXD8HJqugy/AZSkAuMxxqB46pmAR7ze47MhNJ56cdoX243QPZdGctrdfo+s08yZTiwaUcRKA==
@@ -1724,6 +1731,11 @@ electron-to-chromium@^1.3.811:
   version "1.3.814"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.814.tgz#418fad80c3276a46103ca72a21a8290620d83c4a"
   integrity sha512-0mH03cyjh6OzMlmjauGg0TLd87ErIJqWiYxMcOLKf5w6p0YEOl7DJAj7BDlXEFmCguY5CQaKVOiMjAMODO2XDw==
+
+emoji-picker-react@^3.4.8:
+  version "3.4.8"
+  resolved "https://registry.yarnpkg.com/emoji-picker-react/-/emoji-picker-react-3.4.8.tgz#6d3365a3447f9bb8b39ec1a007cdef39553d3810"
+  integrity sha512-HsKsompl0zThl1jhLaRPHnn0MdPVs9AxJRa5KM7OVnteoCx/tNr9iMipC2rI2vAMkKstlkedirswUwKAu2AsDg==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -3688,6 +3700,13 @@ react-load-script@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-load-script/-/react-load-script-0.0.6.tgz#db6851236aaa25bb622677a2eb51dad4f8d2c258"
   integrity sha512-aRGxDGP9VoLxcsaYvKWIW+LRrMOzz2eEcubTS4NvQPPugjk2VvMhow0wWTkSl7RxookomD1MwcP4l5UStg5ShQ==
+
+react-loading-skeleton@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-loading-skeleton/-/react-loading-skeleton-2.2.0.tgz#b8ce516f9a2471e90d7d9ead35d61425367e3340"
+  integrity sha512-HH37uj9aobrUJSqFglHqO9KQt5zGQe+Svutv8LIq7Iq6gpJqCwIzJOsEVfkQy7ReirbI2uLhCtKloBGQIDP0BQ==
+  dependencies:
+    "@emotion/core" "^10.0.22"
 
 react-moment@^1.1.1:
   version "1.1.1"

@@ -61,6 +61,7 @@ const config = ({ command }) => ({
   resolve: {
     alias: {
       "@pages": resolve(__dirname, "./src/pages"),
+      "@services": resolve(__dirname, "./src/services"),
       "@modules": resolve(__dirname, "./src/modules"),
       "@routes": resolve(__dirname, "./src/routes"),
       "@app": resolve(__dirname, "./src/app"),

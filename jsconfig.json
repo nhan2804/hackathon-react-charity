@@ -14,7 +14,9 @@
       "@action/*": ["./src/redux/action/*"],
       "@config/*": ["./src/config/*"],
       "@helper/*": ["./src/helper/*"],
-      "@modules/*": ["./src/modules/*"]
+      "@modules/*": ["./src/modules/*"],
+      "@services/*": ["./src/services/*"],
+      
     }
   },
   "exclude": ["node_modules"]
