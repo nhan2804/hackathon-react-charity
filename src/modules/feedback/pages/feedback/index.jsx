@@ -6,6 +6,7 @@ import AddClientSection from "@modules/feedback/components/AddClientSection";
 import { Layout, PageHeader } from "antd";
 import React from "react";
 import { useHistory, useParams } from "react-router";
+import ListClient from "@modules/feedback/components/ListClient";
 const { Content } = Layout;
 
 const Feedback = () => {
@@ -18,7 +19,7 @@ const Feedback = () => {
         <PageHeader
           title="Feedback"
           onBack={() => history.goBack()}
-          extra={[<AddClientSection />]}
+          extra={[<AddClientSection projectId={projectId} />]}
         />
 
         <div className="grid grid-cols-4 gap-3 px-6">

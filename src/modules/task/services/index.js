@@ -32,6 +32,9 @@ export const updateTodo = (id, data) => {
 export const updateTask = (id, data) => {
   return axios.put(`/task/${id}`, data);
 };
+export const deleteTask = (id) => {
+  return axios.delete(`/task/${id}`);
+};
 export const doneTodo = ({ idProject, idTask, data }) => {
   return axios.put(`/project/${idProject}/task/${idTask}/todo`, data);
 };

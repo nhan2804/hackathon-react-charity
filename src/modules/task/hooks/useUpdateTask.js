@@ -10,7 +10,7 @@ const useUpdateTask = (id) => {
     },
     {
       onSuccess: () => {
-        qc.invalidateQueries(["task-detail", id]);
+        qc.invalidateQueries(["task-detail", id?.toString()]);
       },
     }
   );
