@@ -1,5 +1,4 @@
 import { useUploadImage } from '@hooks/useUploadImage';
-import { Progress } from 'antd'
 import { LoadingOutlined,CheckCircleTwoTone} from '@ant-design/icons';
 import React, { useEffect, useState } from 'react'
 export const FileUpload = ({file,onUpLoadSuccess}) => {

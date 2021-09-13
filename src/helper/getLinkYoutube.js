@@ -1,6 +1,5 @@
 const validateYouTubeUrl=(url)=>{    
-    console.log(url);
-    return url;
+  
     if (url) {        
         var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
         var match = url.match(regExp);
