@@ -1,5 +1,5 @@
-import { Breadcrumb, Layout, Menu, PageHeader, Skeleton } from "antd";
-import React, { useState } from "react";
+import {  Layout, Skeleton } from "antd";
+import React from "react";
 // import "./index.css";
 
 import LeftNav from "@components/LeftNav";
@@ -25,7 +25,7 @@ const Project = () => {
           minHeight: 280,
         }}
       >
-        <div className="grid grid-cols-5 gap-x-3 gap-y-3">
+        <div className="grid lg:grid-cols-5 grid-cols-2 gap-x-3 gap-y-3">
           <CreateProjectSection />
           {isLoading ? (
             [...Array(10)].map((e)=>{

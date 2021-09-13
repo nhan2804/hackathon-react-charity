@@ -27,7 +27,7 @@ const CommentItem = ({ item }) => {
             ></iframe>
           )} */}
           
-          <LinkPreview url={getLink(item?.desc_comment)} width="300px" />
+          <LinkPreview url={getLink(item?.desc_comment)} className="max-w-full" width="300px" />
           <div
             dangerouslySetInnerHTML={{ __html: urlify(item?.desc_comment) }}
           ></div>
