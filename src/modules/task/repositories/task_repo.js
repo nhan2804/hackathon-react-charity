@@ -20,14 +20,21 @@ const task_repo=(tasks)=>{
         progress=100;
         console.log("over");
     }
+        const count_todo=e?.count_todo;
+        const todo_done=e?.todo_done;
+        const status=count_todo===todo_done ?"Hoàn thành":"Chưa hoàn thành";
+        const done = `${todo_done} / ${count_todo}` 
         return {
             id: i+1,
             start_date: moment(e?.time_start).format("YYYY-MM-DD"),
+           
             duration: duration,
             text: e?.name_task ,
             assigned: e?.staff?.fullname ? "@"+e?.staff?.fullname: "Chưa có",
             progress: progress,
-            id_task:e?.id_task
+            id_task:e?.id_task,
+            done: done,
+            status:status
           }
     })
 }

@@ -1,10 +1,9 @@
 import {
-  Badge,
+  
   Button,
-  Divider,
   Layout,
   PageHeader,
-  Progress,
+  
   Tag,
 } from "antd";
 import React, { useMemo } from "react";
@@ -70,7 +69,9 @@ const TaskDetail = () => {
               ),
             ]}
           />
-
+          <div className="mx-7">
+            {task?.desc_task}
+          </div>
           <div className="px-6">
             <div className="grid grid-cols-2 gap-4">
               <TodoSection

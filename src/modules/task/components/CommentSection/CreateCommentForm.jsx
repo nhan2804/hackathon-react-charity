@@ -5,6 +5,7 @@ import {
   UserOutlined,
   FileImageOutlined,
   SmileTwoTone,
+  SendOutlined
 } from "@ant-design/icons";
 import useCreateComment from "@modules/task/hooks/useCreateComment";
 import { useAppSelector } from "@hooks/reduxHook";
@@ -112,8 +113,8 @@ const CreateCommentForm = ({ taskId }) => {
           {showEmoji && <Picker onEmojiClick={onEmojiClick} />}
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" loading={isLoading}>
-            Bình luận
+          <Button icon={<SendOutlined />} type="primary" htmlType="submit" loading={isLoading}>
+            
           </Button>
         </Form.Item>
       </Form>

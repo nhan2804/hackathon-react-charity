@@ -22,7 +22,7 @@ const ProjectDetail = () => {
   const history = useHistory();
   let { projectId } = useParams();
 
-  const { data: taskss, isLoading } = useGetTask(projectId);
+  const { data: taskss, isLoading,isFetching } = useGetTask(projectId);
 
   function handler({ action, obj, id }) {
     if (action === "select-task") {
@@ -42,9 +42,10 @@ const ProjectDetail = () => {
            
             <SectionSkeleton isLoading={isLoading} rows={20} />
             <DefaultTheme>
-            {(taskss ) ? (
+            {(taskss && !isFetching ) ? (
             
                 <Gantt
+                css={{border:"1px solid #ccc"}}
                   readonly
                   key={taskss?.length}
                   action={handler}

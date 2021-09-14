@@ -10,6 +10,7 @@ const ListComment = ({ taskId }) => {
         <Skeleton active />
       ) : (
         <List
+        rowKey={(item)=>item?.id_comment}
           dataSource={data}
           itemLayout="horizontal"
           renderItem={(item) => <CommentItem item={item} />}

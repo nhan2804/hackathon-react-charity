@@ -1,12 +1,13 @@
 import CommentItem from "@components/Comment";
 import useGetAllFeedbackComment from "@modules/feedback/hooks/useGetAllFeedbackComment";
-import { Progress, Tag, List, Form, Input, Button, Slider, Select } from "antd";
+import { Comment,Progress, Tag, List, Form, Input, Button, Slider, Select, Avatar, Tooltip } from "antd";
 import React from "react";
 import CreateCommentFeedBackForm from "../CreateCommentFeedBackForm";
 import EditOutlined from "@ant-design/icons/EditOutlined";
 import { Popover } from "@headlessui/react";
 import useUpdateFeedBack from "@modules/feedback/hooks/useUpdateFeedback";
 import usePermission from "@hooks/usePermission";
+import moment from "moment";
 
 const FeedbackItem = ({ fb }) => {
   console.log(fb?.comments);
@@ -16,15 +17,40 @@ const FeedbackItem = ({ fb }) => {
   const onSubmit = (data, close) => {
     update(data, { onSuccess: close });
   };
+  const status=()=>{
+    return fb?.status_feedback==="ACTIVE";
+  }
   return (
-    <Popover className="relative p-2 space-y-2 bg-red-400 rounded shadow text-gray-50">
+    <Popover className={`relative p-2 space-y-2 ${status() ? "bg-blue-400" :"bg-red-500" }  rounded shadow text-gray-50`}>
       <div>
         <div className="flex justify-between">
           <div className="space-x-1">
+          <Comment
+          author={fb?.user?.username}
+          avatar={
+            <Avatar
+            src={fb?.user?.avatar}
+              alt="Han Solo"
+            />
+          }
+          datetime={
+            <Tooltip title={moment(fb?.created_at).format('YYYY-MM-DD HH:mm:ss')}>
+              <span>{moment(fb?.created_at).fromNow()}</span>
+            </Tooltip>
+          }
+          ></Comment>
+             {/* <div className="inline-block text-lg font-semibold">
+             <Avatar src={fb?.user?.avatar}/>
+             <p>{fb?.user?.username}</p>
+            </div> */}
             <div className="inline-block text-lg font-semibold">
               {fb?.name_feedback}
             </div>
-            <Tag color="blue">Mở</Tag>
+            <div className="text-md">
+              {fb?.desc_feedback}
+            </div>
+            {status()  ?  <Tag color="blue">Mở</Tag>:  <Tag color="red">Đóng</Tag>}
+           
             {permission?.feedback?.can_edit && (
               <Popover.Button>
                 <button>
@@ -41,11 +67,12 @@ const FeedbackItem = ({ fb }) => {
             width={30}
           />
         </div>
-        <div>{fb?.desc_feedback}</div>
+        
       </div>
 
       <div className="p-2 bg-white rounded">
-        <CreateCommentFeedBackForm feedbackID={fb?.id_feedback} />
+        {status() && <CreateCommentFeedBackForm feedbackID={fb?.id_feedback} />}
+        
         <List
           dataSource={data}
           itemLayout="horizontal"

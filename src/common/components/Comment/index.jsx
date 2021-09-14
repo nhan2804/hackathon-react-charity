@@ -7,7 +7,7 @@ import urlify from "@helper/urlify";
 import { LinkPreview } from "@dhaiwat10/react-link-preview";
 import getLink from "@helper/getLinkFromText";
 import validateYouTubeUrl from "@helper/getLinkYoutube";
-const CommentItem = ({ item }) => {
+const CommentItem = React.memo(({ item }) => {
 
   return (
     <Comment
@@ -27,7 +27,7 @@ const CommentItem = ({ item }) => {
             ></iframe>
           )} */}
           
-          <LinkPreview url={getLink(item?.desc_comment)} className="max-w-full" width="300px" />
+          <LinkPreview url={getLink(item?.desc_comment)} className="max-w-full" width="350px" />
           <div
             dangerouslySetInnerHTML={{ __html: urlify(item?.desc_comment) }}
           ></div>
@@ -40,5 +40,5 @@ const CommentItem = ({ item }) => {
       }
     />
   );
-};
+});
 export default CommentItem;

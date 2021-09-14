@@ -2,7 +2,7 @@ import useCreateFeedBack from "@modules/feedback/hooks/useCreateFeedBack";
 import { Button, Input ,Form} from "antd";
 import React, { useState } from "react";
 import { useParams } from "react-router";
-
+import {PlusOutlined } from '@ant-design/icons';
 const CreateFeedbackForm = () => {
   let { projectId } = useParams();
   const {form}= Form.useForm();
@@ -17,6 +17,7 @@ const CreateFeedbackForm = () => {
   const [isCreating, setIsCreating] = useState(false);
   return (
     <div>
+      {!isCreating  ?<Button onClick={()=>setIsCreating(!isCreating)} icon={<PlusOutlined />}>Thêm</Button>:
       <div className="relative space-y-2">
       <Form form={form} className="flex-grow" onFinish={onFinish}>
         <Form.Item
@@ -49,6 +50,7 @@ const CreateFeedbackForm = () => {
           </div>
         )} */}
       </div>
+      }
     </div>
   );
 };

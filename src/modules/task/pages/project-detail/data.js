@@ -4,10 +4,12 @@ const scales = [
 ];
 
 const columns = [
-  { name: "text", label: "Tên công việc", width: "100%" },
+  { name: "text", label: "Tên công việc", width: "100px" },
   { name: "start", label: "Ngày bắt đầu", align: "center" },
   { name: "assigned", label: "Người thực hiện", align: "center" },
   { name: "duration", label: "Duration", width: "70px", align: "center" },
+  { name: "done", label: "Tình trạng", width: "70px", align: "center" },
+  { name: "status", label: "Trạng thái", width: "100px", align: "center" },
 ];
 
 // const tasks = [
