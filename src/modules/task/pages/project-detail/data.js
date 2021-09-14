@@ -4,8 +4,8 @@ const scales = [
 ];
 
 const columns = [
-  { name: "text", label: "Task name", width: "100%" },
-  { name: "start", label: "Start time", align: "center" },
+  { name: "text", label: "Tên công việc", width: "100%" },
+  { name: "start", label: "Ngày bắt đầu", align: "center" },
   { name: "assigned", label: "Người thực hiện", align: "center" },
   { name: "duration", label: "Duration", width: "70px", align: "center" },
 ];
