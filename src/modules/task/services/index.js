@@ -47,3 +47,6 @@ export const fetchTaskDetail = (id) => {
 export const deleteTodo = (id) => {
   return axios.delete(`/todo/${id}`);
 };
+export const getTaskPermission = (idProject, idTask) => {
+  return axios.get(`/project/${idProject}/task/${idTask}/check-has-in`);
+};

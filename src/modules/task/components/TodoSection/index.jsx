@@ -1,10 +1,11 @@
+import useGetTaskPermission from "@modules/task/hooks/useGetTaskPermisson";
 import useShowTask from "@modules/task/hooks/useShowTask";
 import { Avatar, Divider, Progress, Tag, Select } from "antd";
 import React, { useMemo } from "react";
 import CreateTodoForm from "./CreateTodoForm";
 import ListTodo from "./ListTodo";
 const { Option } = Select;
-const TodoSection = ({ taskId, task, todo, projectId,isLoading }) => {
+const TodoSection = ({ taskId, task, todo, projectId, isLoading }) => {
   const percentChecked = useMemo(
     (e) => {
       return todo?.filter((t) => {
@@ -17,6 +18,7 @@ const TodoSection = ({ taskId, task, todo, projectId,isLoading }) => {
     return Math.round((percentChecked / todo?.length) * 100);
   }, [percentChecked, todo]);
   const isDone = percent === 100;
+
   return (
     <div>
       <Progress percent={percent} />
@@ -45,8 +47,13 @@ const TodoSection = ({ taskId, task, todo, projectId,isLoading }) => {
       )}
 
       <Divider orientation="left">Danh sách công việc</Divider>
-      <ListTodo isLoading={isLoading} data={todo} taskId={taskId} projectId={projectId} />
-      <CreateTodoForm taskId={taskId} />
+      <ListTodo
+        isLoading={isLoading}
+        data={todo}
+        taskId={taskId}
+        projectId={projectId}
+      />
+      <CreateTodoForm taskId={taskId} projectId={projectId} />
     </div>
   );
 };

@@ -7,19 +7,25 @@ import { Layout, PageHeader } from "antd";
 import React from "react";
 import { useHistory, useParams } from "react-router";
 import ListClient from "@modules/feedback/components/ListClient";
+import usePermission from "@hooks/usePermission";
 const { Content } = Layout;
 
 const Feedback = () => {
   let { projectId } = useParams();
   const history = useHistory();
   const { data: feedbacks, isLoading } = useGetFeedBack(projectId);
+  const { data } = usePermission(projectId);
   return (
     <Layout className="h-full">
       <Content className="h-full bg-white">
         <PageHeader
           title="Feedback"
           onBack={() => history.goBack()}
-          extra={[<AddClientSection projectId={projectId} />]}
+          extra={[
+            data?.project?.can_add_client && (
+              <AddClientSection projectId={projectId} />
+            ),
+          ]}
         />
 
         <div className="grid grid-cols-4 gap-3 px-6">
@@ -31,7 +37,7 @@ const Feedback = () => {
             <FeedbackItem fb={fb} />
           ))}
 
-          <CreateFeedbackForm />
+          {data?.feedback?.can_create && <CreateFeedbackForm />}
         </div>
       </Content>
     </Layout>

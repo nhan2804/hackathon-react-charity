@@ -1,8 +1,9 @@
+import usePermission from "@hooks/usePermission";
 import useCreateTodo from "@modules/task/hooks/useCreateTodo";
 import { Button, Input, Form } from "antd";
 import React from "react";
 
-const CreateTodoForm = ({ taskId }) => {
+const CreateTodoForm = ({ taskId, projectId }) => {
   const { mutate: create, isLoading } = useCreateTodo(taskId);
   const [form] = Form.useForm();
   const onFinish = (values) => {
@@ -10,7 +11,8 @@ const CreateTodoForm = ({ taskId }) => {
     create(values);
     form.resetFields();
   };
-  return (
+  const { data } = usePermission(projectId, taskId);
+  return data?.todo?.can_create ? (
     <div className="flex">
       <Form form={form} className="flex-grow" onFinish={onFinish}>
         <Form.Item
@@ -31,7 +33,7 @@ const CreateTodoForm = ({ taskId }) => {
         </Form.Item>
       </Form>
     </div>
-  );
+  ) : null;
 };
 
 export default CreateTodoForm;

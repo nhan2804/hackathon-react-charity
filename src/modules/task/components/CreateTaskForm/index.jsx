@@ -3,10 +3,12 @@ import { AppstoreAddOutlined } from "@ant-design/icons";
 import useModal from "@hooks/useModal";
 import { Button, Modal } from "antd";
 import CreateTaskForm from "./CreateTaskForm";
+import usePermission from "@hooks/usePermission";
 
-const CreateTaskSection = () => {
+const CreateTaskSection = ({ projectId }) => {
+  const { data } = usePermission(projectId);
   const { close, isOpen, open } = useModal();
-  return (
+  return data?.task?.can_create ? (
     <>
       <Button onClick={open} type="primary">
         <div>Tạo công viêc</div>
@@ -21,7 +23,7 @@ const CreateTaskSection = () => {
         <CreateTaskForm close={close} />
       </Modal>
     </>
-  );
+  ) : null;
 };
 
 export default CreateTaskSection;

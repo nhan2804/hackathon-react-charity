@@ -6,9 +6,11 @@ import CreateCommentFeedBackForm from "../CreateCommentFeedBackForm";
 import EditOutlined from "@ant-design/icons/EditOutlined";
 import { Popover } from "@headlessui/react";
 import useUpdateFeedBack from "@modules/feedback/hooks/useUpdateFeedback";
+import usePermission from "@hooks/usePermission";
 
 const FeedbackItem = ({ fb }) => {
   console.log(fb?.comments);
+  const { data: permission } = usePermission(fb?.project_id);
   const { data } = useGetAllFeedbackComment(fb?.project_id, fb?.id_feedback);
   const { mutate: update } = useUpdateFeedBack(fb?.project_id, fb?.id_feedback);
   const onSubmit = (data, close) => {
@@ -23,11 +25,13 @@ const FeedbackItem = ({ fb }) => {
               {fb?.name_feedback}
             </div>
             <Tag color="blue">Mở</Tag>
-            <Popover.Button>
-              <button>
-                <EditOutlined />
-              </button>
-            </Popover.Button>
+            {permission?.feedback?.can_edit && (
+              <Popover.Button>
+                <button>
+                  <EditOutlined />
+                </button>
+              </Popover.Button>
+            )}
           </div>
 
           <Progress

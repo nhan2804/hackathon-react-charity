@@ -16,6 +16,7 @@ import CommentSection from "@modules/task/components/CommentSection";
 import useShowTask from "@modules/task/hooks/useShowTask";
 import useGetTodo from "@modules/task/hooks/useGetTodo";
 import UpdateTaskNameSection from "@modules/task/components/UpdateTaskNameSection";
+import usePermission from "@hooks/usePermission";
 // import "react-big-calendar/lib/css/react-big-calendar.css";
 
 // const localizer = momentLocalizer(moment);
@@ -35,6 +36,7 @@ const TaskDetail = () => {
     return Math.round((percentChecked / todo?.length) * 100);
   }, [percentChecked, todo]);
   const isDone = percent === 100;
+  const { data: permission } = usePermission(projectId);
   return (
     <Layout className="h-full">
       <ProjectHeader projectId={projectId} />
@@ -43,7 +45,12 @@ const TaskDetail = () => {
         <Layout.Content className="bg-white">
           <PageHeader
             className="site-page-header"
-            title={<UpdateTaskNameSection {...task} />}
+            title={
+              <UpdateTaskNameSection
+                canEdit={permission?.task?.can_edit}
+                {...task}
+              />
+            }
             // subTitle="This is a subtitle"
             tags={[
               isDone ? (
@@ -56,9 +63,11 @@ const TaskDetail = () => {
               </Tag>,
             ]}
             extra={[
-              <Button danger type="primary">
-                Xoá
-              </Button>,
+              permission?.task?.can_delete && (
+                <Button danger type="primary">
+                  Xoá
+                </Button>
+              ),
             ]}
           />
 

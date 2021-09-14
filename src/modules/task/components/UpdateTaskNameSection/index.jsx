@@ -5,7 +5,7 @@ import CheckOutlined from "@ant-design/icons/CheckOutlined";
 import useModal from "@hooks/useModal";
 import { Popover } from "@headlessui/react";
 import UpdateTaskForm from "./UpdateTaskForm";
-const UpdateTaskNameSection = ({ name_task, ...rest }) => {
+const UpdateTaskNameSection = ({ name_task, canEdit, ...rest }) => {
   const { close, isOpen, open } = useModal();
   return (
     <>
@@ -13,9 +13,11 @@ const UpdateTaskNameSection = ({ name_task, ...rest }) => {
         <div className="relative">
           <div>{name_task}</div>
         </div>
-        <button className="flex items-center opacity-70" onClick={open}>
-          <EditOutlined />
-        </button>
+        {canEdit && (
+          <button className="flex items-center opacity-70" onClick={open}>
+            <EditOutlined />
+          </button>
+        )}
       </div>
       <Modal
         title="Cập nhật công việc"

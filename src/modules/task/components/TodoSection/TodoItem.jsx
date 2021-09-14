@@ -7,11 +7,20 @@ import { Popover } from "@headlessui/react";
 import useUpdateTodo from "@modules/task/hooks/useUpdateTodo";
 import useDoneTodo from "@modules/task/hooks/useDoneTodo";
 import useDeleteTodo from "@modules/task/hooks/useDeleteTodo";
-const TodoItem = ({ item, checked, desc, id_todo, task_id, projectId }) => {
+import usePermission from "@hooks/usePermission";
+const TodoItem = ({
+  item,
+  checked,
+  desc,
+  id_todo,
+  task_id,
+  projectId,
+  canDone,
+}) => {
   const { mutate: update } = useUpdateTodo(id_todo, task_id);
   const { mutate: doneTodo } = useDoneTodo(projectId, task_id?.toString());
   const { mutate: deleteTodo } = useDeleteTodo(task_id?.toString());
-
+  const { data } = usePermission(projectId);
   const onEdit = (data, close) => {
     update(data, {
       onSuccess: () => {
@@ -24,22 +33,26 @@ const TodoItem = ({ item, checked, desc, id_todo, task_id, projectId }) => {
       <Checkbox
         checked={checked}
         defaultChecked={checked}
-        onClick={() => !checked && doneTodo({ id_todo })}
+        onClick={() => canDone && doneTodo({ id_todo })}
       ></Checkbox>
       <div className="flex-grow">
         <div className="font-semibold">{item}</div>
         <div className="text-gray-500">{desc}</div>
       </div>
       <div className="space-x-2">
-        <Popover.Button>
-          <Button icon={<EditOutlined />} shape="circle" />
-        </Popover.Button>
-        <Button
-          icon={<DeleteOutlined />}
-          shape="circle"
-          danger
-          onClick={() => deleteTodo({ id_todo })}
-        />
+        {data?.todo?.can_edit && (
+          <Popover.Button>
+            <Button icon={<EditOutlined />} shape="circle" />
+          </Popover.Button>
+        )}
+        {data?.todo?.can_edit && (
+          <Button
+            icon={<DeleteOutlined />}
+            shape="circle"
+            danger
+            onClick={() => deleteTodo({ id_todo })}
+          />
+        )}
       </div>
       <Popover.Panel>
         {({ close }) => (

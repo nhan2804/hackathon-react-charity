@@ -1,3 +1,4 @@
+import usePermission from "@hooks/usePermission";
 import AssignStaffSection from "@modules/project/components/AssignStaffSection";
 import { Button, PageHeader } from "antd";
 import React from "react";
@@ -7,6 +8,7 @@ import CreateTaskSection from "../CreateTaskForm";
 
 const ProjectHeader = ({ projectId }) => {
   const history = useHistory();
+  const { data } = usePermission(projectId);
   return (
     <PageHeader
       title="Project"
@@ -15,12 +17,12 @@ const ProjectHeader = ({ projectId }) => {
       ghost={false}
       extra={[
         <CreateTaskSection projectId={projectId} />,
-        <AssignStaffSection />,
+        <AssignStaffSection projectId={projectId} />,
         <Button
           // type="primary"
           onClick={() => history.push(`/project/${projectId}/feedback`)}
         >
-          Thêm FeedBack
+          FeedBack
         </Button>,
         // <AddClientSection />,
       ]}

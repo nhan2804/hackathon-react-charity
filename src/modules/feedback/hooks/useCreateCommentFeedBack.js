@@ -4,7 +4,6 @@ import { createFeedBackComment } from "../services";
 
 const useCreateCommentFeedBack = (id) => {
   const qc = useQueryClient();
-  const {projectId}=useParams();
   return useMutation(
     async (requestData) => {
       const { data } = await createFeedBackComment(id, requestData);
@@ -12,7 +11,7 @@ const useCreateCommentFeedBack = (id) => {
     },
     {
       onSuccess: () => {
-        qc.invalidateQueries(["feedbackComment", projectId]);
+        qc.invalidateQueries(["feedbackComment", id]);
       },
     }
   );

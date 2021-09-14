@@ -18,7 +18,11 @@ const useDoneTodo = (projectId, taskId) => {
         const oldData = qc.getQueryData(["taskTodo", taskId]);
         const newData = oldData?.map((todo) => {
           if (todo?.id_todo === param?.id_todo)
-            return { ...todo, status_todo: "CHECKED" };
+            return {
+              ...todo,
+              status_todo:
+                todo?.status_todo === "CHECKED" ? "UNCHECK" : "CHECKED",
+            };
           return todo;
         });
         qc.setQueryData(["taskTodo", taskId], newData);
