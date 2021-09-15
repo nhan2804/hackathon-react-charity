@@ -8,7 +8,9 @@ import { LinkPreview } from "@dhaiwat10/react-link-preview";
 import getLink from "@helper/getLinkFromText";
 import validateYouTubeUrl from "@helper/getLinkYoutube";
 const CommentItem = React.memo(({ item }) => {
-
+const link=()=>{
+  return getLink(item?.desc_comment);
+}
   return (
     <Comment
       //   actions={actions}
@@ -27,7 +29,8 @@ const CommentItem = React.memo(({ item }) => {
             ></iframe>
           )} */}
           
-          <LinkPreview url={getLink(item?.desc_comment)} className="max-w-full" width="350px" />
+          {link() && <LinkPreview url={link()} className="max-w-full" width="350px" />
+          }
           <div
             dangerouslySetInnerHTML={{ __html: urlify(item?.desc_comment) }}
           ></div>
