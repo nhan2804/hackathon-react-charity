@@ -10,7 +10,8 @@ const ListComment = ({ taskId }) => {
         <Skeleton active />
       ) : (
         <List
-        rowKey={(item)=>item?.id_comment}
+          className="min-h-full overflow-auto max-h-0"
+          rowKey={(item) => item?.id_comment}
           dataSource={data}
           itemLayout="horizontal"
           renderItem={(item) => <CommentItem item={item} />}

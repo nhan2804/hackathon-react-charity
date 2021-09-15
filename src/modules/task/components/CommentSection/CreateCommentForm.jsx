@@ -1,11 +1,11 @@
 import { Avatar, Button, Input, Form } from "antd";
-
+import { Popover } from "@headlessui/react";
 import React, { useEffect, useRef, useState } from "react";
 import {
   UserOutlined,
   FileImageOutlined,
   SmileTwoTone,
-  SendOutlined
+  SendOutlined,
 } from "@ant-design/icons";
 import useCreateComment from "@modules/task/hooks/useCreateComment";
 import { useAppSelector } from "@hooks/reduxHook";
@@ -20,11 +20,15 @@ const CreateCommentForm = ({ taskId }) => {
   const onSubmit = (data) => {
     console.log(data);
     // return;
-    create({...data,desc_comment:data?.desc_comment+ filesUploaded.join(" \n ")});
+    create({
+      ...data,
+      desc_comment: data?.desc_comment,
+      files_comment: filesUploaded,
+    });
     form.resetFields();
   };
   const [files, setFiles] = useState([]);
-  
+
   const handleOnpaste = (e) => {
     if (!e.clipboardData.files.length) return;
     setFiles([...files, { status: false, file: e.clipboardData.files?.[0] }]);
@@ -70,7 +74,7 @@ const CreateCommentForm = ({ taskId }) => {
       <div className="flex space-x-2">
         {files.map((e, i) => {
           return (
-            <div key={i} className="flex-1">
+            <div key={i} className="flex-shrink-0">
               <FileUpload onUpLoadSuccess={upLoadSuccess} file={e} />
             </div>
           );
@@ -97,25 +101,36 @@ const CreateCommentForm = ({ taskId }) => {
           />
         </Form.Item>
         <Form.Item>
-          <div className="space-x-1">
+          <div className="flex space-x-1">
             {" "}
             <Button
               onClick={onButtonClick}
               type="ghost"
               icon={<FileImageOutlined />}
             />
-            <Button
-              icon={<SmileTwoTone />}
-              onClick={() => setshowEmoji(!showEmoji)}
-            ></Button>
+            <Popover className="relative space-y-3 space-y-reverse">
+              <Popover.Button>
+                <Button
+                  icon={<SmileTwoTone />}
+                  onClick={() => setshowEmoji(!showEmoji)}
+                ></Button>
+              </Popover.Button>
+              <Popover.Panel
+                className="absolute right-0 bottom-full"
+                unmount={false}
+              >
+                <Picker onEmojiClick={onEmojiClick} />
+              </Popover.Panel>
+            </Popover>
           </div>
-
-          {showEmoji && <Picker onEmojiClick={onEmojiClick} />}
         </Form.Item>
         <Form.Item>
-          <Button icon={<SendOutlined />} type="primary" htmlType="submit" loading={isLoading}>
-            
-          </Button>
+          <Button
+            icon={<SendOutlined />}
+            type="primary"
+            htmlType="submit"
+            loading={isLoading}
+          ></Button>
         </Form.Item>
       </Form>
     </>

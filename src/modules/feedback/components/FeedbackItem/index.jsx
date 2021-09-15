@@ -1,6 +1,18 @@
 import CommentItem from "@components/Comment";
 import useGetAllFeedbackComment from "@modules/feedback/hooks/useGetAllFeedbackComment";
-import { Comment,Progress, Tag, List, Form, Input, Button, Slider, Select, Avatar, Tooltip } from "antd";
+import {
+  Comment,
+  Progress,
+  Tag,
+  List,
+  Form,
+  Input,
+  Button,
+  Slider,
+  Select,
+  Avatar,
+  Tooltip,
+} from "antd";
 import React from "react";
 import CreateCommentFeedBackForm from "../CreateCommentFeedBackForm";
 import EditOutlined from "@ant-design/icons/EditOutlined";
@@ -17,47 +29,51 @@ const FeedbackItem = ({ fb }) => {
   const onSubmit = (data, close) => {
     update(data, { onSuccess: close });
   };
-  const status=()=>{
-    return fb?.status_feedback==="ACTIVE";
-  }
+  const status = () => {
+    return fb?.status_feedback === "ACTIVE";
+  };
   return (
-    <Popover className={`relative p-2 space-y-2 ${status() ? "bg-blue-400" :"bg-red-500" }  rounded shadow text-gray-50`}>
+    <Popover
+      className={`relative p-2 space-y-2 ${
+        status() ? "bg-blue-400" : "bg-red-500"
+      }  rounded shadow text-gray-50`}
+    >
       <div>
         <div className="flex justify-between">
           <div className="space-x-1">
-          <Comment
-          author={fb?.user?.username}
-          avatar={
-            <Avatar
-            src={fb?.user?.avatar}
-              alt="Han Solo"
-            />
-          }
-          datetime={
-            <Tooltip title={moment(fb?.created_at).format('YYYY-MM-DD HH:mm:ss')}>
-              <span>{moment(fb?.created_at).fromNow()}</span>
-            </Tooltip>
-          }
-          ></Comment>
-             {/* <div className="inline-block text-lg font-semibold">
+            <Comment
+              author={fb?.user?.username}
+              avatar={<Avatar src={fb?.user?.avatar} alt="Han Solo" />}
+              datetime={
+                <Tooltip
+                  title={moment(fb?.created_at).format("YYYY-MM-DD HH:mm:ss")}
+                >
+                  <span>{moment(fb?.created_at).fromNow()}</span>
+                </Tooltip>
+              }
+            ></Comment>
+            {/* <div className="inline-block text-lg font-semibold">
              <Avatar src={fb?.user?.avatar}/>
              <p>{fb?.user?.username}</p>
             </div> */}
-            <div className="inline-block text-lg font-semibold">
-              {fb?.name_feedback}
+            <div className="inline-block space-x-1 text-lg font-semibold">
+              <span>{fb?.name_feedback}</span>
+
+              {status() ? (
+                <Tag color="blue">Mở</Tag>
+              ) : (
+                <Tag color="red">Đóng</Tag>
+              )}
+
+              {permission?.feedback?.can_edit && (
+                <Popover.Button>
+                  <button>
+                    <EditOutlined />
+                  </button>
+                </Popover.Button>
+              )}
             </div>
-            <div className="text-md">
-              {fb?.desc_feedback}
-            </div>
-            {status()  ?  <Tag color="blue">Mở</Tag>:  <Tag color="red">Đóng</Tag>}
-           
-            {permission?.feedback?.can_edit && (
-              <Popover.Button>
-                <button>
-                  <EditOutlined />
-                </button>
-              </Popover.Button>
-            )}
+            <div className="text-md">{fb?.desc_feedback}</div>
           </div>
 
           <Progress
@@ -67,12 +83,11 @@ const FeedbackItem = ({ fb }) => {
             width={30}
           />
         </div>
-        
       </div>
 
       <div className="p-2 bg-white rounded">
         {status() && <CreateCommentFeedBackForm feedbackID={fb?.id_feedback} />}
-        
+
         <List
           dataSource={data}
           itemLayout="horizontal"
@@ -81,7 +96,7 @@ const FeedbackItem = ({ fb }) => {
       </div>
       <Popover.Panel>
         {({ close }) => (
-          <>
+          <div>
             <Popover.Overlay className="fixed top-0 left-0 z-50 w-screen h-screen bg-black/50"></Popover.Overlay>
             <div className="absolute top-0 left-0 right-0 z-50">
               <Form
@@ -152,7 +167,7 @@ const FeedbackItem = ({ fb }) => {
                 </div>
               </Form>
             </div>
-          </>
+          </div>
         )}
       </Popover.Panel>
     </Popover>

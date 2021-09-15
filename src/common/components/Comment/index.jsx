@@ -1,5 +1,5 @@
 import React, { createElement, useState } from "react";
-import { Comment, Tooltip, Avatar } from "antd";
+import { Comment, Tooltip, Avatar, Image } from "antd";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import "./style.css";
@@ -8,9 +8,9 @@ import { LinkPreview } from "@dhaiwat10/react-link-preview";
 import getLink from "@helper/getLinkFromText";
 import validateYouTubeUrl from "@helper/getLinkYoutube";
 const CommentItem = React.memo(({ item }) => {
-const link=()=>{
-  return getLink(item?.desc_comment);
-}
+  const link = () => {
+    return getLink(item?.desc_comment);
+  };
   return (
     <Comment
       //   actions={actions}
@@ -28,12 +28,22 @@ const link=()=>{
               allowfullscreen
             ></iframe>
           )} */}
-          
-          {link() && <LinkPreview url={link()} className="max-w-full" width="350px" />
-          }
+
+          {link() && (
+            <LinkPreview url={link()} className="max-w-full" width="350px" />
+          )}
           <div
             dangerouslySetInnerHTML={{ __html: urlify(item?.desc_comment) }}
           ></div>
+          <Image.PreviewGroup>
+            {item?.files_comment?.map((img) => (
+              <Image
+                src={img}
+                previewPrefixCls="inline"
+                preview={{ maskClassName: "inline" }}
+              />
+            ))}
+          </Image.PreviewGroup>
         </>
       }
       datetime={

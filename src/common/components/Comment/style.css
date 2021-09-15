@@ -1,4 +1,8 @@
-img{
-    max-width: 100%;
-    max-height: 100px;
+img {
+  max-width: 100%;
+  max-height: 100px;
+  /* display: inline !important; */
+}
+.ant-image-preview-img {
+  display: inline !important;
 }

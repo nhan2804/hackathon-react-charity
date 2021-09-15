@@ -5,7 +5,7 @@ import ListComment from "./ListComment";
 
 const CommentSection = React.memo(({ id }) => {
   return (
-    <div>
+    <div className="h-full">
       <Divider orientation="left">Bình luận</Divider>
       <ListComment taskId={id} />
       <CreateCommentForm taskId={id} />
