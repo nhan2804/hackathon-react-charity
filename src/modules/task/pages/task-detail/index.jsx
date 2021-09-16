@@ -10,6 +10,7 @@ import useGetTodo from "@modules/task/hooks/useGetTodo";
 import UpdateTaskNameSection from "@modules/task/components/UpdateTaskNameSection";
 import usePermission from "@hooks/usePermission";
 import Confirm from "@components/Confirm";
+import useDeleteTask from "@modules/task/hooks/useDeleteTask";
 // import "react-big-calendar/lib/css/react-big-calendar.css";
 
 // const localizer = momentLocalizer(moment);
@@ -30,6 +31,10 @@ const TaskDetail = () => {
   }, [percentChecked, todo]);
   const isDone = percent === 100;
   const { data: permission } = usePermission(projectId);
+  const { mutate: deleteTask, isLoading: deleteLoading } = useDeleteTask(
+    projectId,
+    taskId
+  );
   return (
     <Layout className="h-full">
       <ProjectHeader projectId={projectId} />
@@ -57,10 +62,10 @@ const TaskDetail = () => {
             ]}
             extra={[
               permission?.task?.can_delete && (
-                // <Button danger type="primary">
-                //   Xoá
-                // </Button>
-                <Confirm />
+                <Confirm
+                  onConfirm={({ close }) => deleteTask({})}
+                  isLoading={deleteLoading}
+                />
               ),
             ]}
           />

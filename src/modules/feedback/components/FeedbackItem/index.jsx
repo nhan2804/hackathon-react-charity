@@ -36,14 +36,10 @@ const FeedbackItem = ({ fb }) => {
     return fb?.status_feedback === "ACTIVE";
   };
   return (
-    <Popover
-      className={`relative p-2 space-y-2 ${
-        status() ? "bg-blue-400" : "bg-red-500"
-      }  rounded shadow text-gray-50 `}
-    >
-      <div>
-        <div className="flex justify-between">
-          <div className="space-x-1">
+    <Popover className="relative rounded bg-gray-200/75">
+      <div className="p-2">
+        <div className="">
+          <div className="flex justify-between">
             <Comment
               author={fb?.user?.username}
               avatar={<Avatar src={fb?.user?.avatar} alt="Han Solo" />}
@@ -55,55 +51,58 @@ const FeedbackItem = ({ fb }) => {
                 </Tooltip>
               }
             ></Comment>
-            {/* <div className="inline-block text-lg font-semibold">
-             <Avatar src={fb?.user?.avatar}/>
-             <p>{fb?.user?.username}</p>
-            </div> */}
-            <div className="inline-block space-x-1 text-lg font-semibold">
-              <span>{fb?.name_feedback}</span>
-
-              {status() ? (
-                <Tag color="blue">Mở</Tag>
-              ) : (
-                <Tag color="red">Đóng</Tag>
-              )}
-
-              {permission?.feedback?.can_edit && (
-                <Popover.Button>
-                  <button>
-                    <EditOutlined />
-                  </button>
-                </Popover.Button>
-              )}
-            </div>
-            <div
-              className="text-md"
-              dangerouslySetInnerHTML={{ __html: nl2br(fb?.desc_feedback) }}
-            ></div>
+            <Progress
+              className="text-gray-50"
+              type="circle"
+              percent={Number(fb?.percent_feedback || 0)}
+              width={30}
+            />
           </div>
+        </div>
+      </div>
+      <div
+        className={`relative p-2 space-y-2 ${
+          status() ? "bg-blue-400" : "bg-red-500"
+        }  rounded shadow text-gray-50 `}
+      >
+        <div className="space-x-1">
+          <div className="inline-block space-x-1 text-lg font-semibold">
+            <span>{fb?.name_feedback}</span>
 
-          <Progress
-            className="text-gray-50"
-            type="circle"
-            percent={Number(fb?.percent_feedback || 0)}
-            width={30}
-          />
+            {status() ? (
+              <Tag color="blue">Mở</Tag>
+            ) : (
+              <Tag color="red">Đóng</Tag>
+            )}
+
+            {permission?.feedback?.can_edit && (
+              <Popover.Button>
+                <button>
+                  <EditOutlined />
+                </button>
+              </Popover.Button>
+            )}
+          </div>
+          <div
+            className="text-md"
+            dangerouslySetInnerHTML={{ __html: nl2br(fb?.desc_feedback) }}
+          ></div>
+        </div>
+        <div className="p-2 bg-white rounded">
+          <div style={{ height: 400, overflowY: "auto" }}>
+            <List
+              dataSource={data}
+              itemLayout="horizontal"
+              renderItem={(item) => <CommentItem item={item} />}
+            />
+          </div>
+          {/* {status() && <CreateCommentFeedBackForm feedbackID={fb?.id_feedback} />} */}
+          {status() && (
+            <CreateCommentForm postId={fb?.id_feedback} type="FEEDBACK" />
+          )}
         </div>
       </div>
 
-      <div className="p-2 bg-white rounded">
-        <div style={{ height: 400, overflowY: "auto" }}>
-          <List
-            dataSource={data}
-            itemLayout="horizontal"
-            renderItem={(item) => <CommentItem item={item} />}
-          />
-        </div>
-        {/* {status() && <CreateCommentFeedBackForm feedbackID={fb?.id_feedback} />} */}
-        {status() && (
-          <CreateCommentForm postId={fb?.id_feedback} type="FEEDBACK" />
-        )}
-      </div>
       <Popover.Panel>
         {({ close }) => (
           <div>

@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 
 const useModal = (props) => {
-  const { initialOpen } = props || {};
+  const { initialOpen = false } = props || {};
   const [isOpen, setisOpen] = useState(initialOpen);
   const close = useCallback(() => {
     setisOpen(false);

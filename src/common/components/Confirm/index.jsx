@@ -1,33 +1,25 @@
 import { Dialog, Transition } from "@headlessui/react";
+import useModal from "@hooks/useModal";
 import { Button } from "antd";
+
 import React, { Fragment, useState } from "react";
 
-export default function Confirm({ onConfirm }) {
-  let [isOpen, setIsOpen] = useState(false);
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  function openModal() {
-    setIsOpen(true);
-  }
+export default function Confirm({ onConfirm, isLoading }) {
+  const { close, isOpen, open } = useModal();
   const handleConfirm = async () => {
-    await onConfirm();
-    setIsOpen(false);
-    // onConfirm(cb, okOk);
+    onConfirm({ close });
   };
-
   return (
     <>
-      <Button type="primary" danger onClick={openModal}>
+      <Button type="primary" danger onClick={open}>
         Xóa
       </Button>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
+          static
           className="fixed inset-0 z-10 overflow-y-auto"
-          onClose={closeModal}
+          onClose={() => !isLoading && close()}
         >
           <div className="min-h-screen px-4 text-center">
             <Transition.Child
@@ -73,10 +65,15 @@ export default function Confirm({ onConfirm }) {
 
                 <div className="mt-4 ">
                   <div className="flex justify-end space-x-2">
-                    <Button type="default" onClick={closeModal}>
+                    <Button type="default" onClick={close} disabled={isLoading}>
                       Hủy
                     </Button>
-                    <Button type="default" danger onClick={() => onConfirm()}>
+                    <Button
+                      loading={isLoading}
+                      type="default"
+                      danger
+                      onClick={() => handleConfirm()}
+                    >
                       Xóa
                     </Button>
                   </div>
