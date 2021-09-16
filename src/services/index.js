@@ -15,3 +15,10 @@ export const getRole = (id) => {
 };
 export default uploadImage;
 export { APIUploadImage };
+export const createComment = (taskId, requestData, type) => {
+  return axios.post("/comment", {
+    ...requestData,
+    type_comment: type,
+    post_id: taskId,
+  });
+};

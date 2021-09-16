@@ -1,9 +1,11 @@
+import useGetStaff from "@modules/project/hooks/useGetStaff";
 import useGetTaskPermission from "@modules/task/hooks/useGetTaskPermisson";
 import useShowTask from "@modules/task/hooks/useShowTask";
-import { Avatar, Divider, Progress, Tag, Select } from "antd";
+import { Avatar, Divider, Progress, Tag, Select, Button, Form } from "antd";
 import React, { useMemo } from "react";
 import CreateTodoForm from "./CreateTodoForm";
 import ListTodo from "./ListTodo";
+
 const { Option } = Select;
 const TodoSection = ({ taskId, task, todo, projectId, isLoading }) => {
   const percentChecked = useMemo(
@@ -14,11 +16,16 @@ const TodoSection = ({ taskId, task, todo, projectId, isLoading }) => {
     },
     [todo]
   );
+
+  const onFinish = (values) => {
+    console.log("Success:", values);
+  };
+
   const percent = useMemo(() => {
     return Math.round((percentChecked / todo?.length) * 100);
   }, [percentChecked, todo]);
-  const isDone = percent === 100;
 
+  const { data: staff } = useGetStaff(projectId);
   return (
     <div>
       <Progress percent={percent} />
@@ -30,19 +37,33 @@ const TodoSection = ({ taskId, task, todo, projectId, isLoading }) => {
         </div>
       ) : (
         <>
-          <Select
-            showSearch
-            style={{ width: 200 }}
-            placeholder="Chọn nhân viên có sẵn"
-            optionFilterProp="children"
-            filterOption={(input, option) =>
-              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }
-          >
-            <Option value="jack">Jack</Option>
-            <Option value="lucy">Lucy</Option>
-            <Option value="tom">Tom</Option>
-          </Select>
+          <Form onFinish={onFinish}>
+            <Form.Item name="username">
+              <Select
+                showSearch
+                style={{ width: 200 }}
+                placeholder="Chọn nhân viên có sẵn"
+                optionFilterProp="children"
+                filterOption={(input, option) =>
+                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                  0
+                }
+              >
+                {staff?.map((e) => {
+                  return (
+                    <Option key={e?.id} value={e?.username}>
+                      {e?.username}
+                    </Option>
+                  );
+                })}
+              </Select>
+            </Form.Item>
+            <Form.Item>
+              <Button htmlType="submit" type="primary">
+                Lưu thay đổi
+              </Button>
+            </Form.Item>
+          </Form>
         </>
       )}
 

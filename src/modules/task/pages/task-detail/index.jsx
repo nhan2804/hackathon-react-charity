@@ -1,11 +1,4 @@
-import {
-  
-  Button,
-  Layout,
-  PageHeader,
-  
-  Tag,
-} from "antd";
+import { Button, Layout, PageHeader, Tag } from "antd";
 import React, { useMemo } from "react";
 // import "./index.css";
 import { useParams } from "react-router";
@@ -16,6 +9,7 @@ import useShowTask from "@modules/task/hooks/useShowTask";
 import useGetTodo from "@modules/task/hooks/useGetTodo";
 import UpdateTaskNameSection from "@modules/task/components/UpdateTaskNameSection";
 import usePermission from "@hooks/usePermission";
+import Confirm from "@components/Confirm";
 // import "react-big-calendar/lib/css/react-big-calendar.css";
 
 // const localizer = momentLocalizer(moment);
@@ -63,15 +57,14 @@ const TaskDetail = () => {
             ]}
             extra={[
               permission?.task?.can_delete && (
-                <Button danger type="primary">
-                  Xoá
-                </Button>
+                // <Button danger type="primary">
+                //   Xoá
+                // </Button>
+                <Confirm />
               ),
             ]}
           />
-          <div className="mx-7">
-            {task?.desc_task}
-          </div>
+          <div className="mx-7">{task?.desc_task}</div>
           <div className="px-6">
             <div className="grid grid-cols-2 gap-4">
               <TodoSection

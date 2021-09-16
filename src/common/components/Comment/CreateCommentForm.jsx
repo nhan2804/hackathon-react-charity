@@ -10,24 +10,31 @@ import {
 import useCreateComment from "@modules/task/hooks/useCreateComment";
 import { useAppSelector } from "@hooks/reduxHook";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import RichText from "@components/RichText";
 import { FileUpload } from "@components/Comment/FileUpload";
 import Picker from "emoji-picker-react";
-const CreateCommentForm = ({ taskId }) => {
+const CreateCommentForm = ({ postId, type }) => {
   const [form] = Form.useForm();
-  const { mutate: create, isLoading } = useCreateComment(taskId, "TASK");
+  const { mutate: create, isLoading } = useCreateComment(postId, type);
   const [filesUploaded, setfilesUploaded] = useState([]);
+  const [files, setFiles] = useState([]);
   const onSubmit = (data) => {
     console.log(data);
     // return;
-    create({
-      ...data,
-      desc_comment: data?.desc_comment,
-      files_comment: filesUploaded,
-    });
+    create(
+      {
+        ...data,
+        desc_comment: data?.desc_comment,
+        files_comment: filesUploaded,
+      },
+      {
+        onSuccess: () => {
+          setfilesUploaded([]);
+          setFiles([]);
+        },
+      }
+    );
     form.resetFields();
   };
-  const [files, setFiles] = useState([]);
 
   const handleOnpaste = (e) => {
     if (!e.clipboardData.files.length) return;
@@ -97,7 +104,7 @@ const CreateCommentForm = ({ taskId }) => {
           <Input
             onDrag={handleDrag}
             onPaste={handleOnpaste}
-            placeholder="Bình luận / ..."
+            placeholder="Bình luận ..."
           />
         </Form.Item>
         <Form.Item>

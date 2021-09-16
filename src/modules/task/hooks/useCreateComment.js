@@ -1,16 +1,20 @@
+import { createComment } from "@services/";
 import { useMutation, useQueryClient } from "react-query";
-import { createTaskComment } from "../services";
 
-const useCreateComment = (id) => {
+const useCreateComment = (id, type) => {
   const qc = useQueryClient();
   return useMutation(
     async (requestData) => {
-      const { data } = await createTaskComment(id, requestData);
+      const { data } = await createComment(id, requestData, type);
       return data;
     },
     {
       onSuccess: () => {
-        qc.invalidateQueries(["taskComment", id]);
+        if (type === "TASK") {
+          qc.invalidateQueries(["taskComment", id]);
+        } else {
+          qc.invalidateQueries(["feedbackComment", id]);
+        }
       },
     }
   );

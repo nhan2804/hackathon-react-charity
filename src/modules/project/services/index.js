@@ -18,3 +18,6 @@ export const addClient = (id, requestData) => {
     type_user: "CLIENT",
   });
 };
+export const getStaff = async (projectId) => {
+  return axios.get(`/project/${projectId}/join/staff`);
+};

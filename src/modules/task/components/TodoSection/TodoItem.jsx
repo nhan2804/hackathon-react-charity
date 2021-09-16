@@ -16,6 +16,7 @@ const TodoItem = ({
   task_id,
   projectId,
   canDone,
+  last_done,
 }) => {
   const { mutate: update } = useUpdateTodo(id_todo, task_id);
   const { mutate: doneTodo } = useDoneTodo(projectId, task_id?.toString());
@@ -36,7 +37,14 @@ const TodoItem = ({
         onClick={() => canDone && doneTodo({ id_todo })}
       ></Checkbox>
       <div className="flex-grow">
-        <div className="font-semibold">{item}</div>
+        <div className="font-semibold space-x-2 flex">
+          <div className="break-words break-all">{item}</div>
+          {last_done && (
+            <div className="text-gray-500">
+              Hoàn thành lần cuối : {last_done}
+            </div>
+          )}
+        </div>
         <div className="text-gray-500">{desc}</div>
       </div>
       <div className="space-x-2">

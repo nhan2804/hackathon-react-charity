@@ -22,7 +22,7 @@ const ProjectDetail = () => {
   const history = useHistory();
   let { projectId } = useParams();
 
-  const { data: taskss, isLoading,isFetching } = useGetTask(projectId);
+  const { data: taskss, isLoading, isFetching } = useGetTask(projectId);
 
   function handler({ action, obj, id }) {
     if (action === "select-task") {
@@ -31,7 +31,7 @@ const ProjectDetail = () => {
       console.log(`Task ${id} was selected`);
     }
   }
-  
+
   return (
     <Layout className="h-full">
       <Content className="flex flex-col h-full bg-white">
@@ -39,13 +39,11 @@ const ProjectDetail = () => {
         <Layout className="flex-grow">
           {/* <TaskMenu projectId={projectId} /> */}
           <Content className="p-1">
-           
             <SectionSkeleton isLoading={isLoading} rows={20} />
             <DefaultTheme>
-            {(taskss && !isFetching ) ? (
-            
+              {taskss && !isFetching ? (
                 <Gantt
-                css={{border:"1px solid #ccc"}}
+                  css={{ border: "1px solid #ccc" }}
                   readonly
                   key={taskss?.length}
                   action={handler}
@@ -54,11 +52,10 @@ const ProjectDetail = () => {
                   tasks={taskss}
                   links={links}
                 />
-            
-            ) : (
-              "loading"
-            )}
-              </DefaultTheme>
+              ) : (
+                <SectionSkeleton isLoading={isFetching} rows={20} />
+              )}
+            </DefaultTheme>
           </Content>
         </Layout>
       </Content>

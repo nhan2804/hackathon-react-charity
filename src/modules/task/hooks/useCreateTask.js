@@ -10,7 +10,7 @@ const useCreateTask = () => {
     },
     {
       onSuccess: () => {
-        qc.invalidateQueries(["task"]);
+        qc.invalidateQueries(["project-task"]);
       },
     }
   );

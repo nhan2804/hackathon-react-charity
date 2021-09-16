@@ -12,6 +12,7 @@ import {
   Select,
   Avatar,
   Tooltip,
+  Radio,
 } from "antd";
 import React from "react";
 import CreateCommentFeedBackForm from "../CreateCommentFeedBackForm";
@@ -20,6 +21,7 @@ import { Popover } from "@headlessui/react";
 import useUpdateFeedBack from "@modules/feedback/hooks/useUpdateFeedback";
 import usePermission from "@hooks/usePermission";
 import moment from "moment";
+import CreateCommentForm from "@components/Comment/CreateCommentForm";
 
 const FeedbackItem = ({ fb }) => {
   console.log(fb?.comments);
@@ -36,7 +38,7 @@ const FeedbackItem = ({ fb }) => {
     <Popover
       className={`relative p-2 space-y-2 ${
         status() ? "bg-blue-400" : "bg-red-500"
-      }  rounded shadow text-gray-50`}
+      }  rounded shadow text-gray-50 `}
     >
       <div>
         <div className="flex justify-between">
@@ -86,13 +88,17 @@ const FeedbackItem = ({ fb }) => {
       </div>
 
       <div className="p-2 bg-white rounded">
-        {status() && <CreateCommentFeedBackForm feedbackID={fb?.id_feedback} />}
-
-        <List
-          dataSource={data}
-          itemLayout="horizontal"
-          renderItem={(item) => <CommentItem item={item} />}
-        />
+        <div style={{ height: 400, overflowY: "auto" }}>
+          <List
+            dataSource={data}
+            itemLayout="horizontal"
+            renderItem={(item) => <CommentItem item={item} />}
+          />
+        </div>
+        {/* {status() && <CreateCommentFeedBackForm feedbackID={fb?.id_feedback} />} */}
+        {status() && (
+          <CreateCommentForm postId={fb?.id_feedback} type="FEEDBACK" />
+        )}
       </div>
       <Popover.Panel>
         {({ close }) => (
@@ -151,10 +157,16 @@ const FeedbackItem = ({ fb }) => {
                     { required: true, message: "Bạn cần nhập tên feedback" },
                   ]}
                 >
-                  <Select>
+                  <Radio.Group>
+                    {" "}
+                    <Radio value="ACTIVE">Mở</Radio>
+                    <Radio value="CLOSE">Đóng</Radio>
+                  </Radio.Group>
+
+                  {/* <Select>
                     <Select.Option value="ACTIVE">Mở</Select.Option>
                     <Select.Option value="CLOSE">Đóng</Select.Option>
-                  </Select>
+                  </Select> */}
                 </Form.Item>
                 <div className="flex justify-end space-x-2">
                   <Button onClick={close} htmlType="button">
