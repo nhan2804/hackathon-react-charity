@@ -12,6 +12,11 @@ export default function Confirm({ onConfirm }) {
   function openModal() {
     setIsOpen(true);
   }
+  const handleConfirm = async () => {
+    await onConfirm();
+    setIsOpen(false);
+    // onConfirm(cb, okOk);
+  };
 
   return (
     <>
@@ -71,7 +76,7 @@ export default function Confirm({ onConfirm }) {
                     <Button type="default" onClick={closeModal}>
                       Hủy
                     </Button>
-                    <Button type="default" danger onClick={onConfirm}>
+                    <Button type="default" danger onClick={() => onConfirm()}>
                       Xóa
                     </Button>
                   </div>

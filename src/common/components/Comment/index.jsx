@@ -6,11 +6,12 @@ import "./style.css";
 import urlify from "@helper/urlify";
 import { LinkPreview } from "@dhaiwat10/react-link-preview";
 import getLink from "@helper/getLinkFromText";
-import validateYouTubeUrl from "@helper/getLinkYoutube";
+import validateYouTubeUrl, { youtube_parser } from "@helper/getLinkYoutube";
 const CommentItem = React.memo(({ item }) => {
   const link = () => {
     return getLink(item?.desc_comment);
   };
+  const iDYoutube = youtube_parser(link());
   return (
     <Comment
       //   actions={actions}
@@ -29,9 +30,20 @@ const CommentItem = React.memo(({ item }) => {
             ></iframe>
           )} */}
 
-          {link() && (
-            <LinkPreview url={link()} className="max-w-full" width="350px" />
-          )}
+          {link() &&
+            (iDYoutube ? (
+              <iframe
+                width="350"
+                height="auto"
+                src={`https://www.youtube.com/embed/${iDYoutube}`}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                allowfullscreen
+              ></iframe>
+            ) : (
+              <LinkPreview url={link()} className="max-w-full" width="350px" />
+            ))}
           <div
             dangerouslySetInnerHTML={{ __html: urlify(item?.desc_comment) }}
           ></div>

@@ -22,6 +22,7 @@ import useUpdateFeedBack from "@modules/feedback/hooks/useUpdateFeedback";
 import usePermission from "@hooks/usePermission";
 import moment from "moment";
 import CreateCommentForm from "@components/Comment/CreateCommentForm";
+import nl2br from "@helper/nl2br";
 
 const FeedbackItem = ({ fb }) => {
   console.log(fb?.comments);
@@ -75,7 +76,10 @@ const FeedbackItem = ({ fb }) => {
                 </Popover.Button>
               )}
             </div>
-            <div className="text-md">{fb?.desc_feedback}</div>
+            <div
+              className="text-md"
+              dangerouslySetInnerHTML={{ __html: nl2br(fb?.desc_feedback) }}
+            ></div>
           </div>
 
           <Progress

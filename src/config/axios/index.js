@@ -1,8 +1,8 @@
 import { store } from "@app/store";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://manager.sohoceravietnam.com/api";
-// axios.defaults.baseURL = "http://localhost/smart-project-manager-be/public/api";
+// axios.defaults.baseURL = "http://manager.sohoceravietnam.com/api";
+axios.defaults.baseURL = "http://localhost/smart-project-manager-be/public/api";
 export const configAxios = () => {
   axios.interceptors.request.use(
     (config) => {

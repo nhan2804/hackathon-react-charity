@@ -17,17 +17,25 @@ const CreateCommentForm = ({ taskId }) => {
   const [form] = Form.useForm();
   const { mutate: create, isLoading } = useCreateComment(taskId, "TASK");
   const [filesUploaded, setfilesUploaded] = useState([]);
+  const [files, setFiles] = useState([]);
   const onSubmit = (data) => {
     console.log(data);
     // return;
-    create({
-      ...data,
-      desc_comment: data?.desc_comment,
-      files_comment: filesUploaded,
-    });
+    create(
+      {
+        ...data,
+        desc_comment: data?.desc_comment,
+        files_comment: filesUploaded,
+      },
+      {
+        onSuccess: () => {
+          setfilesUploaded([]);
+          setFiles([]);
+        },
+      }
+    );
     form.resetFields();
   };
-  const [files, setFiles] = useState([]);
 
   const handleOnpaste = (e) => {
     if (!e.clipboardData.files.length) return;
@@ -43,6 +51,7 @@ const CreateCommentForm = ({ taskId }) => {
     console.log({ e });
   };
   const user = useAppSelector((state) => state?.auth?.user);
+
   const upLoadSuccess = (url) => {
     setfilesUploaded([...filesUploaded, url]);
   };

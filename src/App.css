@@ -55,18 +55,41 @@ button {
 .ant-form-item-required::after {
   display: none;
 }
-.Grid-module_grid__2VUMH{
+.Grid-module_grid__2VUMH {
   /* display: none !important; */
 }
-.Chart-module_chart__1T9rB .Chart-module_area__3FglT > div{
-  background-image: url('../src/assets/images/bg.png') !important;
+.Chart-module_chart__1T9rB .Chart-module_area__3FglT > div {
+  background-image: url("../src/assets/images/bg.png") !important;
 }
-.Chart-module_chart__1T9rB{
-  
+.Chart-module_chart__1T9rB {
 }
-.Grid-module_grid__2VUMH{
+.Grid-module_grid__2VUMH {
   flex: 0 0 600px !important;
 }
-.Gantt-module_icon__1IyX2{
+.Gantt-module_icon__1IyX2 {
   display: none !important;
 }
+/*
+ *  STYLE 1
+ */
+
+*::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+  background-color: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: rgb(37, 37, 37);
+}
+
+/*
+ *  STYLE 2
+ */
