@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { getClient } from "../services";
 
 const useGetClient = (id) => {
-  return useQuery(["client", id], async () => {
+  return useQuery(["projectClient", id], async () => {
     const { data } = await getClient(id);
     return data;
   });

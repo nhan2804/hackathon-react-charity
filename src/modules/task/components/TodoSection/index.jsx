@@ -1,8 +1,11 @@
+import AssignStaffForTaskSection from "@modules/project/components/AssignStaffForTaskSection";
+import AssignStaffForTaskSectionForm from "@modules/project/components/AssignStaffForTaskSection/AssignStaffSectionForm";
 import useGetStaff from "@modules/project/hooks/useGetStaff";
 import useGetTaskPermission from "@modules/task/hooks/useGetTaskPermisson";
 import useShowTask from "@modules/task/hooks/useShowTask";
 import { Avatar, Divider, Progress, Tag, Select, Button, Form } from "antd";
 import React, { useMemo } from "react";
+import StaffSection from "../StaffSection";
 import CreateTodoForm from "./CreateTodoForm";
 import ListTodo from "./ListTodo";
 
@@ -31,39 +34,14 @@ const TodoSection = ({ taskId, task, todo, projectId, isLoading }) => {
       <Progress percent={percent} />
       <Divider orientation="left">Nhân viên thực hiện</Divider>
       {task?.staff ? (
-        <div className="flex items-center space-x-2">
-          <Avatar alt={task?.staff?.fullname} src={task?.staff?.avatar} />
-          <Tag color="magenta">{task?.staff?.fullname}</Tag>
-        </div>
+        <StaffSection
+          staff={task?.staff}
+          taskId={taskId}
+          projectId={projectId}
+        />
       ) : (
         <>
-          <Form onFinish={onFinish}>
-            <Form.Item name="username">
-              <Select
-                showSearch
-                style={{ width: 200 }}
-                placeholder="Chọn nhân viên có sẵn"
-                optionFilterProp="children"
-                filterOption={(input, option) =>
-                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
-                  0
-                }
-              >
-                {staff?.map((e) => {
-                  return (
-                    <Option key={e?.id} value={e?.username}>
-                      {e?.username}
-                    </Option>
-                  );
-                })}
-              </Select>
-            </Form.Item>
-            <Form.Item>
-              <Button htmlType="submit" type="primary">
-                Lưu thay đổi
-              </Button>
-            </Form.Item>
-          </Form>
+          <AssignStaffForTaskSection taskId={taskId} projectId={projectId} />
         </>
       )}
 

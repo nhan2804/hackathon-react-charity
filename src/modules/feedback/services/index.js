@@ -29,4 +29,9 @@ export const addClient = (id, requestData) => {
 export const getClient = async (projectId) => {
   return axios.get(`/project/${projectId}/join/client`);
 };
+export const deleteClient = async (projectId, idUser) => {
+  return axios.delete(`/project/${projectId}/join/client`, {
+    data: { user_id: idUser },
+  });
+};
 export { fetchFeedback, createFeedback };

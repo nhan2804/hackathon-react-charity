@@ -1,17 +1,17 @@
-import { Breadcrumb, Divider, Layout, Menu, PageHeader, Skeleton } from "antd";
-import React, { useState } from "react";
+import { Divider, Layout, Skeleton } from "antd";
+import React from "react";
 // import "./index.css";
 
 import LeftNav from "@components/LeftNav";
 import ProjectItem from "../../components/ProjectItem";
 import { Link } from "react-router-dom";
-import useGetProject from "@modules/project/hooks/useGetProJect";
-import useGetProjectShared from "@modules/project/hooks/useGetProjectShared";
+
+import useGetProjectMe from "@modules/project/hooks/useGetProjectMe";
 
 const { Content } = Layout;
 
-const ProjectShared = () => {
-  const { data: projectsh, isLoading } = useGetProjectShared();
+const ProjectMe = () => {
+  const { data: projectsh, isLoading } = useGetProjectMe();
   console.log(projectsh);
 
   return (
@@ -76,4 +76,4 @@ const ProjectShared = () => {
     </Layout>
   );
 };
-export default ProjectShared;
+export default ProjectMe;

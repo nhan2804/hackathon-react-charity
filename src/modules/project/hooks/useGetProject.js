@@ -4,8 +4,8 @@ import { fetchProject } from "../services";
 const useGetProject = () => {
   return useQuery(["project"], async () => {
     const { data } = await fetchProject();
-
-    return data?.data;
+    console.log(data);
+    return data;
   });
 };
 

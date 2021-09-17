@@ -10,7 +10,7 @@ const AddClientSection = ({ projectId }) => {
 
   return (
     <>
-      <div className="flex space-x-2">
+      <div className="flex items-center space-x-2">
         <ListClient projectId={projectId} />
         <Button onClick={open}>Thêm khách hàng</Button>
       </div>

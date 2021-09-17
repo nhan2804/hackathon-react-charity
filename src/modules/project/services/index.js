@@ -9,6 +9,9 @@ export const fetchProject = () => {
 export const fetchProjectShared = () => {
   return axios.get("/project/shared");
 };
+export const fetchProjectMe = () => {
+  return axios.get("/project/me");
+};
 export const assignProject = (id, requestData) => {
   return axios.post(`project/${id}/task/assign`, requestData);
 };

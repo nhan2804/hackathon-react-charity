@@ -1,6 +1,6 @@
 import { Avatar, Button, Input, Form } from "antd";
 import { Popover } from "@headlessui/react";
-import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   UserOutlined,
   FileImageOutlined,

@@ -20,13 +20,15 @@ const Feedback = () => {
     <Layout className="h-full">
       <Content className="h-full bg-white">
         <PageHeader
-          title="Feedback"
+          title={
+            <div className="flex items-center space-x-1">
+              <div>Feedbacks</div>
+              {data?.project?.can_add_client && (
+                <AddClientSection projectId={projectId} />
+              )}
+            </div>
+          }
           onBack={() => history.goBack()}
-          extra={[
-            data?.project?.can_add_client && (
-              <AddClientSection projectId={projectId} />
-            ),
-          ]}
         />
 
         <div className="grid grid-cols-4 gap-3 px-6">
