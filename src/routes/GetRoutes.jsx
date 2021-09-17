@@ -1,5 +1,5 @@
 import ProtectedRoute from "@components/ProtectedRoute";
-import React, { memo, Suspense,lazy } from "react";
+import React, { memo, Suspense, lazy } from "react";
 
 import { Route } from "react-router";
 
@@ -7,27 +7,20 @@ import { Switch } from "react-router-dom";
 import { PacmanLoader } from "react-spinners";
 
 import Routes from "./index";
-const NotFound = lazy(()=> import("@components/NotFound"))
+const NotFound = lazy(() => import("@components/NotFound"));
 function GetRoutes() {
   return (
     <div className="h-full">
       <Suspense
         fallback={
-          <div className="max-w-lg mx-auto min-h-full flex justify-center items-center">
-              <PacmanLoader loading={true} size={60} />
+          <div className="flex items-center justify-center max-w-lg min-h-full mx-auto">
+            <PacmanLoader loading={true} size={60} />
           </div>
-          
         }
       >
         <Switch>
           {Routes.map((route, indx) => {
-            const {
-              path,
-              component,
-              isPrivate = false,
-              role = [],
-              exact,
-            } = route;
+            const { path, component, isPrivate = false, role, exact } = route;
             // return <Route key={indx} path={path} exact={true} component={component} />;
             return (
               <ProtectedRoute
@@ -41,7 +34,6 @@ function GetRoutes() {
             );
           })}
           <Route component={NotFound}></Route>
-          
         </Switch>
       </Suspense>
     </div>

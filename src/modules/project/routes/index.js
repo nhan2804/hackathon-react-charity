@@ -7,10 +7,12 @@ const projectRoutes = [
     component: Project,
     path: "/project",
     exact: true,
+    isPrivate: true,
   },
   {
     component: ProjectShared,
     path: "/project/shared",
+    isPrivate: true,
     exact: true,
   },
 ];

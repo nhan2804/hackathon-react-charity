@@ -18,6 +18,7 @@ const ProtectedRoute = ({
       render={(props) => {
         if (!isPrivate) return <Component {...props} />;
         if (!auth) return <Redirect to="/login" />;
+        if (!accessRole) return <Component {...props} />;
         if (!accessRole.includes(role)) return <Redirect to="/" />;
         return <Component {...props} />;
       }}
