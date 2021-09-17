@@ -15,17 +15,17 @@ export const configReactQuery = ({ store = {} }) => {
           if (error?.response?.status === 401)
             return store?.dispatch(logout(qc.removeQueries("user")));
           return error.response?.data?.message;
-          // console.log(error.response.data);
-          // console.log(error.response.status);
-          // console.log(error.response.headers);
+          //
+          //
+          //
         } else if (error.request) {
           // The request was made but no response was received
           // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
           // http.ClientRequest in node.js
-          // console.log(error.request);
+          //
         } else {
           // Something happened in setting up the request that triggered an Error
-          // console.log("Error", error.message);
+          //
         }
       },
       refetchOnWindowFocus: false,
@@ -34,7 +34,6 @@ export const configReactQuery = ({ store = {} }) => {
       retry: false,
 
       onSuccess: (data) => {
-        console.log(data);
         toast.success(data?.message || "Thành công");
       },
       onError: (e) => {
@@ -50,7 +49,7 @@ export const configReactQuery = ({ store = {} }) => {
 //   defaultOptions: {
 //     queries: {
 //       retry: (retry, err) => {
-//         // console.log(JSON.parse(JSON.stringify(err)));
+//         //
 //         if (err?.response?.status === 401) return false;
 //         if (retry > 3) return false;
 //         return true;
@@ -58,7 +57,7 @@ export const configReactQuery = ({ store = {} }) => {
 //     },
 //     mutations: {
 //       retry: (retry, err) => {
-//         // console.log(JSON.parse(JSON.stringify(err)));
+//         //
 //         if ([401, 411, 493].includes(err?.response?.status)) return false;
 //         if (retry > 3) return false;
 //         return true;

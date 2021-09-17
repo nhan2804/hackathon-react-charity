@@ -19,7 +19,6 @@ const CreateCommentForm = ({ taskId }) => {
   const [filesUploaded, setfilesUploaded] = useState([]);
   const [files, setFiles] = useState([]);
   const onSubmit = (data) => {
-    console.log(data);
     // return;
     create(
       {
@@ -40,24 +39,18 @@ const CreateCommentForm = ({ taskId }) => {
   const handleOnpaste = (e) => {
     if (!e.clipboardData.files.length) return;
     setFiles([...files, { status: false, file: e.clipboardData.files?.[0] }]);
-    console.log();
   };
   const handleBrowser = (e) => {
     if (!e.target.files.length) return;
     setFiles([...files, { status: false, file: e.target.files?.[0] }]);
-    console.log({ e });
   };
-  const handleDrag = (e) => {
-    console.log({ e });
-  };
+  const handleDrag = (e) => {};
   const user = useAppSelector((state) => state?.auth?.user);
 
   const upLoadSuccess = (url) => {
     setfilesUploaded([...filesUploaded, url]);
   };
-  useEffect(() => {
-    console.log(filesUploaded);
-  }, [filesUploaded]);
+  useEffect(() => {}, [filesUploaded]);
   const inputFile = useRef(null);
   const onButtonClick = () => {
     // `current` points to the mounted file input element

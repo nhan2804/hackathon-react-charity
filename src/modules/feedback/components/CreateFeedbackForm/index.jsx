@@ -23,9 +23,7 @@ const CreateFeedbackForm = () => {
     );
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+  const onFinishFailed = (errorInfo) => {};
 
   return (
     <div>

@@ -12,7 +12,6 @@ const { Content } = Layout;
 
 const ProjectShared = () => {
   const { data: projectsh, isLoading } = useGetProjectShared();
-  console.log(projectsh);
 
   return (
     <Layout className="h-full">

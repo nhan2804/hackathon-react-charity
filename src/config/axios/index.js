@@ -1,8 +1,8 @@
 import { store } from "@app/store";
 import axios from "axios";
 import { refresh_token } from "@services/index";
-// axios.defaults.baseURL = "http://manager.sohoceravietnam.com/api";
-axios.defaults.baseURL = "http://localhost/smart-project-manager-be/public/api";
+axios.defaults.baseURL = "http://manager.sohoceravietnam.com/api";
+// axios.defaults.baseURL = "http://localhost/smart-project-manager-be/public/api";
 export const configAxios = () => {
   axios.interceptors.request.use(
     (config) => {
@@ -25,7 +25,6 @@ export const configAxios = () => {
     async (error) => {
       const originalConfig = error.config;
       const url = originalConfig.url;
-      console.log(url);
 
       if (error.response && url !== "/auth/refresh" && url !== "/auth/login") {
         //@ts-ignore

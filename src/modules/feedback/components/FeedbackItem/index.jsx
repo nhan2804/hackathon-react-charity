@@ -24,7 +24,6 @@ import moment from "moment";
 import CreateCommentForm from "@components/Comment/CreateCommentForm";
 import nl2br from "@helper/nl2br";
 const FeedbackItem = ({ fb }) => {
-  console.log(fb?.comments);
   const { data: permission } = usePermission(fb?.project_id);
   const { data } = useGetAllFeedbackComment(fb?.project_id, fb?.id_feedback);
   const { mutate: update } = useUpdateFeedBack(fb?.project_id, fb?.id_feedback);

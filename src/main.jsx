@@ -11,7 +11,7 @@ import { configAxios } from "@config/axios";
 import { QueryClientProvider } from "react-query";
 import { configReactQuery } from "@config/react-query";
 import { PersistGate } from "redux-persist/integration/react";
-// console.log(store.);
+//
 configAxios(store);
 const qc = configReactQuery({ store });
 ReactDOM.render(

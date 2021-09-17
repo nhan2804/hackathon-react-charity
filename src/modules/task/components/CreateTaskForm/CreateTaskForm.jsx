@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 import { toast } from "react-toastify";
 const { RangePicker } = DatePicker;
 const CreateTaskForm = ({ close }) => {
+  const [form] = Form.useForm();
   let { projectId } = useParams();
   const { mutate: create, isLoading } = useCreateTask();
   const onFinish = (values) => {
@@ -17,6 +18,7 @@ const CreateTaskForm = ({ close }) => {
         onSuccess: (data) => {
           close();
           toast.success(data?.message);
+          form.resetFields();
         },
         onError: () => {
           toast.error("Có lỗi xảy ra");
@@ -25,12 +27,11 @@ const CreateTaskForm = ({ close }) => {
     );
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+  const onFinishFailed = (errorInfo) => {};
 
   return (
     <Form
+      form={form}
       name="basic"
       initialValues={{
         remember: true,

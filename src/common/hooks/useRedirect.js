@@ -5,7 +5,7 @@ const useRedirect = (params) => {
   const history = useHistory();
   useEffect(() => {
     params.some(({ condition, to, cb }) => {
-      // console.log(condition, to);
+      //
       if (condition) {
         history.replace(to);
         cb?.();

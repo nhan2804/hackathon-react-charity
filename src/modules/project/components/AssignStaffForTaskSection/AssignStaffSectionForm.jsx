@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo } from "react";
-import { Form, Input, Button, Upload, Select } from "antd";
+import React, { useEffect } from "react";
+import { Form, Input, Button, Select, Divider } from "antd";
 import useGetTaskUnAsign from "@modules/task/hooks/useGetTaskUnAsign";
 import { useParams } from "react-router";
 import useAssignProject from "@modules/project/hooks/useAssignProject";
@@ -8,26 +8,22 @@ import useGetStaff from "@modules/project/hooks/useGetStaff";
 const { Option } = Select;
 const AssignStaffForTaskSectionForm = ({ id_task }) => {
   const { projectId } = useParams();
-  const { form } = Form.useForm();
+  const [form] = Form.useForm();
   const res = useResponse();
   const { mutate: assign, isLoading } = useAssignProject(projectId);
   const onFinish = (values) => {
-    console.log(values);
-
     assign({ ...values, id_task: [id_task] }, res);
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+  const onFinishFailed = (errorInfo) => {};
   const { data: tasksUnsign } = useGetTaskUnAsign(projectId);
-  // console.log(tasksUnsign);
+  //
 
   function handleChange(value) {
-    console.log(`selected ${value}`);
     form.setFieldsValue(value);
   }
   const { data: staff } = useGetStaff(projectId);
+
   return (
     <Form
       name="basic"
@@ -38,16 +34,7 @@ const AssignStaffForTaskSectionForm = ({ id_task }) => {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
-      <Form.Item
-        label="Username nhân viên"
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: "Bạn cần nhập username nhân viên",
-          },
-        ]}
-      >
+      <Form.Item label="Username nhân viên" name="username">
         <Input
           placeholder="nhập Username"
           //   prefix={<UserOutlined className="site-form-item-icon" />}
@@ -58,9 +45,11 @@ const AssignStaffForTaskSectionForm = ({ id_task }) => {
           //   }
         />
       </Form.Item>
+
+      <Divider orientation="center">Hoặc</Divider>
       <Form.Item
         name="id_user"
-        label="Hoặc chọn nhân viên có sẵn"
+        label="Chọn nhân viên có sẵn"
         className="w-full"
       >
         <Select
@@ -73,11 +62,14 @@ const AssignStaffForTaskSectionForm = ({ id_task }) => {
             option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
           }
         >
+          <Option>-----Chọn nhân viên------</Option>
           {staff?.map((e) => {
             return (
-              <Option key={e?.id} value={e?.username}>
-                {e?.username}
-              </Option>
+              <>
+                <Option key={e?.id} value={e?.id}>
+                  {e?.username}
+                </Option>
+              </>
             );
           })}
         </Select>

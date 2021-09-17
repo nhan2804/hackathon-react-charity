@@ -2,7 +2,6 @@ import { toast } from "react-toastify";
 const useResponse = () => {
   return {
     onSuccess: (data) => {
-      console.log(data);
       toast.success(data?.message || "Thành công");
     },
     onError: (e) => {

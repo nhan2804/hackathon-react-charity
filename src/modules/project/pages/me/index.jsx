@@ -12,7 +12,6 @@ const { Content } = Layout;
 
 const ProjectMe = () => {
   const { data: projectsh, isLoading } = useGetProjectMe();
-  console.log(projectsh);
 
   return (
     <Layout className="h-full">

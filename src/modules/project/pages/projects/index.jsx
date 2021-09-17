@@ -12,7 +12,7 @@ const { Content } = Layout;
 
 const Project = () => {
   const { data: projects, isLoading } = useGetProject();
-  console.log(projects);
+
   return (
     <Layout className="h-full">
       <LeftNav />

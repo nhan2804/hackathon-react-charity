@@ -8,7 +8,6 @@ const AddClientForm = ({ close }) => {
   const { form } = Form.useForm();
   const { mutate: assign, isLoading } = useAddClient(projectId);
   const onFinish = (values) => {
-    console.log(values);
     assign(values, {
       onSuccess: close,
       onError: (e) => {
@@ -17,9 +16,7 @@ const AddClientForm = ({ close }) => {
     });
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+  const onFinishFailed = (errorInfo) => {};
 
   return (
     <Form

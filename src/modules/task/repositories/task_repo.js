@@ -16,19 +16,19 @@ const task_repo = (tasks) => {
     ) {
       const deadline_time = date3.getTime() - date1.getTime();
       const deadline = deadline_time / (1000 * 3600 * 24);
-      console.log(deadline);
+
       progress = (deadline / duration) * 100;
     } else if (
       date3.getTime() >= date2.getTime() &&
       date3.getTime() >= date1.getTime()
     ) {
       progress = 100;
-      console.log("over");
     }
     const count_todo = e?.count_todo;
     const todo_done = e?.todo_done;
 
     const done = `${todo_done} / ${count_todo}`;
+    console.log(progress);
     return {
       id: i + 1,
       start_date: moment(e?.time_start).format("YYYY-MM-DD"),

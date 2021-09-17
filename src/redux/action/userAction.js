@@ -14,7 +14,7 @@ export const loginAction = (loginData, cb) => async (dispatch) => {
       type: userConstants.USER_LOGIN_ERROR,
       payload: error?.response?.data,
     });
-    // console.log(error);
+    //
   }
 };
 
@@ -30,7 +30,7 @@ export const signupAction = (signUpData, cb) => async (dispatch) => {
       type: userConstants.USER_SIGNUP_ERROR,
       payload: error?.response?.data,
     });
-    // console.log(error);
+    //
   }
 };
 export const logout = (cb) => async (dispatch) => {

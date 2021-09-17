@@ -12,9 +12,7 @@ const Login = () => {
     login(values);
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+  const onFinishFailed = (errorInfo) => {};
 
   return (
     <div className="flex items-center h-full">

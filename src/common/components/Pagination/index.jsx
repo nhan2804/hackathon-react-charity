@@ -10,7 +10,6 @@ const Pagination = ({
   className,
   list,
 }) => {
-  console.log(currentPage);
   return (
     <div className={className}>
       <ReactPaginate

@@ -5,7 +5,6 @@ import Compress from "compress.js";
 import dataURLtoFile from "@helper/convertBase64ToFile";
 
 export const FileUpload = ({ file, onUpLoadSuccess }) => {
-  console.log(file);
   const { mutate: upload, isLoading } = useUploadImage();
   async function resizeImageFn(file) {
     const compress = new Compress();
@@ -32,7 +31,6 @@ export const FileUpload = ({ file, onUpLoadSuccess }) => {
       upload(formData, {
         onSuccess: (data) => {
           onUpLoadSuccess(data?.data?.display_url);
-          console.log(data?.data?.display_url);
         },
       });
     }

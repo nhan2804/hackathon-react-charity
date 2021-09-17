@@ -7,7 +7,6 @@ const CreateTodoForm = ({ taskId, projectId }) => {
   const { mutate: create, isLoading } = useCreateTodo(taskId);
   const [form] = Form.useForm();
   const onFinish = (values) => {
-    console.log(values);
     create(values);
     form.resetFields();
   };

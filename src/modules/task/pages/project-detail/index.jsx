@@ -28,7 +28,6 @@ const ProjectDetail = () => {
     if (action === "select-task") {
       const id_task = taskss?.[id - 1]?.id_task;
       history.push(`/project/${projectId}/tasks/${id_task}`);
-      console.log(`Task ${id} was selected`);
     }
   }
 

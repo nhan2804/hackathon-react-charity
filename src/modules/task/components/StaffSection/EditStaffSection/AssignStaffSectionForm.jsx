@@ -12,19 +12,14 @@ const AssignStaffForTaskSectionForm = ({ id_task }) => {
   const res = useResponse();
   const { mutate: assign, isLoading } = useAssignProject(projectId);
   const onFinish = (values) => {
-    console.log(values);
-
     assign({ ...values, id_task: [id_task] }, res);
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+  const onFinishFailed = (errorInfo) => {};
   const { data: tasksUnsign } = useGetTaskUnAsign(projectId);
-  // console.log(tasksUnsign);
+  //
 
   function handleChange(value) {
-    console.log(`selected ${value}`);
     form.setFieldsValue(value);
   }
   const { data: staff } = useGetStaff(projectId);
@@ -38,16 +33,7 @@ const AssignStaffForTaskSectionForm = ({ id_task }) => {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
-      <Form.Item
-        label="Username nhân viên"
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: "Bạn cần nhập username nhân viên",
-          },
-        ]}
-      >
+      <Form.Item label="Username nhân viên" name="username">
         <Input
           placeholder="nhập Username"
           //   prefix={<UserOutlined className="site-form-item-icon" />}
@@ -75,7 +61,7 @@ const AssignStaffForTaskSectionForm = ({ id_task }) => {
         >
           {staff?.map((e) => {
             return (
-              <Option key={e?.id} value={e?.username}>
+              <Option key={e?.id} value={e?.id}>
                 {e?.username}
               </Option>
             );
@@ -90,7 +76,7 @@ const AssignStaffForTaskSectionForm = ({ id_task }) => {
             className="!font-semibold"
             loading={isLoading}
           >
-            Thêm nhân viên
+            Lưu thay đổi
           </Button>
         </div>
       </Form.Item>

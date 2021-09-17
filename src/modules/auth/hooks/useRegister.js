@@ -14,7 +14,6 @@ const useRegister = () => {
     },
     {
       onSuccess: (data) => {
-        console.log(data);
         dispatch(loginAction(data));
         history.push("/project");
       },

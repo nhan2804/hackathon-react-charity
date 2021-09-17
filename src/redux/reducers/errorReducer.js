@@ -6,9 +6,9 @@ export const errorReducer = (state = {}, action) => {
   if (!matches) return state;
 
   const [, requestName, requestState] = matches;
-  // console.log("====================================");
-  // console.log(["FAILURE", "ERROR"].includes(requestState), requestState);
-  // console.log("====================================");
+  //
+  //
+  //
   return {
     ...state,
     // Store errorMessage

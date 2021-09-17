@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from "react";
-import { Form, Input, Button, Upload, Select } from "antd";
+import { Form, Input, Button, Upload, Select, Divider } from "antd";
 
 import { UploadOutlined } from "@ant-design/icons";
 import useCreateProject from "@modules/project/hooks/useCreateProject";
@@ -15,20 +15,16 @@ const AssignStaffSectionForm = () => {
   const res = useResponse();
   const { mutate: assign, isLoading } = useAssignProject(projectId);
   const onFinish = (values) => {
-    console.log(values);
     const thumb_project =
       values?.thumbnail_project?.[0]?.response?.data?.thumb?.url;
     assign(values, res);
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+  const onFinishFailed = (errorInfo) => {};
   const { data: tasksUnsign } = useGetTaskUnAsign(projectId);
-  // console.log(tasksUnsign);
+  //
 
   function handleChange(value) {
-    console.log(`selected ${value}`);
     form.setFieldsValue(value);
   }
   const { data: staff } = useGetStaff(projectId);
@@ -61,16 +57,7 @@ const AssignStaffSectionForm = () => {
           })}
         </Select>
       </Form.Item>
-      <Form.Item
-        label="Username nhân viên"
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: "Bạn cần nhập username nhân viên",
-          },
-        ]}
-      >
+      <Form.Item label="Username nhân viên" name="username">
         <Input
           placeholder="nhập Username"
           //   prefix={<UserOutlined className="site-form-item-icon" />}
@@ -81,9 +68,10 @@ const AssignStaffSectionForm = () => {
           //   }
         />
       </Form.Item>
+      <Divider orientation="center">fHoặc</Divider>
       <Form.Item
         name="id_user"
-        label="Hoặc chọn nhân viên có sẵn"
+        label="Chọn nhân viên có sẵn"
         className="w-full"
       >
         <Select
@@ -97,8 +85,9 @@ const AssignStaffSectionForm = () => {
           }
         >
           {staff?.map((e) => {
+            <Option>-----Chọn nhân viên------</Option>;
             return (
-              <Option key={e?.id} value={e?.username}>
+              <Option key={e?.id} value={e?.id}>
                 {e?.username}
               </Option>
             );

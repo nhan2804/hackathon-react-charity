@@ -8,15 +8,12 @@ import {
 } from "@ant-design/icons";
 import useRegister from "@modules/auth/hooks/useRegister";
 const Register = () => {
-  const {mutate:register,isLoading}=useRegister();
+  const { mutate: register, isLoading } = useRegister();
   const onFinish = (values) => {
-    console.log("Success:", values);
     register(values);
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+  const onFinishFailed = (errorInfo) => {};
   return (
     <div className="flex items-center h-full">
       <Form
@@ -42,8 +39,18 @@ const Register = () => {
             }
           />
         </Form.Item>
-        <Form.Item label="Số điện thoại" name="phone">
+        <Form.Item
+          rules={[
+            {
+              required: true,
+              message: "Bạn cần nhập số điện thoại",
+            },
+          ]}
+          label="Số điện thoại"
+          name="phone"
+        >
           <Input
+            type="number"
             placeholder="Số điện thoại"
             prefix={<UserOutlined className="site-form-item-icon" />}
             suffix={
@@ -53,30 +60,18 @@ const Register = () => {
             }
           />
         </Form.Item>
-        <Form.Item label="Email" name="email">
-          <Input
-            placeholder="Email"
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            suffix={
-              <Tooltip title="Extra information">
-                <InfoCircleOutlined style={{ color: "rgba(0,0,0,.45)" }} />
-              </Tooltip>
-            }
-          />
-        </Form.Item>
-
         <Form.Item
-          label="Tên tài khoản"
-          name="username"
           rules={[
             {
               required: true,
-              message: "Bạn cần nhập tên tài khoản",
+              message: "Bạn cần nhập email",
             },
           ]}
+          label="Email"
+          name="email"
         >
           <Input
-            placeholder="Tên tài khoản"
+            placeholder="Email"
             prefix={<UserOutlined className="site-form-item-icon" />}
             suffix={
               <Tooltip title="Extra information">
@@ -119,7 +114,12 @@ const Register = () => {
 
         <Form.Item>
           <div className="flex justify-center">
-            <Button loading={isLoading} type="primary" htmlType="submit" className="!font-semibold">
+            <Button
+              loading={isLoading}
+              type="primary"
+              htmlType="submit"
+              className="!font-semibold"
+            >
               Submit
             </Button>
           </div>

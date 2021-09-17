@@ -15,7 +15,7 @@ const Feedback = () => {
   const history = useHistory();
   const { data: feedbacks, isLoading } = useGetFeedBack(projectId);
   const { data } = usePermission(projectId);
-  console.log(isLoading);
+
   return (
     <Layout className="h-full">
       <Content className="h-full bg-white">

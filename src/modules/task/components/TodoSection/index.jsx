@@ -20,9 +20,7 @@ const TodoSection = ({ taskId, task, todo, projectId, isLoading }) => {
     [todo]
   );
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
-  };
+  const onFinish = (values) => {};
 
   const percent = useMemo(() => {
     return Math.round((percentChecked / todo?.length) * 100);

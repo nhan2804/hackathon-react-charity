@@ -13,12 +13,12 @@ const StaffSection = ({ staff, taskId, projectId }) => {
       <div className="space-x-2">
         <EditStaffSection taskId={taskId} projectId={projectId} />
 
-        <Button
+        {/* <Button
           icon={<DeleteOutlined />}
           shape="circle"
           danger
           //   onClick={() => deleteTodo({ id_todo })}
-        />
+        /> */}
       </div>
     </div>
   );

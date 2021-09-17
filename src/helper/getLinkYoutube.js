@@ -20,7 +20,6 @@ function youtube_parser(url) {
   var regExp =
     /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
 
-  console.log(url);
   if (!url) return false;
   const uri = url.join("");
   var match = uri.match(regExp);
