@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Input, Button, DatePicker } from "antd";
 import useCreateTask from "@modules/task/hooks/useCreateTask";
 import { useParams } from "react-router";
+import { toast } from "react-toastify";
 const { RangePicker } = DatePicker;
 const CreateTaskForm = ({ close }) => {
   let { projectId } = useParams();
@@ -12,7 +13,15 @@ const CreateTaskForm = ({ close }) => {
 
     create(
       { ...values, time_start, time_end, project_id: projectId },
-      { onSuccess: close }
+      {
+        onSuccess: (data) => {
+          close();
+          toast.success(data?.message);
+        },
+        onError: () => {
+          toast.error("Có lỗi xảy ra");
+        },
+      }
     );
   };
 

@@ -11,6 +11,7 @@ import UpdateTaskNameSection from "@modules/task/components/UpdateTaskNameSectio
 import usePermission from "@hooks/usePermission";
 import Confirm from "@components/Confirm";
 import useDeleteTask from "@modules/task/hooks/useDeleteTask";
+import useResponse from "@hooks/useResponse";
 // import "react-big-calendar/lib/css/react-big-calendar.css";
 
 // const localizer = momentLocalizer(moment);
@@ -35,6 +36,7 @@ const TaskDetail = () => {
     projectId,
     taskId
   );
+  const res = useResponse();
   return (
     <Layout className="h-full">
       <ProjectHeader projectId={projectId} />
@@ -63,7 +65,7 @@ const TaskDetail = () => {
             extra={[
               permission?.task?.can_delete && (
                 <Confirm
-                  onConfirm={({ close }) => deleteTask({})}
+                  onConfirm={({ close }) => deleteTask({}, res)}
                   isLoading={deleteLoading}
                 />
               ),

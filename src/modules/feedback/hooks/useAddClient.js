@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "react-query";
+import { toast } from "react-toastify";
 import { addClient } from "../services";
 
 const useAddClient = (id) => {
@@ -12,6 +13,7 @@ const useAddClient = (id) => {
       onSuccess: () => {
         qc.invalidateQueries(["projectClient", id]);
       },
+      onError: (e) => {},
     }
   );
 };

@@ -6,16 +6,18 @@ import useCreateProject from "@modules/project/hooks/useCreateProject";
 import useGetTaskUnAsign from "@modules/task/hooks/useGetTaskUnAsign";
 import { useParams } from "react-router";
 import useAssignProject from "@modules/project/hooks/useAssignProject";
+import useResponse from "@hooks/useResponse";
 const { Option } = Select;
 const AssignStaffSectionForm = () => {
   const { projectId } = useParams();
   const { form } = Form.useForm();
+  const res = useResponse();
   const { mutate: assign, isLoading } = useAssignProject(projectId);
   const onFinish = (values) => {
     console.log(values);
     const thumb_project =
       values?.thumbnail_project?.[0]?.response?.data?.thumb?.url;
-      assign(values)
+    assign(values, res);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -28,7 +30,6 @@ const AssignStaffSectionForm = () => {
     console.log(`selected ${value}`);
     form.setFieldsValue(value);
   }
-  
 
   return (
     <Form

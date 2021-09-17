@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "react-query";
 import { createFeedback } from "../services";
 
-const useCreateFeedBack = () => {
+const useCreateFeedBack = (id) => {
   const qc = useQueryClient();
   return useMutation(
     async (requestData) => {
@@ -10,7 +10,7 @@ const useCreateFeedBack = () => {
     },
     {
       onSuccess: () => {
-        qc.invalidateQueries(["feedback"]);
+        qc.invalidateQueries(["project-feedback", id?.toString()]);
       },
     }
   );

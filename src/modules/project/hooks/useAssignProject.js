@@ -10,7 +10,7 @@ const useAssignProject = (id) => {
     },
     {
       onSuccess: () => {
-        qc.invalidateQueries(["project-task"]);
+        qc.invalidateQueries(["project-task", id]);
       },
     }
   );

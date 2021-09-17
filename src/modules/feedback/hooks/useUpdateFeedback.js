@@ -10,7 +10,7 @@ const useUpdateFeedBack = (projectId, id) => {
     },
     {
       onSuccess: () => {
-        qc.invalidateQueries(["feedback", projectId?.toString()]);
+        qc.invalidateQueries(["project-feedback", projectId?.toString()]);
       },
     }
   );
