@@ -1,12 +1,13 @@
 import { logout } from "@action/userAction";
 import { QueryClient } from "react-query";
+import { toast } from "react-toastify";
 
 export const configReactQuery = ({ store = {} }) => {
   const qc = new QueryClient();
   qc.setDefaultOptions({
     queries: {
       retry: false,
-     
+
       onError: (error) => {
         if (error.response) {
           // The request was made and the server responded with a status code
@@ -27,11 +28,20 @@ export const configReactQuery = ({ store = {} }) => {
           // console.log("Error", error.message);
         }
       },
-      refetchOnWindowFocus:false,
-
+      refetchOnWindowFocus: false,
     },
     mutations: {
       retry: false,
+
+      onSuccess: (data) => {
+        console.log(data);
+        toast.success(data?.message || "Thành công");
+      },
+      onError: (e) => {
+        toast.error(
+          e?.response?.data?.message || "Có lỗi xảy ra, vui lòng thử lại"
+        );
+      },
     },
   });
   return qc;

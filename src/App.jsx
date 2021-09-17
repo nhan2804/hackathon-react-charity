@@ -9,6 +9,7 @@ import { LazyMotion } from "framer-motion";
 import React from "react";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "antd/dist/antd.css";
 import HeaderNav from "@components/Header";
 import { Layout } from "antd";
@@ -18,17 +19,17 @@ const loadFeatures = () =>
 function App() {
   return (
     <React.StrictMode>
-    <LazyMotion features={loadFeatures} strict>
-      <div style={{ position: "absolute" }} id="back-to-top-anchor" />
-      <Layout className="h-full">
-        <HeaderNav />
-        <GetRoutes />
-        {/* <Footer /> */}
-      </Layout>
-      <ToastContainer />
-      <ScrollToTop />
-      <ReactQueryDevtools initialIsOpen />
-    </LazyMotion>
+      <LazyMotion features={loadFeatures} strict>
+        <div style={{ position: "absolute" }} id="back-to-top-anchor" />
+        <Layout className="h-full">
+          <HeaderNav />
+          <GetRoutes />
+          {/* <Footer /> */}
+        </Layout>
+        <ToastContainer />
+        <ScrollToTop />
+        <ReactQueryDevtools initialIsOpen />
+      </LazyMotion>
     </React.StrictMode>
   );
 }

@@ -2,13 +2,15 @@ import React from "react";
 import { Form, Input, Button, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import useCreateProject from "@modules/project/hooks/useCreateProject";
+import { toast } from "react-toastify";
+import useResponse from "@hooks/useResponse";
 const CreateProjectForm = () => {
+  const res = useResponse();
   const { mutate: create, isLoading } = useCreateProject();
   const onFinish = (values) => {
-    console.log("Success:", values);
     const thumb_project =
       values?.thumbnail_project?.[0]?.response?.data?.thumb?.url;
-    create({ ...values, thumb_project });
+    create({ ...values, thumb_project }, res);
   };
 
   const onFinishFailed = (errorInfo) => {

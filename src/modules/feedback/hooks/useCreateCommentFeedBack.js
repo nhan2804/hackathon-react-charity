@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from "react-query";
-import { useParams } from "react-router";
 import { createFeedBackComment } from "../services";
 
 const useCreateCommentFeedBack = (id) => {

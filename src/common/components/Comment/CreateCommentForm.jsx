@@ -1,6 +1,6 @@
 import { Avatar, Button, Input, Form } from "antd";
 import { Popover } from "@headlessui/react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 import {
   UserOutlined,
   FileImageOutlined,
@@ -12,6 +12,8 @@ import { useAppSelector } from "@hooks/reduxHook";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { FileUpload } from "@components/Comment/FileUpload";
 import Picker from "emoji-picker-react";
+// const Picker = lazy(() => import("emoji-picker-react"));
+const MemoEmojiPicker = React.memo(Picker);
 const CreateCommentForm = ({ postId, type }) => {
   const [form] = Form.useForm();
   const { mutate: create, isLoading } = useCreateComment(postId, type);
@@ -109,7 +111,6 @@ const CreateCommentForm = ({ postId, type }) => {
         </Form.Item>
         <Form.Item>
           <div className="flex space-x-1">
-            {" "}
             <Button
               onClick={onButtonClick}
               type="ghost"
@@ -122,11 +123,8 @@ const CreateCommentForm = ({ postId, type }) => {
                   onClick={() => setshowEmoji(!showEmoji)}
                 ></Button>
               </Popover.Button>
-              <Popover.Panel
-                className="absolute right-0 bottom-full"
-                unmount={false}
-              >
-                <Picker onEmojiClick={onEmojiClick} />
+              <Popover.Panel className="absolute right-0 bottom-full">
+                <MemoEmojiPicker onEmojiClick={onEmojiClick} />
               </Popover.Panel>
             </Popover>
           </div>

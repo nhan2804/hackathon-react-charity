@@ -2,14 +2,19 @@ import useAddClient from "@modules/feedback/hooks/useAddClient";
 import { Input, Form, Button } from "antd";
 import React from "react";
 import { useParams } from "react-router";
-
+import { toast } from "react-toastify";
 const AddClientForm = ({ close }) => {
   const { projectId } = useParams();
   const { form } = Form.useForm();
   const { mutate: assign, isLoading } = useAddClient(projectId);
   const onFinish = (values) => {
     console.log(values);
-    assign(values, { onSuccess: close });
+    assign(values, {
+      onSuccess: close,
+      onError: (e) => {
+        toast.error(e?.response?.data?.message);
+      },
+    });
   };
 
   const onFinishFailed = (errorInfo) => {

@@ -1,7 +1,7 @@
 import { Avatar, Button, Input, Form } from "antd";
 
 import React from "react";
-import { UserOutlined ,SendOutlined} from "@ant-design/icons";
+import { UserOutlined, SendOutlined } from "@ant-design/icons";
 import { useAppSelector } from "@hooks/reduxHook";
 import useCreateCommentFeedBack from "@modules/feedback/hooks/useCreateCommentFeedBack";
 const CreateCommentFeedBackForm = ({ feedbackID }) => {
@@ -31,9 +31,12 @@ const CreateCommentFeedBackForm = ({ feedbackID }) => {
       </Form.Item>
 
       <Form.Item>
-        <Button icon={<SendOutlined/>} type="primary" htmlType="submit" loading={isLoading}>
-         
-        </Button>
+        <Button
+          icon={<SendOutlined />}
+          type="primary"
+          htmlType="submit"
+          loading={isLoading}
+        ></Button>
       </Form.Item>
     </Form>
   );
