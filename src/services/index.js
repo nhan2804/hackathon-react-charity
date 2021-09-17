@@ -13,6 +13,9 @@ const uploadImage = (data) => {
 export const getRole = (id) => {
   return axios.get(`/project/${id}/check-has-in`);
 };
+export const refresh_token = (id) => {
+  return axios.post(`/auth/refresh`);
+};
 export default uploadImage;
 export { APIUploadImage };
 export const createComment = (taskId, requestData, type) => {
