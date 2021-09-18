@@ -104,7 +104,7 @@ const CreateTaskForm = ({ close }) => {
             className="!font-semibold"
             loading={isLoading}
           >
-            Tạo công viêc
+            Tạo công việc
           </Button>
         </div>
       </Form.Item>

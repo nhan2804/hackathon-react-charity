@@ -26,7 +26,7 @@ const ProjectItem = ({ item, avatar }) => {
       <Meta
         avatar={<Avatar src={avatar} />}
         title={item?.name_project}
-        description={item?.desc_project?.substring(0, 100) + "..."}
+        description={item?.desc_project}
       />
     </Card>
   );

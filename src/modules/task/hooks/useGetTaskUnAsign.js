@@ -1,10 +1,10 @@
 import { useQuery } from "react-query";
-import { fetchTask } from "../services";
+import { fetchTaskUnsign } from "../services";
 
 const useGetTaskUnAsign = (id) => {
   return useQuery(["task-unsign", id], async () => {
-    const { data } = await fetchTask(id);
-    return (data);
+    const { data } = await fetchTaskUnsign(id);
+    return data;
   });
 };
 

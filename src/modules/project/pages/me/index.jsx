@@ -1,4 +1,4 @@
-import { Divider, Layout, Skeleton } from "antd";
+import { Breadcrumb, Divider, Layout, Skeleton } from "antd";
 import React from "react";
 // import "./index.css";
 
@@ -12,7 +12,17 @@ const { Content } = Layout;
 
 const ProjectMe = () => {
   const { data: projectsh, isLoading } = useGetProjectMe();
-
+  const breadcrumbItems = [
+    <Breadcrumb.Item key="home">
+      <Link to="/">Home</Link>
+    </Breadcrumb.Item>,
+    <Breadcrumb.Item key="project">
+      <Link to="/project">Dự án</Link>
+    </Breadcrumb.Item>,
+    <Breadcrumb.Item key="project">
+      <Link to="/project/me">Dự án của tôi</Link>
+    </Breadcrumb.Item>,
+  ];
   return (
     <Layout className="h-full">
       <LeftNav />
@@ -25,6 +35,7 @@ const ProjectMe = () => {
           minHeight: 280,
         }}
       >
+        <Breadcrumb>{breadcrumbItems}</Breadcrumb>
         <div className="grid grid-cols-5 gap-x-3 gap-y-3">
           {isLoading &&
             [...Array(10)].map((e) => {

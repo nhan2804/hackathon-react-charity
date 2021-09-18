@@ -13,7 +13,6 @@ import "react-toastify/dist/ReactToastify.css";
 import "antd/dist/antd.css";
 import HeaderNav from "@components/Header";
 import { Layout } from "antd";
-import CustomBreadcrumb from "@components/Breadcrumb";
 
 const loadFeatures = () =>
   import("./config/framer-motion").then((res) => res.default);
@@ -24,9 +23,7 @@ function App() {
         <div style={{ position: "absolute" }} id="back-to-top-anchor" />
         <Layout className="h-full">
           <HeaderNav />
-          <div className="ml-48 text-white text-lg">
-            <CustomBreadcrumb />
-          </div>
+          <div className="ml-48 text-white text-lg"></div>
           <GetRoutes />
           {/* <Footer /> */}
         </Layout>

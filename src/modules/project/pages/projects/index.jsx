@@ -1,4 +1,4 @@
-import { Divider, Layout, Skeleton } from "antd";
+import { Breadcrumb, Divider, Layout, Skeleton } from "antd";
 import React from "react";
 // import "./index.css";
 
@@ -7,11 +7,19 @@ import ProjectItem from "../../components/ProjectItem";
 import { Link } from "react-router-dom";
 import CreateProjectSection from "./components/CreateProjectSection";
 import useGetProject from "@modules/project/hooks/useGetProJect";
-import { AppstoreAddOutlined } from "@ant-design/icons";
+import { AppstoreAddOutlined, DatabaseOutlined } from "@ant-design/icons";
 const { Content } = Layout;
 
 const Project = () => {
   const { data: projects, isLoading } = useGetProject();
+  const breadcrumbItems = [
+    <Breadcrumb.Item key="home">
+      <Link to="/">Home</Link>
+    </Breadcrumb.Item>,
+    <Breadcrumb.Item key="project">
+      <Link to="/project">Dự án</Link>
+    </Breadcrumb.Item>,
+  ];
 
   return (
     <Layout className="h-full">
@@ -25,6 +33,7 @@ const Project = () => {
           minHeight: 280,
         }}
       >
+        <Breadcrumb>{breadcrumbItems}</Breadcrumb>
         <div>
           <Divider orientation="left">
             <div className="text-xl">Dự án của tôi</div>
@@ -47,10 +56,11 @@ const Project = () => {
                 <Link
                   to="/project/me"
                   // onClick={open}
-                  className="flex items-center justify-center bg-gray-100 border-2 border-gray-500 rounded-md min-h-[340px]"
+                  className="flex items-center justify-center rounded-md min-h-[340px]"
                 >
                   <div className="space-y-3 text-center">
-                    <AppstoreAddOutlined className="text-3xl" />
+                    <DatabaseOutlined className="text-3xl" />
+                    {/* <AppstoreAddOutlined className="text-3xl" /> */}
                     <div className="text-lg font-semibold">Xem thêm</div>
                   </div>
                 </Link>
@@ -79,10 +89,11 @@ const Project = () => {
                 <Link
                   to="/project/shared"
                   // onClick={open}
-                  className="flex items-center justify-center bg-gray-100 border-2 border-gray-500 rounded-md min-h-[340px]"
+                  className="flex items-center justify-center rounded-md min-h-[340px]"
                 >
                   <div className="space-y-3 text-center">
-                    <AppstoreAddOutlined className="text-3xl" />
+                    <DatabaseOutlined className="text-3xl" />
+                    {/* <AppstoreAddOutlined className="text-3xl" /> */}
                     <div className="text-lg font-semibold">Xem thêm</div>
                   </div>
                 </Link>

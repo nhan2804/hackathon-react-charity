@@ -1,4 +1,4 @@
-import { Button, Layout, PageHeader, Tag } from "antd";
+import { Breadcrumb, Button, Layout, PageHeader, Tag } from "antd";
 import React, { useMemo } from "react";
 // import "./index.css";
 import { useParams } from "react-router";
@@ -12,6 +12,7 @@ import usePermission from "@hooks/usePermission";
 import Confirm from "@components/Confirm";
 import useDeleteTask from "@modules/task/hooks/useDeleteTask";
 import useResponse from "@hooks/useResponse";
+import { Link } from "react-router-dom";
 // import "react-big-calendar/lib/css/react-big-calendar.css";
 
 // const localizer = momentLocalizer(moment);
@@ -36,13 +37,34 @@ const TaskDetail = () => {
     projectId,
     taskId
   );
+  const overTime = useMemo(() => {
+    return new Date(task?.time_end).getTime() < new Date().getTime();
+  }, [task]);
+
   const res = useResponse();
+  const breadcrumbItems = [
+    <Breadcrumb.Item key="home">
+      <Link to="/">Home</Link>
+    </Breadcrumb.Item>,
+    <Breadcrumb.Item key="project">
+      <Link to="/project">Dự án</Link>
+    </Breadcrumb.Item>,
+    <Breadcrumb.Item key="project">
+      <Link to={`/project/${projectId}/tasks`}>Danh sách công việc</Link>
+    </Breadcrumb.Item>,
+    <Breadcrumb.Item key="project">
+      <Link to={`/project/${projectId}/tasks/${taskId}`}>Việc cần làm</Link>
+    </Breadcrumb.Item>,
+  ];
   return (
     <Layout className="h-full">
       <ProjectHeader projectId={projectId} />
       <Layout>
         {/* <TaskMenu projectId={projectId} taskId={taskId} /> */}
         <Layout.Content className="bg-white">
+          <div className="mx-5">
+            <Breadcrumb>{breadcrumbItems}</Breadcrumb>
+          </div>
           <PageHeader
             className="site-page-header"
             title={
@@ -53,8 +75,8 @@ const TaskDetail = () => {
             }
             // subTitle="This is a subtitle"
             tags={[
-              isDone ? (
-                <Tag color="green">Hoàn thành</Tag>
+              overTime ? (
+                <Tag color="red">Quá thời gian</Tag>
               ) : (
                 <Tag color="blue">Đang tiến hành</Tag>
               ),
@@ -72,6 +94,9 @@ const TaskDetail = () => {
             ]}
           />
           <div className="mx-7">{task?.desc_task}</div>
+          <div className="mx-7">
+            {task?.time_start} đến {task?.time_end}
+          </div>
           <div className="px-6">
             <div className="grid grid-cols-2 gap-4">
               <TodoSection

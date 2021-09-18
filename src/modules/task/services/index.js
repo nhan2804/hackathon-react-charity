@@ -10,6 +10,9 @@ export const showTask = (id) => {
 export const fetchTask = (id) => {
   return axios.get(`/project/${id}/tasks`);
 };
+export const fetchTaskUnsign = (id) => {
+  return axios.get(`/project/${id}/tasks-unsign`);
+};
 export const createTodo = (taskId, requestData) => {
   return axios.post("/todo", { ...requestData, task_id: taskId });
 };

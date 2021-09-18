@@ -1,27 +1,31 @@
-import React, { useEffect, useMemo } from "react";
-import { Form, Input, Button, Upload, Select } from "antd";
-import useGetTaskUnAsign from "@modules/task/hooks/useGetTaskUnAsign";
+import React from "react";
+import { Form, Input, Button, Select } from "antd";
 import { useParams } from "react-router";
 import useAssignProject from "@modules/project/hooks/useAssignProject";
-import useResponse from "@hooks/useResponse";
 import useGetStaff from "@modules/project/hooks/useGetStaff";
+import { useQueryClient } from "react-query";
 const { Option } = Select;
 const AssignStaffForTaskSectionForm = ({ id_task }) => {
   const { projectId } = useParams();
   const { form } = Form.useForm();
-  const res = useResponse();
+
+  const qc = useQueryClient();
   const { mutate: assign, isLoading } = useAssignProject(projectId);
   const onFinish = (values) => {
-    assign({ ...values, id_task: [id_task] }, res);
+    assign(
+      { ...values, id_task: [id_task] },
+      {
+        onSuccess: () => {
+          qc.invalidateQueries(["task-detail", id_task]);
+        },
+      }
+    );
   };
 
   const onFinishFailed = (errorInfo) => {};
-  const { data: tasksUnsign } = useGetTaskUnAsign(projectId);
+
   //
 
-  function handleChange(value) {
-    form.setFieldsValue(value);
-  }
   const { data: staff } = useGetStaff(projectId);
   return (
     <Form

@@ -1,23 +1,29 @@
-import React, { useEffect, useMemo } from "react";
-import { Form, Input, Button, Upload, Select, Divider } from "antd";
+import React from "react";
+import { Form, Input, Button, Select, Divider } from "antd";
 
-import { UploadOutlined } from "@ant-design/icons";
-import useCreateProject from "@modules/project/hooks/useCreateProject";
 import useGetTaskUnAsign from "@modules/task/hooks/useGetTaskUnAsign";
 import { useParams } from "react-router";
 import useAssignProject from "@modules/project/hooks/useAssignProject";
-import useResponse from "@hooks/useResponse";
 import useGetStaff from "@modules/project/hooks/useGetStaff";
+import { useQueryClient } from "react-query";
+import { toast } from "react-toastify";
 const { Option } = Select;
 const AssignStaffSectionForm = () => {
   const { projectId } = useParams();
   const { form } = Form.useForm();
-  const res = useResponse();
+
+  const qc = useQueryClient();
   const { mutate: assign, isLoading } = useAssignProject(projectId);
   const onFinish = (values) => {
-    const thumb_project =
-      values?.thumbnail_project?.[0]?.response?.data?.thumb?.url;
-    assign(values, res);
+    assign(values, {
+      onSuccess: (d) => {
+        qc.invalidateQueries(["project-task", projectId?.toString()]);
+        toast.success(d?.message);
+      },
+      onError: (e) => {
+        // toast.error(e?.response?.data?.message);
+      },
+    });
   };
 
   const onFinishFailed = (errorInfo) => {};
@@ -68,7 +74,7 @@ const AssignStaffSectionForm = () => {
           //   }
         />
       </Form.Item>
-      <Divider orientation="center">fHoặc</Divider>
+      <Divider orientation="center">Hoặc</Divider>
       <Form.Item
         name="id_user"
         label="Chọn nhân viên có sẵn"

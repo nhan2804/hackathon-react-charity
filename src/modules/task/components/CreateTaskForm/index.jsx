@@ -1,5 +1,5 @@
 import React from "react";
-import { AppstoreAddOutlined } from "@ant-design/icons";
+import {} from "@ant-design/icons";
 import useModal from "@hooks/useModal";
 import { Button, Modal } from "antd";
 import CreateTaskForm from "./CreateTaskForm";
@@ -11,10 +11,10 @@ const CreateTaskSection = ({ projectId }) => {
   return data?.task?.can_create ? (
     <>
       <Button onClick={open} type="primary">
-        <div>Tạo công viêc</div>
+        <div>Tạo công việc</div>
       </Button>
       <Modal
-        title="Tạo công viêc"
+        title="Tạo công việc"
         visible={isOpen}
         onOk={close}
         onCancel={close}

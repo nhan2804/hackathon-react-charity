@@ -1,7 +1,5 @@
-import { Avatar, Button, Tag } from "antd";
+import { Avatar, Tag } from "antd";
 import React from "react";
-import EditOutlined from "@ant-design/icons/EditOutlined";
-import DeleteOutlined from "@ant-design/icons/DeleteOutlined";
 import EditStaffSection from "./EditStaffSection";
 const StaffSection = ({ staff, taskId, projectId }) => {
   return (

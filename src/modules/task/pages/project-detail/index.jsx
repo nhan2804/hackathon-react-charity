@@ -1,4 +1,4 @@
-import { Button, Layout } from "antd";
+import { Breadcrumb, Button, Layout } from "antd";
 import React, { useEffect, useState } from "react";
 // import "./index.css";
 
@@ -10,6 +10,7 @@ import { Gantt, DefaultTheme } from "@dhtmlx/trial-react-gantt";
 import ProjectHeader from "@modules/task/components/ProjectHeader";
 import useGetTask from "@modules/task/hooks/useGetTask";
 import SectionSkeleton from "@components/Skeleton";
+import { Link } from "react-router-dom";
 const { Content } = Layout;
 
 const ProjectDetail = () => {
@@ -30,11 +31,25 @@ const ProjectDetail = () => {
       history.push(`/project/${projectId}/tasks/${id_task}`);
     }
   }
+  const breadcrumbItems = [
+    <Breadcrumb.Item key="home">
+      <Link to="/">Home</Link>
+    </Breadcrumb.Item>,
+    <Breadcrumb.Item key="project">
+      <Link to="/project">Dự án</Link>
+    </Breadcrumb.Item>,
+    <Breadcrumb.Item key="project">
+      <Link to={`/project/${projectId}/tasks`}>Tất cả công việc</Link>
+    </Breadcrumb.Item>,
+  ];
 
   return (
     <Layout className="h-full">
       <Content className="flex flex-col h-full bg-white">
         <ProjectHeader projectId={projectId} />
+        <div className="mx-5">
+          <Breadcrumb>{breadcrumbItems}</Breadcrumb>
+        </div>
         <Layout className="flex-grow">
           {/* <TaskMenu projectId={projectId} /> */}
           <Content className="p-1">

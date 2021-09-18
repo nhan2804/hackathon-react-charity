@@ -9,6 +9,7 @@ const breadcrumbNameMap = {
   "/project/30/feedback": "Feedback",
   "/apps/2/detail": "Detail",
 };
+
 const CustomBreadcrumb = withRouter((props) => {
   const { location } = props;
   const pathSnippets = location.pathname.split("/").filter((i) => i);

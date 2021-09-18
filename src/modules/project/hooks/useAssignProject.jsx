@@ -1,8 +1,9 @@
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
+import { toast } from "react-toastify";
 import { assignProject } from "../services";
 
 const useAssignProject = (id) => {
-  const qc = useQueryClient();
+  // const qc = useQueryClient();
   return useMutation(
     async (requestData) => {
       const { data } = await assignProject(id, requestData);
@@ -10,7 +11,7 @@ const useAssignProject = (id) => {
     },
     {
       onSuccess: (data, param) => {
-        qc.invalidateQueries(["project-task", id?.toString()]);
+        toast.success(data?.message);
       },
     }
   );

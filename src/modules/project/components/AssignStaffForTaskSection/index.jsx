@@ -13,7 +13,7 @@ const AssignStaffForTaskSection = ({ projectId, taskId }) => {
       <Button onClick={open}>Thêm nhân viên</Button>
       <React.StrictMode>
         <Modal
-          title="Thêm nhân viên"
+          title="Lưu thay đổi"
           visible={isOpen}
           onOk={close}
           onCancel={close}

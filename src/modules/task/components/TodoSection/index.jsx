@@ -1,15 +1,10 @@
 import AssignStaffForTaskSection from "@modules/project/components/AssignStaffForTaskSection";
-import AssignStaffForTaskSectionForm from "@modules/project/components/AssignStaffForTaskSection/AssignStaffSectionForm";
-import useGetStaff from "@modules/project/hooks/useGetStaff";
-import useGetTaskPermission from "@modules/task/hooks/useGetTaskPermisson";
-import useShowTask from "@modules/task/hooks/useShowTask";
-import { Avatar, Divider, Progress, Tag, Select, Button, Form } from "antd";
+import { Divider, Progress } from "antd";
 import React, { useMemo } from "react";
 import StaffSection from "../StaffSection";
 import CreateTodoForm from "./CreateTodoForm";
 import ListTodo from "./ListTodo";
 
-const { Option } = Select;
 const TodoSection = ({ taskId, task, todo, projectId, isLoading }) => {
   const percentChecked = useMemo(
     (e) => {
@@ -20,13 +15,11 @@ const TodoSection = ({ taskId, task, todo, projectId, isLoading }) => {
     [todo]
   );
 
-  const onFinish = (values) => {};
-
   const percent = useMemo(() => {
     return Math.round((percentChecked / todo?.length) * 100);
   }, [percentChecked, todo]);
 
-  const { data: staff } = useGetStaff(projectId);
+  // const { data: staff } = useGetStaff(projectId);
   return (
     <div>
       <Progress percent={percent} />
