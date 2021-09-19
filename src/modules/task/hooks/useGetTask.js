@@ -6,7 +6,7 @@ const useGetTask = (id) => {
   return useQuery(["project-task", id], async () => {
     const { data } = await fetchTask(id);
 
-    return task_repo(data);
+    return { data, task_repo: task_repo(data) };
   });
 };
 

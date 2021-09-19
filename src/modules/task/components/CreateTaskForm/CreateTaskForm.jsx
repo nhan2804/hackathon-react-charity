@@ -53,7 +53,7 @@ const CreateTaskForm = ({ close }) => {
         ]}
       >
         <Input
-          placeholder="Tên dự án"
+          placeholder=""
           //   prefix={<UserOutlined className="site-form-item-icon" />}
           //   suffix={
           //     <Tooltip title="Extra information">
@@ -74,7 +74,7 @@ const CreateTaskForm = ({ close }) => {
         ]}
       >
         <Input
-          placeholder="Mô tả dự án"
+          placeholder="Mô tả công việc"
           //   prefix={<LockOutlined className="site-form-item-icon" />}
           //   suffix={
           //     <Tooltip title="Extra information">
@@ -84,7 +84,7 @@ const CreateTaskForm = ({ close }) => {
         />
       </Form.Item>
       <Form.Item
-        label="Ngày bắt đầu & Kết túc"
+        label="Ngày bắt đầu & Kết thúc"
         name="time"
         rules={[
           {

@@ -6,6 +6,9 @@ export const createProject = (requestData) => {
 export const fetchProject = () => {
   return axios.get("/project");
 };
+export const getProjectDetail = (id) => {
+  return axios.get(`/project/${id}`);
+};
 export const fetchProjectShared = () => {
   return axios.get("/project/shared");
 };

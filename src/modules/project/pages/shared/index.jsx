@@ -12,9 +12,6 @@ const { Content } = Layout;
 const ProjectShared = () => {
   const { data: projectsh, isLoading } = useGetProjectShared();
   const breadcrumbItems = [
-    <Breadcrumb.Item key="home">
-      <Link to="/">Home</Link>
-    </Breadcrumb.Item>,
     <Breadcrumb.Item key="project">
       <Link to="/project">Dự án</Link>
     </Breadcrumb.Item>,
@@ -53,11 +50,7 @@ const ProjectShared = () => {
                 <div className="grid grid-cols-5 gap-x-3 gap-y-3">
                   {/* {use} */}
                   {projects?.map((e, i) => {
-                    return (
-                      <Link to={`/project/${e?.id_project}/tasks`} key={i}>
-                        <ProjectItem avatar={e?.user?.avatar} item={e} />
-                      </Link>
-                    );
+                    return <ProjectItem item={e} key={i} />;
                   })}
                 </div>
               </>

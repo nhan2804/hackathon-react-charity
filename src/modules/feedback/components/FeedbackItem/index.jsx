@@ -55,23 +55,23 @@ const FeedbackItem = ({ fb }) => {
   };
   return (
     <div>
-      <Popover className="relative rounded bg-gray-200/75">
-        <div className="p-2">
+      <Popover className="relative p-2 space-y-2 rounded shadow bg-gray-200/75">
+        <div className="">
           <div className="">
-            <div className="flex justify-between">
-              <Comment
-                author={fb?.user?.username}
-                avatar={<Avatar src={fb?.user?.avatar} alt="Han Solo" />}
-                datetime={
-                  <Tooltip
-                    title={moment(fb?.created_at).format("YYYY-MM-DD HH:mm:ss")}
-                  >
-                    <span>{moment(fb?.created_at).fromNow()}</span>
-                  </Tooltip>
-                }
-              ></Comment>
+            <div className="flex items-start space-x-2">
+              <Avatar src={fb?.user?.avatar} alt="Han Solo" />{" "}
+              <div className="leading-[1] space-y-1">
+                <div className="font-medium">{fb?.user?.username}</div>
+                <Tooltip
+                  title={moment(fb?.created_at).format("YYYY-MM-DD HH:mm:ss")}
+                >
+                  <div className="text-gray-500">
+                    {moment(fb?.created_at).fromNow()}
+                  </div>
+                </Tooltip>
+              </div>
               <Progress
-                className="text-gray-50"
+                className="absolute text-gray-50 top-2 right-2"
                 type="circle"
                 percent={Number(fb?.percent_feedback || 0)}
                 width={30}
@@ -79,33 +79,29 @@ const FeedbackItem = ({ fb }) => {
             </div>
           </div>
         </div>
+        <div className="inline-block space-x-1 text-lg font-semibold">
+          <span>{fb?.name_feedback}</span>
+
+          {status() ? <Tag color="blue">Mở</Tag> : <Tag color="red">Đóng</Tag>}
+
+          <Tag color={mappingPriorityTag?.[fb?.priority]?.bg}>
+            {mappingPriorityTag?.[fb?.priority]?.label}
+          </Tag>
+
+          {permission?.feedback?.can_edit && (
+            <Popover.Button>
+              <button>
+                <EditOutlined />
+              </button>
+            </Popover.Button>
+          )}
+        </div>
         <div
           className={`relative p-2 space-y-2 ${
             mappingPriority[fb?.priority]
           } rounded shadow text-gray-50 `}
         >
           <div className="space-x-1">
-            <div className="inline-block space-x-1 text-lg font-semibold">
-              <span>{fb?.name_feedback}</span>
-
-              {status() ? (
-                <Tag color="blue">Mở</Tag>
-              ) : (
-                <Tag color="red">Đóng</Tag>
-              )}
-
-              <Tag color={mappingPriorityTag?.[fb?.priority]?.bg}>
-                {mappingPriorityTag?.[fb?.priority]?.label}
-              </Tag>
-
-              {permission?.feedback?.can_edit && (
-                <Popover.Button>
-                  <button>
-                    <EditOutlined />
-                  </button>
-                </Popover.Button>
-              )}
-            </div>
             <div
               className="text-md"
               dangerouslySetInnerHTML={{ __html: nl2br(fb?.desc_feedback) }}

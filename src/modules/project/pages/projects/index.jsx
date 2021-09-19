@@ -13,9 +13,6 @@ const { Content } = Layout;
 const Project = () => {
   const { data: projects, isLoading } = useGetProject();
   const breadcrumbItems = [
-    <Breadcrumb.Item key="home">
-      <Link to="/">Home</Link>
-    </Breadcrumb.Item>,
     <Breadcrumb.Item key="project">
       <Link to="/project">Dự án</Link>
     </Breadcrumb.Item>,
@@ -47,11 +44,7 @@ const Project = () => {
             ) : (
               <>
                 {projects?.me?.map((e, i) => {
-                  return (
-                    <Link to={`/project/${e?.id_project}/tasks`} key={i}>
-                      <ProjectItem item={e} />
-                    </Link>
-                  );
+                  return <ProjectItem item={e} key={i} />;
                 })}
                 <Link
                   to="/project/me"
@@ -80,11 +73,7 @@ const Project = () => {
             ) : (
               <>
                 {projects?.shared?.map((e, i) => {
-                  return (
-                    <Link to={`/project/${e?.id_project}/tasks`} key={i}>
-                      <ProjectItem item={e} />
-                    </Link>
-                  );
+                  return <ProjectItem key={i} item={e} />;
                 })}
                 <Link
                   to="/project/shared"

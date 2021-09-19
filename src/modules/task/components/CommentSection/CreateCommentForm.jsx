@@ -72,6 +72,7 @@ const CreateCommentForm = ({ taskId }) => {
         id="file"
         ref={inputFile}
         style={{ display: "none" }}
+        accept="image/*"
       />
       <div className="flex space-x-2">
         {files.map((e, i) => {

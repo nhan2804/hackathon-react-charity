@@ -96,3 +96,9 @@ button {
 /*
  *  STYLE 2
  */
+.Body-module_row__2eOgf {
+  cursor: pointer;
+}
+.ant-comment-inner {
+  padding: 8px 0 !important;
+}

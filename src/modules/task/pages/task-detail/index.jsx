@@ -43,9 +43,6 @@ const TaskDetail = () => {
 
   const res = useResponse();
   const breadcrumbItems = [
-    <Breadcrumb.Item key="home">
-      <Link to="/">Home</Link>
-    </Breadcrumb.Item>,
     <Breadcrumb.Item key="project">
       <Link to="/project">Dự án</Link>
     </Breadcrumb.Item>,
@@ -58,13 +55,13 @@ const TaskDetail = () => {
   ];
   return (
     <Layout className="h-full">
-      <ProjectHeader projectId={projectId} />
+      <ProjectHeader
+        projectId={projectId}
+        breadcrumbs={<Breadcrumb>{breadcrumbItems}</Breadcrumb>}
+      />
       <Layout>
         {/* <TaskMenu projectId={projectId} taskId={taskId} /> */}
         <Layout.Content className="bg-white">
-          <div className="mx-5">
-            <Breadcrumb>{breadcrumbItems}</Breadcrumb>
-          </div>
           <PageHeader
             className="site-page-header"
             title={

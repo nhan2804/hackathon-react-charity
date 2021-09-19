@@ -29,7 +29,7 @@ const AddClientForm = ({ close }) => {
       autoComplete="off"
     >
       <Form.Item
-        label="Username khách hàng"
+        label="Email hoặc số điện thoại khách hàng"
         name="username"
         rules={[
           {
@@ -39,7 +39,7 @@ const AddClientForm = ({ close }) => {
         ]}
       >
         <Input
-          placeholder="nhập Username"
+          placeholder="nhập Email hoặc số điện thoại"
           //   prefix={<UserOutlined className="site-form-item-icon" />}
           //   suffix={
           //     <Tooltip title="Extra information">

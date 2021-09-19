@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { fetchProjectMe } from "../services";
 
 const useGetProjectMe = () => {
-  return useQuery(["project-me"], async () => {
+  return useQuery(["project", "project-me"], async () => {
     const { data } = await fetchProjectMe();
     return data;
   });

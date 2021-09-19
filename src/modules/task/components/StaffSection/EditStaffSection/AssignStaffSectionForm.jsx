@@ -37,9 +37,9 @@ const AssignStaffForTaskSectionForm = ({ id_task }) => {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
-      <Form.Item label="Username nhân viên" name="username">
+      <Form.Item label="Email hoặc số điện thoại nhân viên" name="username">
         <Input
-          placeholder="nhập Username"
+          placeholder="nhập Email hoặc số điện thoại"
           //   prefix={<UserOutlined className="site-form-item-icon" />}
           //   suffix={
           //     <Tooltip title="Extra information">

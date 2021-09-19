@@ -9,17 +9,16 @@ import { useHistory, useParams } from "react-router";
 import ListClient from "@modules/feedback/components/ListClient";
 import usePermission from "@hooks/usePermission";
 import { Link } from "react-router-dom";
+import useGetProjectDetail from "@modules/project/hooks/useGetProjectDetail";
 const { Content } = Layout;
 
 const Feedback = () => {
-  let { projectId } = useParams();
+  const { projectId } = useParams();
   const history = useHistory();
   const { data: feedbacks, isLoading } = useGetFeedBack(projectId);
   const { data } = usePermission(projectId);
+  const { data: project } = useGetProjectDetail(projectId);
   const breadcrumbItems = [
-    <Breadcrumb.Item key="home">
-      <Link to="/">Home</Link>
-    </Breadcrumb.Item>,
     <Breadcrumb.Item key="project">
       <Link to="/project">Dự án</Link>
     </Breadcrumb.Item>,
@@ -33,17 +32,15 @@ const Feedback = () => {
         <PageHeader
           title={
             <div className="flex items-center space-x-1">
-              <div>Feedbacks</div>
+              <div>Feedback - {project?.name_project}</div>
               {data?.project?.can_add_client && (
                 <AddClientSection projectId={projectId} />
               )}
             </div>
           }
           onBack={() => history.goBack()}
+          breadcrumb={<Breadcrumb>{breadcrumbItems}</Breadcrumb>}
         />
-        <div className="mx-5">
-          <Breadcrumb>{breadcrumbItems}</Breadcrumb>
-        </div>
 
         <div className="grid grid-cols-4 gap-3 px-6">
           {[...Array(10)].map((e) => {

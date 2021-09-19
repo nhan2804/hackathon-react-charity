@@ -21,11 +21,7 @@ const CustomBreadcrumb = withRouter((props) => {
       </Breadcrumb.Item>
     );
   });
-  const breadcrumbItems = [
-    <Breadcrumb.Item key="home">
-      <Link to="/">Home</Link>
-    </Breadcrumb.Item>,
-  ].concat(extraBreadcrumbItems);
+  const breadcrumbItems = [].concat(extraBreadcrumbItems);
   return <Breadcrumb>{breadcrumbItems}</Breadcrumb>;
 });
 export default CustomBreadcrumb;

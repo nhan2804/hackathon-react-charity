@@ -9,8 +9,9 @@ const UpdateTaskForm = ({
   time_start,
   time_end,
   id_task,
+  project_id,
 }) => {
-  const { mutate: update } = useUpdateTask(id_task);
+  const { mutate: update } = useUpdateTask(project_id, id_task);
   const onFinish = (values) => {
     const time_start = values?.time?.[0].format("YYYY-MM-DD");
     const time_end = values?.time?.[1].format("YYYY-MM-DD");
@@ -54,7 +55,7 @@ const UpdateTaskForm = ({
         ]}
       >
         <Input
-          placeholder="Mô tả dự án"
+          placeholder="Mô tả công việc"
           //   prefix={<LockOutlined className="site-form-item-icon" />}
           //   suffix={
           //     <Tooltip title="Extra information">

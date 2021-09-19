@@ -14,7 +14,6 @@ const CommentItem = React.memo(({ item }) => {
   const iDYoutube = youtube_parser(link());
   return (
     <Comment
-      //   actions={actions}
       author={<Link to="/">{item?.user?.username}</Link>}
       avatar={<Avatar src={item?.user?.avatar} alt={item?.user?.username} />}
       content={
