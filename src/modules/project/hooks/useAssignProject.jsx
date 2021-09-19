@@ -11,7 +11,7 @@ const useAssignProject = (id) => {
     },
     {
       onSuccess: (data, param) => {
-        toast.success(data?.message);
+        // toast.success(data?.message);
       },
     }
   );

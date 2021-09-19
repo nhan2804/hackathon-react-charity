@@ -40,17 +40,28 @@ const Register = () => {
           />
         </Form.Item>
         <Form.Item
+          name="phone"
           rules={[
             {
               required: true,
               message: "Bạn cần nhập số điện thoại",
             },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (value.match(/(84|0[3|5|7|8|9])+([0-9]{8})\b/g)) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(
+                  new Error(
+                    "Số điện thoại không đúng định dạng, vui lòng thử lại!"
+                  )
+                );
+              },
+            }),
           ]}
           label="Số điện thoại"
-          name="phone"
         >
           <Input
-            type="number"
             placeholder="Số điện thoại"
             prefix={<UserOutlined className="site-form-item-icon" />}
             suffix={
@@ -62,6 +73,10 @@ const Register = () => {
         </Form.Item>
         <Form.Item
           rules={[
+            {
+              type: "email",
+              message: "Email không chính xác",
+            },
             {
               required: true,
               message: "Bạn cần nhập email",
@@ -102,7 +117,7 @@ const Register = () => {
           rules={[
             {
               required: true,
-              message: "Bạn cần hập lại mật khẩu",
+              message: "Bạn cần nhập lại mật khẩu",
             },
           ]}
         >

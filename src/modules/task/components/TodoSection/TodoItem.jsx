@@ -1,4 +1,4 @@
-import { Button, Checkbox, Input, Form } from "antd";
+import { Button, Checkbox, Input, Form, Image } from "antd";
 import React, { useState } from "react";
 import EditOutlined from "@ant-design/icons/EditOutlined";
 import DeleteOutlined from "@ant-design/icons/DeleteOutlined";
@@ -17,6 +17,7 @@ const TodoItem = ({
   projectId,
   canDone,
   last_done,
+  files_todo,
 }) => {
   const { mutate: update } = useUpdateTodo(id_todo, task_id);
   const { mutate: doneTodo } = useDoneTodo(projectId, task_id?.toString());
@@ -46,6 +47,17 @@ const TodoItem = ({
           )}
         </div>
         <div className="text-gray-500">{desc}</div>
+        <div>
+          <Image.PreviewGroup>
+            {files_todo?.map((img) => (
+              <Image
+                src={img}
+                previewPrefixCls="inline"
+                preview={{ maskClassName: "inline" }}
+              />
+            ))}
+          </Image.PreviewGroup>
+        </div>
       </div>
       <div className="space-x-2">
         {data?.todo?.can_edit && (

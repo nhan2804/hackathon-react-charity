@@ -8,14 +8,27 @@ import Picker from "emoji-picker-react";
 import { FileImageOutlined, SmileTwoTone } from "@ant-design/icons";
 import { FileUpload } from "@components/Comment/FileUpload";
 const CreateTodoForm = ({ taskId, projectId }) => {
-  const { mutate: create, isLoading } = useCreateTodo(taskId);
-  const [form] = Form.useForm();
-  const onFinish = (values) => {
-    create(values);
-    form.resetFields();
-  };
   const [filesUploaded, setfilesUploaded] = useState([]);
   const [files, setFiles] = useState([]);
+  const { mutate: create, isLoading } = useCreateTodo(taskId);
+  const [form] = Form.useForm();
+  const onFinish = (data) => {
+    create(
+      {
+        ...data,
+        desc_todo: data?.desc_todo,
+        files_todo: filesUploaded,
+      },
+      {
+        onSuccess: () => {
+          setfilesUploaded([]);
+          setFiles([]);
+          form.resetFields();
+        },
+      }
+    );
+  };
+
   const onSubmit = (data) => {
     // return;
     create(
@@ -89,13 +102,7 @@ const CreateTodoForm = ({ taskId, projectId }) => {
           })}
         </div>
         <div className="flex space-x-2" onFinish={onSubmit}>
-          <Form.Item
-            name="desc_todo"
-            className="flex-grow"
-            rules={[
-              { required: true, message: "Bạn phải nhập nội dung bình luận" },
-            ]}
-          >
+          <Form.Item name="desc_todo" className="flex-grow">
             {/* <RichText onChangeValue={(data)=>form.setFieldsValue({desc_comment:data})} /> */}
             <Input.TextArea
               onDrag={handleDrag}

@@ -27,7 +27,7 @@ const HeaderNav = () => {
         </Menu.Item>
         <Menu.Item>
           <Link to="/upgrade">
-            <Badge count={5}>
+            <Badge count={1}>
               <span className="text-white">Upgrade</span>
             </Badge>
           </Link>

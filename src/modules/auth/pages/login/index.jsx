@@ -29,12 +29,12 @@ const Login = () => {
       >
         <div className="text-2xl font-bold text-center">Đăng nhập</div>
         <Form.Item
-          label="Tên tài khoản"
+          label="Số điện thoại hoặc gmail"
           name="email"
           rules={[
             {
               required: true,
-              message: "Bạn cần nhập tên tài khoản",
+              message: "Số điện thoại hoặc gmail",
             },
           ]}
         >
