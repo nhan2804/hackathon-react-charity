@@ -1,6 +1,6 @@
 import LeftNav from "@components/LeftNav";
 import { Layout, PageHeader, Form, Input, Button } from "antd";
-import React, { useState } from "react";
+import React from "react";
 import { useDropzone } from "react-dropzone";
 import { useUploadImage } from "@hooks/useUploadImage";
 import useGetProfile from "@modules/auth/hooks/useGetProfile";

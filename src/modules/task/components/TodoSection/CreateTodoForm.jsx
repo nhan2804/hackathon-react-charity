@@ -56,7 +56,7 @@ const CreateTodoForm = ({ taskId, projectId }) => {
     setFiles([...files, { status: false, file: e.target.files?.[0] }]);
   };
   const handleDrag = (e) => {};
-  const user = useAppSelector((state) => state?.auth?.user);
+  // const user = useAppSelector((state) => state?.auth?.user);
 
   const upLoadSuccess = (url) => {
     setfilesUploaded([...filesUploaded, url]);

@@ -1,4 +1,3 @@
-import React from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { changeAvatar } from "../services/index";
 const useChangeAvatar = () => {

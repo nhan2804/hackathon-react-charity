@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Button, Checkbox, Tooltip } from "antd";
+import { Form, Input, Button, Tooltip } from "antd";
 
 import {
   InfoCircleOutlined,

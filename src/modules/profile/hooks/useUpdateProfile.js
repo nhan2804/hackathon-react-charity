@@ -1,4 +1,3 @@
-import React from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { updateProfile } from "../services/index";
 const useUpdateProfile = () => {

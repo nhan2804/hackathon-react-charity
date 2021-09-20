@@ -1,16 +1,16 @@
-import { Avatar, Badge, Button, Layout, Menu } from "antd";
-import React, { useState } from "react";
+import { Badge, Button, Layout, Menu } from "antd";
+import React from "react";
 import "./index.css";
 import { Link } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from "@hooks/reduxHook";
-import { logout } from "@modules/auth/slices";
+import { useAppSelector } from "@hooks/reduxHook";
+// import { logout } from "@modules/auth/slices";
 import UserMenu from "./UserMenu";
 import logo from "@assets/images/logo.jpg";
 const { Header } = Layout;
 
 const HeaderNav = () => {
   const user = useAppSelector((store) => store?.auth?.user);
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   return (
     <Header className="flex justify-between">
       <div className="logo">

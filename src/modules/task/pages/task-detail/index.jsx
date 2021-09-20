@@ -1,4 +1,4 @@
-import { Breadcrumb, Button, Layout, PageHeader, Tag } from "antd";
+import { Breadcrumb, Layout, PageHeader, Tag } from "antd";
 import React, { useMemo } from "react";
 // import "./index.css";
 import { useParams } from "react-router";
@@ -31,7 +31,7 @@ const TaskDetail = () => {
   const percent = useMemo(() => {
     return Math.round((percentChecked / todo?.length) * 100);
   }, [percentChecked, todo]);
-  const isDone = percent === 100;
+
   const { data: permission } = usePermission(projectId);
   const { mutate: deleteTask, isLoading: deleteLoading } = useDeleteTask(
     projectId,

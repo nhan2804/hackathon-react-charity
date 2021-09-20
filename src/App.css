@@ -102,3 +102,7 @@ button {
 .ant-comment-inner {
   padding: 8px 0 !important;
 }
+
+.image-todo img {
+  max-height: 150px;
+}

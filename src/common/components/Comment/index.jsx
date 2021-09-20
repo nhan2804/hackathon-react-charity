@@ -1,4 +1,4 @@
-import React, { createElement, useState } from "react";
+import React from "react";
 import { Comment, Tooltip, Avatar, Image } from "antd";
 import moment from "moment";
 import { Link } from "react-router-dom";
@@ -6,7 +6,7 @@ import "./style.css";
 import urlify from "@helper/urlify";
 import { LinkPreview } from "@dhaiwat10/react-link-preview";
 import getLink from "@helper/getLinkFromText";
-import validateYouTubeUrl, { youtube_parser } from "@helper/getLinkYoutube";
+import { youtube_parser } from "@helper/getLinkYoutube";
 const CommentItem = React.memo(({ item }) => {
   const link = () => {
     return getLink(item?.desc_comment);
@@ -14,7 +14,7 @@ const CommentItem = React.memo(({ item }) => {
   const iDYoutube = youtube_parser(link());
   return (
     <Comment
-      author={<Link to="/">{item?.user?.username}</Link>}
+      author={<Link to="/">{item?.user?.fullname || item?.user?.email}</Link>}
       avatar={<Avatar src={item?.user?.avatar} alt={item?.user?.username} />}
       content={
         <>

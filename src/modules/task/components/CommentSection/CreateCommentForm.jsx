@@ -10,7 +10,7 @@ import {
 import useCreateComment from "@modules/task/hooks/useCreateComment";
 import { useAppSelector } from "@hooks/reduxHook";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import RichText from "@components/RichText";
+// import RichText from "@components/RichText";
 import { FileUpload } from "@components/Comment/FileUpload";
 import Picker from "emoji-picker-react";
 const CreateCommentForm = ({ taskId }) => {

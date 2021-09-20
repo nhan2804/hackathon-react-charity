@@ -4,13 +4,12 @@ import useGetProjectDetail from "@modules/project/hooks/useGetProjectDetail";
 import { Button, PageHeader } from "antd";
 import React from "react";
 import { useHistory } from "react-router";
-import AddClientSection from "../AddClientSection";
 import CreateTaskSection from "../CreateTaskForm";
 
 const ProjectHeader = ({ projectId, breadcrumbs, title }) => {
   // const {} =
   const history = useHistory();
-  const { data } = usePermission(projectId);
+  // const { data } = usePermission(projectId);
   const { data: project } = useGetProjectDetail(projectId);
   return (
     <PageHeader

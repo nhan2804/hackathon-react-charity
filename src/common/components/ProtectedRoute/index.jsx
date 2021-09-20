@@ -1,6 +1,6 @@
 import { useAppSelector } from "@hooks/reduxHook";
 import React, { memo } from "react";
-import { shallowEqual, useSelector } from "react-redux";
+import { shallowEqual } from "react-redux";
 import { Redirect, Route } from "react-router";
 
 const ProtectedRoute = ({

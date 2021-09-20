@@ -1,6 +1,6 @@
 import CommentItem from "@components/Comment";
 import useGetTaskComment from "@modules/task/hooks/useGetTaskComment";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { List, Skeleton } from "antd";
 const ListComment = ({ taskId }) => {
   const { data, isLoading } = useGetTaskComment(taskId);

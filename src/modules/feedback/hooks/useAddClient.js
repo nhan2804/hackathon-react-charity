@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "react-query";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { addClient } from "../services";
 
 const useAddClient = (id) => {

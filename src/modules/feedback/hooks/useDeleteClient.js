@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
-import { addClient, deleteClient } from "../services";
+import { deleteClient } from "../services";
 
 const useDeleteClient = (projectId) => {
   const qc = useQueryClient();

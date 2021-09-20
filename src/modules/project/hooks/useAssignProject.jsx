@@ -1,5 +1,4 @@
 import { useMutation } from "react-query";
-import { toast } from "react-toastify";
 import { assignProject } from "../services";
 
 const useAssignProject = (id) => {

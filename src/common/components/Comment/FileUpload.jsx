@@ -2,7 +2,6 @@ import { useUploadImage } from "@hooks/useUploadImage";
 import { LoadingOutlined, CheckCircleTwoTone } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import Compress from "compress.js";
-import dataURLtoFile from "@helper/convertBase64ToFile";
 
 export const FileUpload = ({ file, onUpLoadSuccess }) => {
   const { mutate: upload, isLoading } = useUploadImage();
@@ -17,7 +16,7 @@ export const FileUpload = ({ file, onUpLoadSuccess }) => {
     });
     const img = resizedImage[0];
     const base64str = img.data;
-    const imgExt = img.ext;
+
     // const resizedFiile = dataURLtoFile(base64str, file?.file?.name);
     return base64str;
   }

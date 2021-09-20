@@ -7,7 +7,7 @@ import ProjectItem from "../../components/ProjectItem";
 import { Link } from "react-router-dom";
 import CreateProjectSection from "./components/CreateProjectSection";
 import useGetProject from "@modules/project/hooks/useGetProJect";
-import { AppstoreAddOutlined, DatabaseOutlined } from "@ant-design/icons";
+import { DatabaseOutlined } from "@ant-design/icons";
 const { Content } = Layout;
 
 const Project = () => {

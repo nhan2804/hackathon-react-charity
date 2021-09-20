@@ -2,7 +2,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import useModal from "@hooks/useModal";
 import { Button } from "antd";
 
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 
 export default function Confirm({ onConfirm, isLoading }) {
   const { close, isOpen, open } = useModal();

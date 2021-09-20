@@ -1,6 +1,7 @@
 import { store } from "@app/store";
 import axios from "axios";
 import { refresh_token } from "@services/index";
+import Cookies from "js-cookie";
 axios.defaults.baseURL = "http://manager.sohoceravietnam.com/api";
 // axios.defaults.baseURL = "http://localhost/smart-project-manager-be/public/api";
 export const configAxios = () => {
@@ -32,7 +33,9 @@ export const configAxios = () => {
           //@ts-ignore
           try {
             const { data } = await refresh_token();
+            const userInfo = JSON.parse(Cookies.get("userInfo"));
             const access_token = data?.access_token;
+            Cookies.set("userInfo", { ...userInfo, access_token });
             originalConfig.headers["Authorization"] = `Bearer ${access_token}`;
             return axios(originalConfig);
           } catch (_error) {

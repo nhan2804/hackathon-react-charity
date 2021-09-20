@@ -1,5 +1,4 @@
 import React from "react";
-import { AppstoreAddOutlined } from "@ant-design/icons";
 import useModal from "@hooks/useModal";
 import { Button, Modal } from "antd";
 import AssignStaffSectionForm from "./AssignStaffSectionForm";

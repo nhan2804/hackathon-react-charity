@@ -1,5 +1,5 @@
 import { Button, Checkbox, Input, Form, Image } from "antd";
-import React, { useState } from "react";
+import React from "react";
 import EditOutlined from "@ant-design/icons/EditOutlined";
 import DeleteOutlined from "@ant-design/icons/DeleteOutlined";
 
@@ -47,7 +47,7 @@ const TodoItem = ({
           )}
         </div>
         <div className="text-gray-500">{desc}</div>
-        <div>
+        <div className="image-todo">
           <Image.PreviewGroup>
             {files_todo?.map((img) => (
               <Image

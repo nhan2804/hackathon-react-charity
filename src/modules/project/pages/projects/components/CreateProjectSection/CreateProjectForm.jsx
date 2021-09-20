@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Input, Button, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import useCreateProject from "@modules/project/hooks/useCreateProject";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import useResponse from "@hooks/useResponse";
 const CreateProjectForm = () => {
   const res = useResponse();

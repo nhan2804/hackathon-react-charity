@@ -1,5 +1,4 @@
 import useModal from "@hooks/useModal";
-import useGetClient from "@modules/feedback/hooks/useGetClient";
 import { Button, Modal } from "antd";
 import React from "react";
 import ListClient from "../ListClient";

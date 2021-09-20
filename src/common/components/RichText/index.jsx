@@ -1,4 +1,3 @@
-import axios from "axios";
 import { convertToRaw, EditorState } from "draft-js";
 import React, { useState } from "react";
 import draftToHtml from "draftjs-to-html";

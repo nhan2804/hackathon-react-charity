@@ -3,7 +3,6 @@ import { Button, Input, Form, Radio } from "antd";
 import React, { useState } from "react";
 import { useParams } from "react-router";
 import { PlusOutlined } from "@ant-design/icons";
-import useResponse from "@hooks/useResponse";
 import { toast } from "react-toastify";
 const CreateFeedbackForm = () => {
   let { projectId } = useParams();
@@ -22,8 +21,6 @@ const CreateFeedbackForm = () => {
       }
     );
   };
-
-  const onFinishFailed = (errorInfo) => {};
 
   return (
     <div>

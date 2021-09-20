@@ -1,9 +1,9 @@
 import React from "react";
-import { Button, Input, Form, Modal } from "antd";
+import { Modal } from "antd";
 import EditOutlined from "@ant-design/icons/EditOutlined";
-import CheckOutlined from "@ant-design/icons/CheckOutlined";
+
 import useModal from "@hooks/useModal";
-import { Popover } from "@headlessui/react";
+
 import UpdateTaskForm from "./UpdateTaskForm";
 const UpdateTaskNameSection = ({ name_task, canEdit, ...rest }) => {
   const { close, isOpen, open } = useModal();

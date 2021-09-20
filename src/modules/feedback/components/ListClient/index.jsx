@@ -1,4 +1,4 @@
-import { Dialog, Popover, Transition } from "@headlessui/react";
+import { Dialog, Transition } from "@headlessui/react";
 import useModal from "@hooks/useModal";
 import useGetClient from "@modules/feedback/hooks/useGetClient";
 import { Avatar, Button } from "antd";

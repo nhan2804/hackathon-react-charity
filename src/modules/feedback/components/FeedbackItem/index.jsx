@@ -9,13 +9,11 @@ import {
   Input,
   Button,
   Slider,
-  Select,
   Avatar,
   Tooltip,
   Radio,
 } from "antd";
 import React from "react";
-import CreateCommentFeedBackForm from "../CreateCommentFeedBackForm";
 import EditOutlined from "@ant-design/icons/EditOutlined";
 import { Popover } from "@headlessui/react";
 import useUpdateFeedBack from "@modules/feedback/hooks/useUpdateFeedback";
@@ -61,7 +59,9 @@ const FeedbackItem = ({ fb }) => {
             <div className="flex items-start space-x-2">
               <Avatar src={fb?.user?.avatar} alt="Han Solo" />{" "}
               <div className="leading-[1] space-y-1">
-                <div className="font-medium">{fb?.user?.username}</div>
+                <div className="font-medium">
+                  {fb?.user?.fullname || fb?.user?.email}
+                </div>
                 <Tooltip
                   title={moment(fb?.created_at).format("YYYY-MM-DD HH:mm:ss")}
                 >
