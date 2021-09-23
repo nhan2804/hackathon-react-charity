@@ -66,7 +66,7 @@ const Profile = () => {
                 <Input />
               </Form.Item>
               <Form.Item label="Số điện thoại" name="phone">
-                <Input />
+                <Input disabled={true} />
               </Form.Item>
               <Form.Item label="Email" name="email">
                 <Input />
