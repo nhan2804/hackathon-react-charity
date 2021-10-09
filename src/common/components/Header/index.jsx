@@ -14,7 +14,12 @@ const HeaderNav = () => {
   return (
     <Header className="flex justify-between">
       <div className="logo">
-        <img src={logo} alt="logo" />
+        <img
+          src={
+            "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png"
+          }
+          alt="logo"
+        />
       </div>
 
       <Menu
@@ -28,9 +33,15 @@ const HeaderNav = () => {
         <Menu.Item>
           <Link to="/upgrade">
             <Badge count={1}>
-              <span className="text-white">Upgrade</span>
+              <span className="text-white">Admin</span>
             </Badge>
           </Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to="/upgrade">Ủng hộ</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to="/upgrade">Giới thiệu</Link>
         </Menu.Item>
       </Menu>
       {!user ? (
